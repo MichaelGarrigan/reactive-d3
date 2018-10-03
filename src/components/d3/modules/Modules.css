@@ -1,0 +1,13 @@
+
+.modules-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.module-title {
+  background: grey;
+  border: 2px solid black;
+  margin: 20px 0;
+}

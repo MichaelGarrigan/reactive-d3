@@ -1,5 +1,17 @@
 
 .home-wrapper {
+  align-items: center;
   background: lightgray;
+  display: flex;
+  flex-wrap: wrap;
   height: 80vh;
+  justify-content: center;
+}
+
+.d3-example {
+  background: sandybrown;
+  border: 3px solid brown;
+  border-radius: 5px;
+  height: 150px;
+  width: 150px;
 }
