@@ -22,7 +22,8 @@ export default class Axis extends Component {
       .tickPadding([12])
       .ticks([4])
 
-    d3Select(this.axisElement).call(axis)
+    d3Select(this.axisElement).call(axis);
+    console.log('d3Select: ', this.axisElement);
   }
 
   render() {
