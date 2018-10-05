@@ -5,6 +5,9 @@ import './Home.css';
 
 const Home = () => (
   <div className="home-wrapper">
+    <Link to="/ShapeEditor">
+      <div className="d3-example">ShapeEditor</div>
+    </Link>
     <Link to="/Playground">
       <div className="d3-example">Playground</div>
     </Link>
