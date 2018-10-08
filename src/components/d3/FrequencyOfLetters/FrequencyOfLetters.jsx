@@ -1,13 +1,15 @@
 
-import React from 'react';
+import React, {Component} from 'react';
 import {max} from 'd3-array';
 import {axisBottom, axisLeft} from 'd3-axis';
 import {csvParse} from 'd3-dsv';
 import {scaleLinear, scaleBand} from 'd3-scale';
 import {select} from 'd3-selection';
 
+import './FrequencyOfLetters.css';
 
-class FrequencyOfLetters extends React.Component {
+
+class FrequencyOfLetters extends Component {
   
   render() {
     const csvFrequency = 
@@ -17,50 +19,72 @@ class FrequencyOfLetters extends React.Component {
       csvFrequency, 
       d => ({letter: d.letter, frequency: +d.frequency})
     );
-    console.log(csvParsed);
 
-    const margin = {top: 20, right: 30, bottom: 30, left: 40};
-    const width = 960 - margin.left - margin.right;
-    const height = 500 - margin.top - margin.bottom;
+    // Sizes
+    const margin = {top: 20, right: 20, bottom: 30, left: 40};
+    const width = 960; 
+    const height = 500; 
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
-    const x = scaleBand().rangeRound([0, width]);
-    const y = scaleLinear().range([height, 0]);
+    // Scales
+    const x = scaleBand().rangeRound([0, innerWidth]).padding(0.1);
+    const y = scaleLinear().rangeRound([innerHeight, 0]);
 
-
-    
-    x.domain(csvParsed.map(function(d) { return d.letter; }));
+    x.domain(csvParsed.map( d => d.letter ));
     y.domain([0, max(csvParsed, function(d) { return d.frequency; })]);
 
-    select('.x').call(axisBottom().scale(x));
-    select('.y').call(axisLeft().scale(y));
-    //console.log('sel',select('#x'));
-    
     return (
       <div>
-        <svg className="svg-frequency-letters" width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
-          <g 
-            style={{transform:`translate(${margin.left},${margin.top})`}}
+        <p className="frequency-title">Frequency of English Letters</p>
+        
+        <div className="frequency-svg-flex">
+        
+          <svg 
+            className="svg-frequency-letters" 
+            width={width} 
+            height={height}
           >
-            <g id='xAxis' className='x axis' style={{transform:`translate(0,${height})`}} />
+            <g 
+              transform={`translate(${margin.left},${margin.top})`}
+            >
+              <g
+                className='x axis' 
+                transform={`translate(0,${innerHeight})`} 
+                ref={node => select(node).call(axisBottom(x))}
+              />
               
-            <g className='y axis' />
+              <g className='y axis'>
+                <g
+                  ref={node => select(node).call(axisLeft(y).ticks(10, '%'))}
+                />
+                <text 
+                  transform='rotate(-90)'
+                  y='6'
+                  dy='0.71em'
+                  textAnchor='end'
+                >
+                  Frequency
+                </text>
+              </g>
               
-            {
-              csvParsed.map( datum => {
-                return (
-                  <rect 
-                    key={datum.letter}
-                    className='bar'
-                    x={x(datum.letter)}
-                    y={y(datum.frequency)}
-                    width={30}
-                    height={height - y(datum.frequency)}
-                  />
-                );
-              })
-            }
-          </g>
-        </svg>
+              {
+                csvParsed.map( datum => {
+                  return (
+                    <rect 
+                      key={datum.letter}
+                      className='bar'
+                      x={x(datum.letter)}
+                      y={y(datum.frequency)}
+                      width={x.bandwidth()}
+                      height={innerHeight - y(datum.frequency)}
+                    />
+                  );
+                })
+              }
+            </g>
+          </svg>
+        </div>
       </div>
     );
   }

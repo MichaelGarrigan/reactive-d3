@@ -2,6 +2,7 @@ import React from 'react';
 import Axis from './Axis.jsx';
 
 const Axes = ({ scales, margins, innerDimensions }) => {
+  
   const { height, width } = innerDimensions;
 
   const xProps = {

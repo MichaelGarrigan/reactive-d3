@@ -5,10 +5,21 @@ import './NavBar.css';
 
 const NavBar = () => (
   <div className="navbar-wrapper">
-    <h2 className="app-title">threact.com</h2> 
-    <Link to="/Modules">
-      <div className="nav-link">Modules</div>
-    </Link>
+    <p className="app-title">threact.com</p> 
+    <div className="nav-link-group">
+      <Link to="/Examples">
+        <div className="nav-link">Examples</div>
+      </Link>
+      <Link to="/Modules">
+        <div className="nav-link">Modules</div>
+      </Link>
+      <Link to="/Modules">
+        <div className="nav-link">Editors</div>
+      </Link>
+      <Link to="/Blog">
+        <div className="nav-link">Blog</div>
+      </Link>
+    </div>
   </div>
 );
 

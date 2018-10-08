@@ -21,7 +21,6 @@ class Playground extends React.Component {
       {name: 'Seventh', value: 15, year: 1970}
     ];
 
-
     const {containerWidth, containerHeight} = this.props;
     const margins = 40;
     const svgWidth = max([containerWidth / 2, 300]);
