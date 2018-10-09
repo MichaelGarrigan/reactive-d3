@@ -44,6 +44,12 @@ const Home = () => (
         <span className="d3-example-text">Area1</span>
       </div>
     </Link>
+    <Link to="/LinkedListEditor">
+      <div className="d3-example">
+        <span className="d3-example-text">Editor</span>
+        <span className="d3-example-text">Linked List</span>
+      </div>
+    </Link>
   </div>
 );
 

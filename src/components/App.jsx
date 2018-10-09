@@ -5,6 +5,7 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import Area1 from './d3/area/area1/Area1';
 import BubbleChart from './d3/BubbleChart/BubbleChart.jsx';
 import Home from './home/Home.jsx';
+import LinkedListEditor from './editors/LinkedListEditor/LinkedListEditor.jsx';
 import Modules from './d3/modules/Modules.jsx';
 import NavBar from './navbar/NavBar.jsx';
 import Playground from './d3/playground/Playground.jsx';
@@ -41,6 +42,11 @@ class App extends Component {
               exact 
               path='/Area1' 
               component={Area1} 
+            />
+            <Route 
+              exact 
+              path='/LinkedListEditor' 
+              component={LinkedListEditor} 
             />
           </div>
         </Switch>

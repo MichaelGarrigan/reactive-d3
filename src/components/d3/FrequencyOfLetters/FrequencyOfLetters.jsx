@@ -32,12 +32,12 @@ class FrequencyOfLetters extends Component {
     const y = scaleLinear().rangeRound([innerHeight, 0]);
 
     x.domain(csvParsed.map( d => d.letter ));
-    y.domain([0, max(csvParsed, function(d) { return d.frequency; })]);
+    y.domain([0, max( csvParsed, d => d.frequency )]);
 
     return (
       <div>
         <p className="frequency-title">Frequency of English Letters</p>
-        
+
         <div className="frequency-svg-flex">
         
           <svg 

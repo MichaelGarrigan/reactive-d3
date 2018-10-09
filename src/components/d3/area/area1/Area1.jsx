@@ -29,7 +29,7 @@ export default class Area1 extends Component {
 
     var y = d3.scaleLinear().rangeRound([innerHeight, 0]);
 
-    var area = d3.area()
+    var areaChart = d3.area()
       .x(function(d) { return x(d.date); })
       .y1(function(d) { return y(d.close); });
 
