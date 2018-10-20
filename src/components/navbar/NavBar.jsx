@@ -1,11 +1,14 @@
 
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => (
   <div className="navbar-wrapper">
-    <p className="app-title">threact.com</p> 
+    <Link to='/'>
+      <p className="app-title">threact.com</p>
+    </Link>
+
     <div className="nav-link-group">
       <Link to="/Examples">
         <div className="nav-link">Examples</div>
@@ -13,7 +16,7 @@ const NavBar = () => (
       <Link to="/Modules">
         <div className="nav-link">Modules</div>
       </Link>
-      <Link to="/Modules">
+      <Link to="/EditorShell">
         <div className="nav-link">Editors</div>
       </Link>
       <Link to="/Blog">

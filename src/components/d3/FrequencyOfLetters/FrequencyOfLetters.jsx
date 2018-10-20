@@ -27,19 +27,21 @@ class FrequencyOfLetters extends Component {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    // Scales
-    const x = scaleBand().rangeRound([0, innerWidth]).padding(0.1);
-    const y = scaleLinear().rangeRound([innerHeight, 0]);
+    // X scale
+    const x = scaleBand()
+      .domain(csvParsed.map( d => d.letter ))
+      .rangeRound([0, innerWidth]).padding(0.1);
 
-    x.domain(csvParsed.map( d => d.letter ));
-    y.domain([0, max( csvParsed, d => d.frequency )]);
+    // Y scale
+    const y = scaleLinear()
+      .domain([0, max( csvParsed, d => d.frequency )])
+      .rangeRound([innerHeight, 0]);
 
     return (
       <div>
         <p className="frequency-title">Frequency of English Letters</p>
 
         <div className="frequency-svg-flex">
-        
           <svg 
             className="svg-frequency-letters" 
             width={width} 
