@@ -39,7 +39,7 @@ const Examples = () => (
       </div>
     </Link>
     <Link to="/Area1">
-      <div className="d3-example">
+      <div className="d3-example area1-thumbnail">
         <span className="d3-example-text">Area1</span>
       </div>
     </Link>

@@ -7,70 +7,50 @@ import './Area1.css';
 
 export default class Area1 extends Component {
 
-  // var g = d3.select(this.group);
-
   render() {
 
-    const newData = [
-      { name: 'A', value: 1 }, { name: 'B', value: 2 }, { name: 'C', value: 3 },
-      { name: 'D', value: 4 }, { name: 'E', value: 5 }
+    const area1Data_1 = [
+      { name: 'A', value: 4 }, 
+      { name: 'B', value: 8 }, 
+      { name: 'C', value: 6 },
+      { name: 'D', value: 2 }, 
+      { name: 'E', value: 7 }
+    ];
+    const area1Data_2 = [
+      { name: 'A', value: 5 }, 
+      { name: 'B', value: 4 }, 
+      { name: 'C', value: 3 },
+      { name: 'D', value: 9 }, 
+      { name: 'E', value: 5 }
     ];
 
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    const width = 700;
-    const height = 400;
+    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+    const width = 960;
+    const height = 600;
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
+    let step = Math.floor(innerWidth / area1Data_1.length);
 
-    // var g = d3.select(this.group);
-    // console.log('g:', g);
+    const xScale = d3.scaleOrdinal()
+      .domain(area1Data_1.map(d => d.name))
+      .range([0, step, step*2, step*3, step*4, step*4]);
 
-    var x = d3.scaleLinear().domain(newData.map(d => d.name)).range([0, innerWidth]);
-    var y = d3.scaleLinear().domain([1, 2, 3, 4, 5]).range([innerHeight, 0]);
+    const yScale = d3.scaleLinear()
+      .domain([0,d3.max(
+        [
+          ...area1Data_1.map(d => d.value),
+          ...area1Data_2.map(d => d.value)
+        ]
+        )])
+      .range([innerHeight, 0]);
 
-    var areaChart = d3.area()
-      .x(d => x(d.name))
-      .y1(d => y(d.value));
+    const areaChart = d3.area()
+      .x(d => xScale(d.name))
+      .y0(d => yScale(0))
+      .y1(d => yScale(d.value))
+      .curve(d3.curveNatural);
 
-    d3.select(this.myX).call(d3.axisBottom(x));
-
-    console.log('line', d3.line(newData.map(d => d.value)))
-
-    // d3.tsvParse(
-    //   area1Data,
-    //   d => {
-    //     console.log('d:', d);
-    //     d.date = parseTime(d.date);
-    //     d.close = +d.close;
-    //     return d;
-    //   },
-    //   (error, data) => {
-    //     if (error) throw error;
-    //     console.log('d:', data);
-    //     x.domain(d3.extent(data, function (d) { return d.date; }));
-    //     y.domain([0, d3.max(data, function (d) { return d.close; })]);
-    // area.y0(y(0));
-
-    d3.select("path")
-      .datum(newData)
-      .attr("fill", "steelblue")
-      .attr("d", areaChart);
-
-    // g.append("g")
-    //   .attr("transform", "translate(0," + height + ")")
-    //   .call(d3.axisBottom(x));
-
-    // g.append("g")
-    //   .call(d3.axisLeft(y))
-    //   .append("text")
-    //   .attr("fill", "#000")
-    //   .attr("transform", "rotate(-90)")
-    //   .attr("y", 6)
-    //   .attr("dy", "0.71em")
-    //   .attr("text-anchor", "end")
-    //   .text("Price ($)");
-    //});
-
+    
     return (
       <div>
         <svg
@@ -83,24 +63,51 @@ export default class Area1 extends Component {
           >
 
             <path
+              className="area1-path-1"
               ref={node => {
-                console.log(d3.line(newData.map(d => d.value)).context(d3.select(node)));
+                d3.select(node).datum(area1Data_1).attr('d', areaChart)
               }}
             />
+            <path
+              className="area1-path-2"
+              ref={node => {
+                d3.select(node).datum(area1Data_2).attr('d', areaChart)
+              }}
+            />
+            {
+              area1Data_1.map( d => {
+                return (
+                  <circle
+                    key={d.name}
+                    className="area1-circle-1"
+                    cx={xScale(d.name)}
+                    cy={yScale(d.value)}
+                    r="6"
+                  />
+                )
+              })
+            }
+            {
+              area1Data_2.map( d => {
+                return (
+                  <circle
+                    key={d.name}
+                    className="area1-circle-2"
+                    cx={xScale(d.name)}
+                    cy={yScale(d.value)}
+                    r="6"
+                  />
+                )
+              })
+            }
             <g
               className='x axis'
               transform={`translate(0,${innerHeight})`}
-              ref={node => d3.select(node).call(d3.axisBottom(x))}
+              ref={node => d3.select(node).call(d3.axisBottom(xScale))}
             />
             <g className='y axis'>
               <g
-                ref={node => d3.select(node).call(d3.axisLeft(y).ticks(5, '%'))}
-              />
-              <text
-                transform='rotate(-90)'
-                y='6'
-                dy='0.71em'
-                textAnchor='end'
+                ref={node => d3.select(node).call(d3.axisLeft(yScale))}
               />
             </g>
           </g>

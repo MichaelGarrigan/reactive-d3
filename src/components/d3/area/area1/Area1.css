@@ -1,3 +1,15 @@
 .svg-area1 {
   border: 1px solid black;
 }
+.area1-path-1 {
+  fill: rgba(255, 68, 0, 0.3);
+}
+.area1-path-2 {
+  fill: rgba(0, 0, 255, 0.3);
+}
+.area1-circle-1 {
+  fill: orangered;
+}
+.area1-circle-2 {
+  fill: blue;
+}

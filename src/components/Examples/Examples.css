@@ -8,7 +8,7 @@
 }
 
 .d3-example {
-  background: #333;
+  /* background: #333; */
   border: 3px solid #777;
   border-radius: 3px;
   height: 200px;
@@ -22,5 +22,24 @@
 }
 
 .d3-example:hover {
-  background: rgb(97, 99, 93);
+  /* background: rgb(97, 99, 93); */
+}
+
+.area1-thumbnail {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('../../images/area1-300.jpg');
+  color: azure;
+}
+.area1-thumbnail:hover {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('../../images/area1-300.jpg');
+  color: azure;
 }

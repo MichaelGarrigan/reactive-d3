@@ -1,12 +1,12 @@
 
 import React, {Component} from 'react';
-
+import * as d3 from 'd3';
 import {csv} from 'd3-fetch';
 import {format} from 'd3-format';
 import {pack} from 'd3-hierarchy';
 import {scaleOrdinal} from 'd3-scale';
 import {schemeDark2} from 'd3-scale-chromatic';
-
+import './BubbleChart.css';
 import dataCSV from '../../../../dist/data/BubbleChart.csv';
 
 // console.log('dataCSV: ', Array.isArray(dataCSV));
@@ -79,7 +79,17 @@ class BubbleChart extends Component {
   
     return (
       <div className="bubble-chart-wrapper">
-        <svg className="svg-bubble-chart" width="960" height="960"></svg>
+      <h2>Bubble Chart</h2>
+        <svg 
+          className="svg-bubble-chart" 
+          width="960" 
+          height="960"
+        >
+          <g  
+            transform="translate(50,50)"
+          >
+          </g>
+        </svg>
       </div>
     )
   }
