@@ -10,6 +10,11 @@ const Examples = () => (
         <span className="d3-example-text">d3-shape</span>
       </div>
     </Link>
+    <Link to="/Pie1">
+      <div className="d3-example">
+        <span className="d3-example-text">Pie1</span>
+      </div>
+    </Link>
     <Link to="/Playground">
       <div className="d3-example">
         <span className="d3-example-text">Playground</span>
