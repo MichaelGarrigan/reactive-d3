@@ -1,10 +1,7 @@
 
 import React, {Component} from 'react';
-import {max} from 'd3-array';
-import {axisBottom, axisLeft} from 'd3-axis';
+import FrequencyOfLettersSVG from './FrequencyOfLettersSVG.jsx';
 import {csvParse} from 'd3-dsv';
-import {scaleLinear, scaleBand} from 'd3-scale';
-import {select} from 'd3-selection';
 
 import './FrequencyOfLetters.css';
 
@@ -27,65 +24,23 @@ class FrequencyOfLetters extends Component {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    // X scale
-    const x = scaleBand()
-      .domain(csvParsed.map( d => d.letter ))
-      .rangeRound([0, innerWidth]).padding(0.1);
-
-    // Y scale
-    const y = scaleLinear()
-      .domain([0, max( csvParsed, d => d.frequency )])
-      .rangeRound([innerHeight, 0]);
+    // Package up for component
+    const dimensions = {
+      height: height,
+      width: width,
+      innerHeight: innerHeight,
+      innerWidth: innerWidth,
+      margin: margin
+    };
 
     return (
       <div>
         <p className="frequency-title">Frequency of English Letters</p>
-
         <div className="frequency-svg-flex">
-          <svg 
-            className="svg-frequency-letters" 
-            width={width} 
-            height={height}
-          >
-            <g 
-              transform={`translate(${margin.left},${margin.top})`}
-            >
-              <g
-                className='x axis' 
-                transform={`translate(0,${innerHeight})`} 
-                ref={node => select(node).call(axisBottom(x))}
-              />
-              
-              <g className='y axis'>
-                <g
-                  ref={node => select(node).call(axisLeft(y).ticks(10, '%'))}
-                />
-                <text 
-                  transform='rotate(-90)'
-                  y='6'
-                  dy='0.71em'
-                  textAnchor='end'
-                >
-                  Frequency
-                </text>
-              </g>
-              
-              {
-                csvParsed.map( datum => {
-                  return (
-                    <rect 
-                      key={datum.letter}
-                      className='bar'
-                      x={x(datum.letter)}
-                      y={y(datum.frequency)}
-                      width={x.bandwidth()}
-                      height={innerHeight - y(datum.frequency)}
-                    />
-                  );
-                })
-              }
-            </g>
-          </svg>
+          <FrequencyOfLettersSVG
+            dimensions={dimensions}
+            data={csvParsed}
+          />
         </div>
       </div>
     );

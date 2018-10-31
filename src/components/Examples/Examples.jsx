@@ -59,6 +59,11 @@ const Examples = () => (
         <span className="d3-example-text">Line Chart</span>
       </div>
     </Link>
+    <Link to="/USMap1">
+      <div className="d3-example">
+        <span className="d3-example-text">USA Map 1</span>
+      </div>
+    </Link>
     
   </div>
 );
