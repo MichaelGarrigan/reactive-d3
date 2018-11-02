@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 
 import Area1 from './d3/area/area1/Area1';
+import Blog from './blog/blog/Blog.jsx';
 import BubbleChart from './d3/BubbleChart/BubbleChart.jsx';
 import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.jsx';
@@ -29,6 +30,7 @@ class App extends Component {
   
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/Blog' component={Blog} />
           <Route exact path='/Examples' component={Examples} />
           <Route exact path='/Modules' component={Modules} />
           <Route exact path='/EditorShell' component={EditorShell} />

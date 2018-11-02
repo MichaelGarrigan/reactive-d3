@@ -1,0 +1,27 @@
+
+.blog-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  /* text-align: center; */
+}
+/* font-family: 'Lora', serif; */
+
+.blog-wrapper > header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+.blog-grid {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.blog-grid > aside {
+  border: 1px solid red;
+}
+
+.blog-grid > article {
+  border: 1px solid blue;
+}

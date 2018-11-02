@@ -1,0 +1,17 @@
+
+.blog-scales-wrapper {
+  margin: 40px auto;
+  width: 90%;
+}
+
+.blog-main-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.blog-p {
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+}
