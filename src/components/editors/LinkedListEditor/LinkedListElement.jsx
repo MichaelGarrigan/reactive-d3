@@ -4,7 +4,7 @@ import './LinkedListEditor.css';
 
 const LinkedListElement = ({value, size, offset}) => (
   <g>
-    <rect 
+    <rect // outter shell of the element
       x={offset[0]}
       y={offset[1]}
       width={size}
@@ -21,13 +21,13 @@ const LinkedListElement = ({value, size, offset}) => (
     >
       {value}
     </text>
-    <circle 
+    <circle // larger circle
       cx={offset[0] + (size * 0.75)}
       cy={offset[1] + (size * 0.75)}
       r='10'
       fill='steelblue'
     />
-    <circle 
+    <circle // smaller circle
       cx={offset[0] + (size * 0.75)}
       cy={offset[1] + (size * 0.75)}
       r='4'

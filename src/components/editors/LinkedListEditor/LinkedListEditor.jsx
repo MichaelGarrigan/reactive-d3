@@ -30,7 +30,6 @@ export default class LinkedListEditor extends Component {
   }
 
   removeData = () => {
-
     this.setState(prevState => ({
       list: prevState.list.slice(0, prevState.list.length - 1)
     }));

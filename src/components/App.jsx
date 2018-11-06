@@ -18,6 +18,7 @@ import Playground from './d3/playground/Playground.jsx';
 import ScaleEditor from './editors/ScaleEditor/ScaleEditor.jsx';
 import ShapeEditor from './d3/shapeEditor/ShapeEditor.jsx';
 import StackChart from './d3/Stack/StackChart.jsx';
+import TopoLower48 from './d3/maps/lower48/TopoLower48.jsx';
 import USMap1 from './d3/maps/usMap1/USMap1.jsx';
 
 import FrequencyOfLetters from './d3/FrequencyOfLetters/FrequencyOfLetters.jsx';
@@ -45,6 +46,7 @@ class App extends Component {
           <Route exact path='/LineChart' component={LineChart} />
           <Route exact path='/LineEditor' component={LineEditor} />
           <Route exact path='/Pie1' component={Pie1} />
+          <Route exact path='/TopoLower48' component={TopoLower48} />
           <Route exact path='/USMap1' component={USMap1} />
 
         </Switch>
