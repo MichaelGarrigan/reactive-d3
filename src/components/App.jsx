@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 
+import AnalogClock from './d3/AnalogClock/AnalogClock.jsx';
 import Area1 from './d3/area/area1/Area1';
 import Blog from './blog/blog/Blog.jsx';
 import BubbleChart from './d3/BubbleChart/BubbleChart.jsx';
@@ -31,6 +32,7 @@ class App extends Component {
   
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/AnalogClock' component={AnalogClock} />
           <Route exact path='/Blog' component={Blog} />
           <Route exact path='/Examples' component={Examples} />
           <Route exact path='/Modules' component={Modules} />

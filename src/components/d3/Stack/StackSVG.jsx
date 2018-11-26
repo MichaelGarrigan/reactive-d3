@@ -12,5 +12,4 @@ export default class StackSVG extends Component {
     )
   }
 }
-
 //export default sizeMe()(StackSVG);

@@ -70,7 +70,12 @@ const Examples = () => (
         <span className="d3-example-text">Lower 48 States</span>
       </div>
     </Link>
-    
+    <Link to="/AnalogClock">
+      <div className="d3-example analogClock">
+        <span className="d3-example-text">Analog</span>
+        <span className="d3-example-text">Clock</span>
+      </div>
+    </Link>
   </div>
 );
 
