@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 
 import AnalogClock from './d3/AnalogClock/AnalogClock.jsx';
+import AnimatedCircle from './d3/AnimatedCircles/AnimatedCircle.jsx';
 import Area1 from './d3/area/area1/Area1';
 import Blog from './blog/blog/Blog.jsx';
-import BubbleChart from './d3/BubbleChart/BubbleChart.jsx';
 import DigitalClock from './d3/DigitalClock/DigitalClock.jsx';
 import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.jsx';
@@ -34,6 +34,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/AnalogClock' component={AnalogClock} />
+          <Route exact path='/AnimatedCircles' component={AnimatedCircle} />
           <Route exact path='/Blog' component={Blog} />
           <Route exact path='/DigitalClock' component={DigitalClock} />
           <Route exact path='/Examples' component={Examples} />
@@ -42,7 +43,6 @@ class App extends Component {
           <Route exact path='/ScaleEditor' component={ScaleEditor} />
           <Route exact path='/ShapeEditor' component={ShapeEditor} />
           <Route exact path='/Playground' component={Playground} />
-          <Route exact path='/BubbleChart' component={BubbleChart} />
           <Route exact path='/FrequencyOfLetters' component={FrequencyOfLetters} />
           <Route exact path='/StackChart' component={StackChart} />
           <Route exact path='/Area1' component={Area1} />

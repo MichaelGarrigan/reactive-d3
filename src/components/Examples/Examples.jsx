@@ -4,6 +4,11 @@ import './Examples.css';
 
 const Examples = () => (
   <div className="examples-wrapper">
+    <Link to="/Area1">
+      <div className="d3-example area1-thumbnail">
+        <span className="d3-example-text">Area1</span>
+      </div>
+    </Link>
     <Link to="/ShapeEditor">
       <div className="d3-example">
         <span className="d3-example-text">Editor</span>
@@ -20,9 +25,9 @@ const Examples = () => (
         <span className="d3-example-text">Playground</span>
       </div>
     </Link>
-    <Link to="/BubbleChart">
+    <Link to="/AnimatedCircles">
       <div className="d3-example">
-        <span className="d3-example-text">BubbleChart</span>
+        <span className="d3-example-text">Animated Circles</span>
       </div>
     </Link>
     <Link to="/MinnesotaPopulation">
@@ -41,11 +46,6 @@ const Examples = () => (
     <Link to="/StackChart">
       <div className="d3-example">
         <span className="d3-example-text">Stack Charts</span>
-      </div>
-    </Link>
-    <Link to="/Area1">
-      <div className="d3-example area1-thumbnail">
-        <span className="d3-example-text">Area1</span>
       </div>
     </Link>
     <Link to="/LinkedListEditor">
