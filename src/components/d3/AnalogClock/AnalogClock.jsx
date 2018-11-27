@@ -8,8 +8,8 @@ import './AnalogClock.css';
 export default class AnalogClock extends Component {
   state = {
     dimensions: {
-      height: 600,
-      width: 600,
+      height: 400,
+      width: 400,
       margin: 100
     },
     time: [

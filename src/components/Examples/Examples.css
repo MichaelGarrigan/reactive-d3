@@ -62,3 +62,69 @@
   background-size: cover;
   color: azure;
 }
+
+.digitalClock {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('../../images/DigitalClock.jpg');
+  background-size: cover;
+  color: azure;
+}
+
+.digitalClock:hover {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('../../images/DigitalClock.jpg');
+  background-size: cover;
+  color: azure;
+}
+
+.analogClock {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('../../images/AnalogClock.jpg');
+  background-size: cover;
+  color: azure;
+}
+
+.analogClock:hover {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('../../images/AnalogClock.jpg');
+  background-size: cover;
+  color: azure;
+}
+
+.lineChart {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('../../images/LineChart.jpg');
+  background-size: cover;
+  color: azure;
+}
+
+.lineChart:hover {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('../../images/LineChart.jpg');
+  background-size: cover;
+  color: azure;
+}

@@ -6,6 +6,7 @@ import AnalogClock from './d3/AnalogClock/AnalogClock.jsx';
 import Area1 from './d3/area/area1/Area1';
 import Blog from './blog/blog/Blog.jsx';
 import BubbleChart from './d3/BubbleChart/BubbleChart.jsx';
+import DigitalClock from './d3/DigitalClock/DigitalClock.jsx';
 import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.jsx';
 import Home from './home/Home.jsx';
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/AnalogClock' component={AnalogClock} />
           <Route exact path='/Blog' component={Blog} />
+          <Route exact path='/DigitalClock' component={DigitalClock} />
           <Route exact path='/Examples' component={Examples} />
           <Route exact path='/Modules' component={Modules} />
           <Route exact path='/EditorShell' component={EditorShell} />

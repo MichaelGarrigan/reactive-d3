@@ -55,7 +55,7 @@ const Examples = () => (
       </div>
     </Link>
     <Link to="/LineChart">
-      <div className="d3-example">
+      <div className="d3-example lineChart">
         <span className="d3-example-text">Line Chart</span>
       </div>
     </Link>
@@ -73,6 +73,12 @@ const Examples = () => (
     <Link to="/AnalogClock">
       <div className="d3-example analogClock">
         <span className="d3-example-text">Analog</span>
+        <span className="d3-example-text">Clock</span>
+      </div>
+    </Link>
+    <Link to="/DigitalClock">
+      <div className="d3-example digitalClock">
+        <span className="d3-example-text">Digital</span>
         <span className="d3-example-text">Clock</span>
       </div>
     </Link>
