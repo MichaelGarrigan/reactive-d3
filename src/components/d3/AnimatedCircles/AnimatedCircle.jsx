@@ -11,7 +11,7 @@ class AnimatedCircle extends Component {
   }
 
   componentDidMount = () => {
-    this.timer = setInterval(() => this.rotate(), 100);
+    this.timer = setInterval(() => this.rotate(), 500);
   }
 
   componentWillUnmount = () => {
@@ -41,8 +41,8 @@ class AnimatedCircle extends Component {
     const segArray = [
       [0, Math.PI / 4],
       [Math.PI / 4, Math.PI / 2],
-      [Math.PI / 2, Math.PI / 1.25],
-      [Math.PI / 1.25, Math.PI],
+      [Math.PI / 2, Math.PI * 0.75],
+      [Math.PI * 0.75, Math.PI],
       [Math.PI, Math.PI * 1.25],
       [Math.PI * 1.25, Math.PI * 1.5],
       [Math.PI * 1.5, Math.PI * 1.75],
