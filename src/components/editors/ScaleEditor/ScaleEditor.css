@@ -1,0 +1,55 @@
+
+.scale-editor-wrapper {
+  background: #eee;
+  min-height: 100vh;
+}
+
+.scale-editor-intro {
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.scale-category {
+  background: #ddd;
+  margin: 0 auto;
+  width: 90vw;
+}
+
+.scale-category > h2 {
+  font-size: 4vw;
+  text-align: center;
+}
+
+.scale-continuous-type {
+  background: #ddd;
+  border: 2px solid #333;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+}
+
+.scale-continuous-type > h3 {
+  color: steelblue;
+  font-size: 2vw;
+  text-align: center;
+}
+
+.scale-continuous-scale-function {
+  font-size: 3vw;
+  margin: 0;
+}
+
+.scale-continuous-domain, .scale-continuous-range {
+  font-size: 3vw;
+  padding-left: 40px;
+}
+
+input {
+  font-size: 3vw;
+  max-width: auto;
+  width: 200px;
+}
+
+.scale-continuous-results-wrapper {
+  width: 80%;
+}
