@@ -82,6 +82,12 @@ const Examples = () => (
         <span className="d3-example-text">Clock</span>
       </div>
     </Link>
+    <Link to="/CirclePack1">
+      <div className="d3-example circlePack1">
+        <span className="d3-example-text">Circle Pack</span>
+        <span className="d3-example-text">#1</span>
+      </div>
+    </Link>
   </div>
 );
 

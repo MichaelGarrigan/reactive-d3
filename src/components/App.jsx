@@ -6,9 +6,11 @@ import AnalogClock from './d3/AnalogClock/AnalogClock.jsx';
 import AnimatedCircle from './d3/AnimatedCircles/AnimatedCircle.jsx';
 import Area1 from './d3/area/area1/Area1';
 import Blog from './blog/blog/Blog.jsx';
+import CirclePack1 from './d3/hierarchy/circlePack1/CirclePack1.jsx';
 import DigitalClock from './d3/DigitalClock/DigitalClock.jsx';
 import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.jsx';
+import FrequencyOfLetters from './d3/FrequencyOfLetters/FrequencyOfLetters.jsx';
 import Home from './home/Home.jsx';
 import LinkedListEditor from './editors/LinkedListEditor/LinkedListEditor.jsx';
 import LineChart from './d3/line/LineChart.jsx';
@@ -23,8 +25,6 @@ import StackChart from './d3/Stack/StackChart.jsx';
 import TopoLower48 from './d3/maps/lower48/TopoLower48.jsx';
 import USMap1 from './d3/maps/usMap1/USMap1.jsx';
 
-import FrequencyOfLetters from './d3/FrequencyOfLetters/FrequencyOfLetters.jsx';
-
 class App extends Component {
   render() {
     return (
@@ -36,14 +36,15 @@ class App extends Component {
           <Route exact path='/AnalogClock' component={AnalogClock} />
           <Route exact path='/AnimatedCircles' component={AnimatedCircle} />
           <Route exact path='/Blog' component={Blog} />
+          <Route exact path='/CirclePack1' component={CirclePack1} />
           <Route exact path='/DigitalClock' component={DigitalClock} />
-          <Route exact path='/Examples' component={Examples} />
-          <Route exact path='/Modules' component={Modules} />
           <Route exact path='/EditorShell' component={EditorShell} />
+          <Route exact path='/Examples' component={Examples} />
+          <Route exact path='/FrequencyOfLetters' component={FrequencyOfLetters} />
+          <Route exact path='/Modules' component={Modules} />
           <Route exact path='/ScaleEditor' component={ScaleEditor} />
           <Route exact path='/ShapeEditor' component={ShapeEditor} />
           <Route exact path='/Playground' component={Playground} />
-          <Route exact path='/FrequencyOfLetters' component={FrequencyOfLetters} />
           <Route exact path='/StackChart' component={StackChart} />
           <Route exact path='/Area1' component={Area1} />
           <Route exact path='/LinkedListEditor' component={LinkedListEditor} />
