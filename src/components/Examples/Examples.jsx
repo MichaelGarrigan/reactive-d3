@@ -30,11 +30,10 @@ const Examples = () => (
         <span className="d3-example-text">Animated Circles</span>
       </div>
     </Link>
-    <Link to="/MinnesotaPopulation">
+    <Link to="/Top5States">
       <div className="d3-example">
-        <span className="d3-example-text">Minnesota</span>
-        <span className="d3-example-text">Population</span>
-        <span className="d3-example-text"> Bar Chart</span>
+        <span className="d3-example-text">Top 5</span>
+        <span className="d3-example-text">States</span>
       </div>
     </Link>
     <Link to="/FrequencyOfLetters">

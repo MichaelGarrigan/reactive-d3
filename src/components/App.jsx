@@ -22,6 +22,7 @@ import Playground from './d3/playground/Playground.jsx';
 import ScaleEditor from './editors/ScaleEditor/ScaleEditor.jsx';
 import ShapeEditor from './d3/shapeEditor/ShapeEditor.jsx';
 import StackChart from './d3/Stack/StackChart.jsx';
+import Top5States from './d3/bar/Top5States/Top5States.jsx';
 import TopoLower48 from './d3/maps/lower48/TopoLower48.jsx';
 import USMap1 from './d3/maps/usMap1/USMap1.jsx';
 
@@ -35,22 +36,23 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/AnalogClock' component={AnalogClock} />
           <Route exact path='/AnimatedCircles' component={AnimatedCircle} />
+          <Route exact path='/Area1' component={Area1} />
           <Route exact path='/Blog' component={Blog} />
           <Route exact path='/CirclePack1' component={CirclePack1} />
           <Route exact path='/DigitalClock' component={DigitalClock} />
           <Route exact path='/EditorShell' component={EditorShell} />
           <Route exact path='/Examples' component={Examples} />
           <Route exact path='/FrequencyOfLetters' component={FrequencyOfLetters} />
+          <Route exact path='/LinkedListEditor' component={LinkedListEditor} />
+          <Route exact path='/LineChart' component={LineChart} />
+          <Route exact path='/LineEditor' component={LineEditor} />
           <Route exact path='/Modules' component={Modules} />
+          <Route exact path='/Pie1' component={Pie1} />
           <Route exact path='/ScaleEditor' component={ScaleEditor} />
           <Route exact path='/ShapeEditor' component={ShapeEditor} />
           <Route exact path='/Playground' component={Playground} />
           <Route exact path='/StackChart' component={StackChart} />
-          <Route exact path='/Area1' component={Area1} />
-          <Route exact path='/LinkedListEditor' component={LinkedListEditor} />
-          <Route exact path='/LineChart' component={LineChart} />
-          <Route exact path='/LineEditor' component={LineEditor} />
-          <Route exact path='/Pie1' component={Pie1} />
+          <Route exact path='/Top5States' component={Top5States} />
           <Route exact path='/TopoLower48' component={TopoLower48} />
           <Route exact path='/USMap1' component={USMap1} />
 

@@ -15,7 +15,7 @@ class AnimatedCircle extends Component {
   }
 
   componentWillUnmount = () => {
-    clearInterval(this.rotate());
+    clearInterval(this.timer);
   }
   
   rotate = () => {
@@ -65,7 +65,6 @@ class AnimatedCircle extends Component {
             width="400" 
             height="400"
           >
-
             <circle
               className="circle-lg"
               cx={200}

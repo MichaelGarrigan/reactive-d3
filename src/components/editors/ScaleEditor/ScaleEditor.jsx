@@ -91,6 +91,7 @@ export default class ScaleEditor extends Component {
     }
   }
 
+
   executeLinearScale = () => {
     let scale = scaleLinear().domain(this.state.linear.domain).range(this.state.linear.range);
     let scaleResult = scale(this.state.linear.arguments[0]);
@@ -107,20 +108,26 @@ export default class ScaleEditor extends Component {
   handleArgumentsLinear = event => {
     event.preventDefault();
     let value = event.target.value;
+    
     if (value !== '') {
       this.setState(prevState => ({
         linear: {
           ...prevState.linear,
           arguments: [+value]
         }
-      }), () => {console.log('here');this.executeLinearScale()}
-      );
-    }
+      }));
+    } else {
+        this.setState(prevState => ({
+          linear: {
+            ...prevState.linear,
+            arguments: ['']
+          }
+        }));
+    } 
   }
   
 
   render() {
-    console.log('range: ', this.state.linear.range)
     return (
       <div className="scale-editor-wrapper">
       <h1 className="editor-title">Interact with and explore D3 Scales</h1>

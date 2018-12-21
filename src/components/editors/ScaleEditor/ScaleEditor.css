@@ -24,14 +24,13 @@
   background: #ddd;
   border: 2px solid #333;
   margin: 0 auto;
-  text-align: center;
+  
   width: 90%;
 }
 
 .scale-continuous-type > h3 {
   color: steelblue;
-  font-size: 2vw;
-  text-align: center;
+  font-size: 4vw;
 }
 
 .scale-continuous-scale-function {
