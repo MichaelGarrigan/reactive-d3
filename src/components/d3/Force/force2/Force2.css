@@ -1,0 +1,12 @@
+
+#force2-SVG-wrapper {
+  align-items: center;
+  display: flex;
+  height: 80vh; 
+  justify-content: center;
+  width: 100%;
+}
+
+.force2-SVG {
+   border: 1px dotted orangered;
+}

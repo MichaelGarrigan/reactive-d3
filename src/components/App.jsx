@@ -10,6 +10,8 @@ import CirclePack1 from './d3/hierarchy/circlePack1/CirclePack1.jsx';
 import DigitalClock from './d3/DigitalClock/DigitalClock.jsx';
 import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.jsx';
+import Force1 from './d3/Force/force1/Force1.jsx';
+import Force2 from './d3/Force/force2/Force2.jsx';
 import FrequencyOfLetters from './d3/FrequencyOfLetters/FrequencyOfLetters.jsx';
 import Home from './home/Home.jsx';
 import LinkedListEditor from './editors/LinkedListEditor/LinkedListEditor.jsx';
@@ -42,6 +44,8 @@ class App extends Component {
           <Route exact path='/DigitalClock' component={DigitalClock} />
           <Route exact path='/EditorShell' component={EditorShell} />
           <Route exact path='/Examples' component={Examples} />
+          <Route exact path='/Force1' component={Force1} />
+          <Route exact path='/Force2' component={Force2} />
           <Route exact path='/FrequencyOfLetters' component={FrequencyOfLetters} />
           <Route exact path='/LinkedListEditor' component={LinkedListEditor} />
           <Route exact path='/LineChart' component={LineChart} />
