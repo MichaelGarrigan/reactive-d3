@@ -89,7 +89,7 @@ export default class Force2 extends Component {
 
     const simulation = forceSimulation(fnodes)
       .force('charge', forceManyBody().strength(-100))
-      .force('center', forceCenter(innerHeight/4, innerWidth/4))
+      .force('center', forceCenter(innerWidth/2, innerHeight/2))
       .force('link', forceLink().links(flinks).distance(50))
       .on('tick', ticked);
 

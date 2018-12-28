@@ -97,6 +97,16 @@ const Examples = () => (
         <span className="d3-example-text">Force2</span>
       </div>
     </Link>
+    <Link to="/Force3">
+      <div className="d3-example force3">
+        <span className="d3-example-text">Force3</span>
+      </div>
+    </Link>
+    <Link to="/Tux_SVG">
+      <div className="d3-example tux_svg">
+        <span className="d3-example-text">SVG Tux</span>
+      </div>
+    </Link>
   </div>
 );
 

@@ -12,6 +12,7 @@ import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.jsx';
 import Force1 from './d3/Force/force1/Force1.jsx';
 import Force2 from './d3/Force/force2/Force2.jsx';
+import Force3 from './d3/Force/force3/Force3.jsx';
 import FrequencyOfLetters from './d3/FrequencyOfLetters/FrequencyOfLetters.jsx';
 import Home from './home/Home.jsx';
 import LinkedListEditor from './editors/LinkedListEditor/LinkedListEditor.jsx';
@@ -26,6 +27,7 @@ import ShapeEditor from './d3/shapeEditor/ShapeEditor.jsx';
 import StackChart from './d3/Stack/StackChart.jsx';
 import Top5States from './d3/bar/Top5States/Top5States.jsx';
 import TopoLower48 from './d3/maps/lower48/TopoLower48.jsx';
+import Tux_SVG from './d3/SVG/tux/Tux_SVG.jsx';
 import USMap1 from './d3/maps/usMap1/USMap1.jsx';
 
 class App extends Component {
@@ -46,6 +48,7 @@ class App extends Component {
           <Route exact path='/Examples' component={Examples} />
           <Route exact path='/Force1' component={Force1} />
           <Route exact path='/Force2' component={Force2} />
+          <Route exact path='/Force3' component={Force3} />
           <Route exact path='/FrequencyOfLetters' component={FrequencyOfLetters} />
           <Route exact path='/LinkedListEditor' component={LinkedListEditor} />
           <Route exact path='/LineChart' component={LineChart} />
@@ -58,6 +61,7 @@ class App extends Component {
           <Route exact path='/StackChart' component={StackChart} />
           <Route exact path='/Top5States' component={Top5States} />
           <Route exact path='/TopoLower48' component={TopoLower48} />
+          <Route exact path='/Tux_SVG' component={Tux_SVG} />
           <Route exact path='/USMap1' component={USMap1} />
 
         </Switch>
