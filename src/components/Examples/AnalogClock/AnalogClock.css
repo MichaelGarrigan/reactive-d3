@@ -1,0 +1,33 @@
+
+.analog-clock-wrapper {
+  text-align: center;
+}
+
+.svg-analog-clock {
+  border: 1px solid orangered;
+}
+
+.analog-clock-large-circle {
+  fill: none;
+  stroke: blue;
+  stroke-width: 3;
+}
+
+.analog-clock-small-circle {
+  fill: blue;
+}
+
+.analog-clock-second-hand {
+  stroke: orange;
+  stroke-width: 2;
+}
+
+.analog-clock-minute-hand {
+  stroke: rgb(179, 118, 5);
+  stroke-width: 4;
+}
+
+.analog-clock-hour-hand {
+  stroke: rgb(99, 65, 2);
+  stroke-width: 8;
+}
