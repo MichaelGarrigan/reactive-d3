@@ -1,0 +1,23 @@
+
+.module-wrapper {
+  background: rgb(173, 183, 190);
+  border: 2px solid rgb(92, 143, 185);
+  border-radius: 5px;
+  width: 50%;
+}
+
+.module-header {
+  margin: 0;
+}
+
+.module-title {
+
+}
+
+.module-body {
+  
+}
+
+.module-body-item {
+
+}
