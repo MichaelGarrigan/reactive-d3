@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import ReactDOM from "react-dom";
 import * as d3 from "d3";
 import PieClass from "./PieClass";
@@ -9,6 +9,10 @@ import PieSVG from "./PieSVG";
 import "./Pie3Versions.css";
 
 const Pie3Versions = props => {
+
+  useLayoutEffect( () => {
+    return () => props.setRoute([]);
+  });
 
   const generateData = (value, length = 5) =>
     d3.range(length).map((item, index) => ({

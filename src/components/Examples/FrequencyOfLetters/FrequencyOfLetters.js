@@ -10,7 +10,7 @@ const FrequencyOfLetters = props => {
 
   useLayoutEffect( () => {
     return () => props.setRoute([]);
-  }, [] );
+  });
   
   const csvFrequency = 
     `letter,frequency\nA,.08167\nB,.01492\nC,.02780\nD,.04253\nE,.12702\nF,.02288\nG,.02022\nH,.06094\nI,.06973\nJ,.00153\nK,.00747\nL,.04025\nM,.02517\nN,.06749\nO,.07507\nP,.01929\nQ,.00098\nR,.05987\nS,.06333\nT,.09056\nU,.02758\nV,.01037\nW,.02465\nX,.00150\nY,.01971\nZ,.00074\n`;

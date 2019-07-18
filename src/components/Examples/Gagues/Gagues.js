@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { select } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
 import { arc, area } from 'd3-shape';
@@ -9,7 +9,13 @@ import TitleBanner from '../titleBanner/TitleBanner';
 
 import './Gagues.css';
 
+
 const Gagues = props => {
+
+  useLayoutEffect( () => {
+    return () => props.setRoute([]);
+  });
+
   let height = 800,
       width = 800,
       radius = Math.min(width, height)/2,
