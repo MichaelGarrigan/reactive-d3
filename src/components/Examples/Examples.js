@@ -3,15 +3,24 @@ import { Link, Route } from 'react-router-dom';
 import './Examples.css';
 
 import AnalogClock from './AnalogClock/AnalogClock.js';
+import AnimatedCircles from './AnimatedCircles/AnimatedCircles.js';
+import Area from './Area/Area.js';
+import Axes from './Axes/Axes.js';
 import DigitalClock from './DigitalClock/DigitalClock.js';
 import Force from './Force/Force.js';
 import FrequencyOfLetters from './FrequencyOfLetters/FrequencyOfLetters.js';
 import Gagues from './Gagues/Gagues.js';
+import LineChart from './LineChart/LineChart.js';
+import Lower48 from './Lower48/Lower48.js';
 import Pie3Versions from './Pie3Versions/Pie3Versions.js';
+import Top5States from './Top5States/Top5States.js';
+import Tux from './Tux/Tux.js';
 
 const Examples = props => {
 
   const [route, setRoute] = useState([]);
+
+  // useEffect( () => {}, [route])
 
   const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
   
@@ -24,6 +33,12 @@ const Examples = props => {
         <div className="d3-example analogClock" onClick={() => setRoute(['analogClock', AnalogClock])}>
           <span className="d3-example-text">Analog</span>
           <span className="d3-example-text">Clock</span>
+        </div>
+      </Link>
+
+      <Link to={`${props.match.url}/tux`}>
+        <div className="d3-example tux_svg" onClick={() => setRoute(['tux', Tux])}>
+          <span className="d3-example-text">SVG Tux</span>
         </div>
       </Link>
 
@@ -60,79 +75,51 @@ const Examples = props => {
         </div>
       </Link>
 
-      
-      <Link to="/ShapeEditor">
-        <div className="d3-example">
-          <span className="d3-example-text">Editor</span>
-          <span className="d3-example-text">d3-shape</span>
+      <Link to={`${props.match.url}/area`}>
+        <div className="d3-example area" onClick={() => setRoute(['area', Area])}>
+          <span className="d3-example-text">Area Chart</span>
         </div>
       </Link>
-      
-      
-      <Link to="/AnimatedCircles">
-        <div className="d3-example">
-          <span className="d3-example-text">Animated Circles</span>
-        </div>
-      </Link>
-      <Link to="/Top5States">
-        <div className="d3-example">
+
+      <Link to={`${props.match.url}/top5States`}>
+        <div className="d3-example" onClick={() => setRoute(['top5States', Top5States])}>
           <span className="d3-example-text">Top 5</span>
           <span className="d3-example-text">States</span>
         </div>
       </Link>
-      <Link to="/StackChart">
-        <div className="d3-example">
-          <span className="d3-example-text">Stack Charts</span>
-        </div>
-      </Link>
-      <Link to="/LinkedListEditor">
-        <div className="d3-example">
-          <span className="d3-example-text">Editor</span>
-          <span className="d3-example-text">Linked List</span>
-        </div>
-      </Link>
-      <Link to="/LineChart">
-        <div className="d3-example lineChart">
+
+      <Link to={`${props.match.url}/lineChart`}>
+        <div className="d3-example lineChart" onClick={() => setRoute(['lineChart', LineChart])}>
           <span className="d3-example-text">Line Chart</span>
         </div>
       </Link>
-      <Link to="/USMap1">
-        <div className="d3-example">
-          <span className="d3-example-text">USA Map 1</span>
-        </div>
-      </Link>
-      <Link to="/TopoLower48">
-        <div className="d3-example topolower48">
+
+      <Link to={`${props.match.url}/lower48`}>
+        <div className="d3-example topolower48" onClick={() => setRoute(['lower48', Lower48])}>
           <span className="d3-example-text">TopoJSON</span>
           <span className="d3-example-text">Lower 48 States</span>
         </div>
       </Link>
-      <Link to="/CirclePack1">
-        <div className="d3-example circlePack1">
-          <span className="d3-example-text">Circle Pack</span>
-          <span className="d3-example-text">#1</span>
+
+      
+
+      <Link to={`${props.match.url}/animatedCircles`}>
+        <div className="d3-example" onClick={() => setRoute(['animatedCircles', AnimatedCircles])}>
+          <span className="d3-example-text">Animated Circles</span>
+        </div>
+      </Link>
+
+      <Link to={`${props.match.url}/axes`}>
+        <div className="d3-example" onClick={() => setRoute(['axes', Axes])}>
+          <span className="d3-example-text">Axes</span>
         </div>
       </Link>
       
-      <Link to="/Force2">
-        <div className="d3-example force2">
-          <span className="d3-example-text">Force2</span>
-        </div>
-      </Link>
-      <Link to="/Force3">
-        <div className="d3-example force3">
-          <span className="d3-example-text">Force3</span>
-        </div>
-      </Link>
-      <Link to="/Tux_SVG">
-        <div className="d3-example tux_svg">
-          <span className="d3-example-text">SVG Tux</span>
-        </div>
-      </Link>
       </div>
       )
       : (
         <Route 
+          exact
           path={`${props.match.path}/${route[0]}`}
           component={ (props) => HOC(route[1], {...props}) }
         />
