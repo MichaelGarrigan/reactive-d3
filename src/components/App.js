@@ -7,7 +7,7 @@ import Blog from './blog/blog/Blog.jsx';
 import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.js';
 import Home from './home/Home.jsx';
-import Modules from './d3/modules/Modules.jsx';
+import Modules from './modules/Modules.jsx';
 import NavBar from './navbar/NavBar.js';
 
 
