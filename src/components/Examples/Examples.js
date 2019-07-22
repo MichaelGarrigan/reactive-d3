@@ -8,19 +8,19 @@ import Area from './Area/Area.js';
 import Axes from './Axes/Axes.js';
 import DigitalClock from './DigitalClock/DigitalClock.js';
 import Force from './Force/Force.js';
+import Ford from './FordBrand/Ford.js';
 import FrequencyOfLetters from './FrequencyOfLetters/FrequencyOfLetters.js';
 import Gagues from './Gagues/Gagues.js';
 import LineChart from './LineChart/LineChart.js';
 import Lower48 from './Lower48/Lower48.js';
 import Pie3Versions from './Pie3Versions/Pie3Versions.js';
 import Top5States from './Top5States/Top5States.js';
+import Treemap from './Treemap/Treemap.js';
 import Tux from './Tux/Tux.js';
 
 const Examples = props => {
 
   const [route, setRoute] = useState([]);
-
-  // useEffect( () => {}, [route])
 
   const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
   
@@ -33,6 +33,20 @@ const Examples = props => {
         <div className="d3-example analogClock" onClick={() => setRoute(['analogClock', AnalogClock])}>
           <span className="d3-example-text">Analog</span>
           <span className="d3-example-text">Clock</span>
+        </div>
+      </Link>
+
+      <Link to={`${props.match.url}/ford`}>
+        <div className="d3-example" onClick={() => setRoute(['ford', Ford])}>
+          <span className="d3-example-text">Ford Sales</span>
+          <span className="d3-example-text">2017 & 2018</span>
+        </div>
+      </Link>
+
+      <Link to={`${props.match.url}/treemap`}>
+        <div className="d3-example" onClick={() => setRoute(['treemap', Treemap])}>
+          <span className="d3-example-text">Treemap</span>
+          <span className="d3-example-text">Basic</span>
         </div>
       </Link>
 
@@ -100,8 +114,6 @@ const Examples = props => {
           <span className="d3-example-text">Lower 48 States</span>
         </div>
       </Link>
-
-      
 
       <Link to={`${props.match.url}/animatedCircles`}>
         <div className="d3-example" onClick={() => setRoute(['animatedCircles', AnimatedCircles])}>
