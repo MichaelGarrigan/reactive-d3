@@ -1,49 +1,140 @@
 
-import React, { useLayoutEffect } from 'react';
-import FrequencyOfLettersSVG from './FrequencyOfLettersSVG.js';
-import {csvParse} from 'd3-dsv';
+import React, { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
+import {max} from 'd3-array';
+import {axisBottom, axisLeft} from 'd3-axis';
+import {scaleLinear, scaleBand} from 'd3-scale';
+import {select} from 'd3-selection';
 
+import TitleBanner from '../titleBanner/TitleBanner.js';
 import './FrequencyOfLetters.css';
+
+const letterData = [
+  ["A", .08167], ["B", .01492], ["C", .02780], ["D", .04253], ["E", .12702], ["F", .02288], ["G", .02022], ["H", .06094], ["I", .06973], ["J", .00153], ["K", .00747], ["L", .04025], ["M", .02517], ["N", .06749], ["O", .07507], ["P", .01929], ["Q", .00098], ["R", .05987], ["S", .06333], ["T", .09056], ["U", .02758], ["V", .01037], ["W", .02465], ["X", .00150], ["Y", .01971], ["Z", .00074]
+];
+
+// https://github.com/Swizec/useDimensions
+function getDimensionObject(node) {
+    const rect = node.getBoundingClientRect();
+
+    return {
+        width: rect.width,
+        height: rect.height,
+        top: "x" in rect ? rect.x : rect.top,
+        left: "y" in rect ? rect.y : rect.left,
+        x: "x" in rect ? rect.x : rect.left,
+        y: "y" in rect ? rect.y : rect.top,
+        right: rect.right,
+        bottom: rect.bottom
+    };
+}
+
+function useDimensions({ liveMeasure = true }) {
+    const [dimensions, setDimensions] = useState({width: 960, height: 500});
+    const [node, setNode] = useState(null);
+
+    const svgRef = useCallback(node => {
+        setNode(node);
+    }, []);
+
+    useLayoutEffect(() => {
+        if (node) {
+            const measure = () =>
+                window.requestAnimationFrame(() => {
+                  let {width, height} = getDimensionObject(node)
+                  setDimensions({ 
+                    width: Math.round(width * .80), 
+                    height: Math.round(height * .75) 
+                  })
+                });
+            
+            measure();
+
+            if (liveMeasure) {
+                window.addEventListener("resize", measure);
+
+                return () => {
+                    window.removeEventListener("resize", measure);
+                };
+            }
+        }
+    }, [node]);
+
+    return [svgRef, dimensions, node];
+}
 
 
 const FrequencyOfLetters = props => {
 
-  useLayoutEffect( () => {
-    return () => props.setRoute([]);
-  });
-  
-  const csvFrequency = 
-    `letter,frequency\nA,.08167\nB,.01492\nC,.02780\nD,.04253\nE,.12702\nF,.02288\nG,.02022\nH,.06094\nI,.06973\nJ,.00153\nK,.00747\nL,.04025\nM,.02517\nN,.06749\nO,.07507\nP,.01929\nQ,.00098\nR,.05987\nS,.06333\nT,.09056\nU,.02758\nV,.01037\nW,.02465\nX,.00150\nY,.01971\nZ,.00074\n`;
+  const [data, setData] = useState(letterData);
 
-  let csvParsed = csvParse(
-    csvFrequency, 
-    d => ({letter: d.letter, frequency: +d.frequency})
-  );
+  const [wrapRef, {height, width}] = useDimensions({ liveMeasure: true });
+
+
+  useEffect( () => {
+    return () => props.setRoute([]);
+  }, []);
+  
 
   // Sizes
-  const margin = {top: 20, right: 20, bottom: 30, left: 40};
-  const width = 960; 
-  const height = 500; 
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.top - margin.bottom;
+  const margin = 20;
 
-  // Package up for component
-  const dimensions = {
-    height: height,
-    width: width,
-    innerHeight: innerHeight,
-    innerWidth: innerWidth,
-    margin: margin
-  };
+  // x & y scales
+  const x = scaleBand()
+    .domain(data.map( d => d[0] ))
+    .rangeRound([0, width - (margin * 2)]).padding(0.1);
+
+  const y = scaleLinear()
+    .domain([0, max( data, d => d[1] )])
+    .rangeRound([height - (margin * 2), 0]);
+
 
   return (
-    <div>
-      <p className="frequency-title">Frequency of English Letters</p>
-      <div className="frequency-svg-flex">
-        <FrequencyOfLettersSVG
-          dimensions={dimensions}
-          data={csvParsed}
-        />
+    <div className="frequency-wrapper">
+      <TitleBanner title='Frequency of English Letters' />
+      <div 
+        className="frequency-svg-flex"
+        ref={wrapRef}
+      >
+        
+        <svg 
+          className="svg-frequency-letters" 
+          width={width} 
+          height={height}
+        >
+          <g transform={`translate(${margin},${margin})`}>
+            <g
+              className='axis' 
+              transform={`translate(0,${height - (margin * 2)})`} 
+              ref={node => select(node).call(axisBottom(x))}
+            />
+            
+            <g className='axis'>
+              <g ref={node => select(node).call(axisLeft(y).ticks(10, '%'))} />
+              <text 
+                transform='rotate(-90)'
+                y='6'
+                dy='0.71em'
+                textAnchor='end'
+              >
+                Frequency
+              </text>
+            </g>   
+            {
+              data.map( d => {
+                return (
+                  <rect 
+                    key={`${d[0]}-${d[1]}`}
+                    className='bar'
+                    x={x(d[0])}
+                    y={y(d[1])}
+                    width={x.bandwidth()}
+                    height={height - (margin * 2) - y(d[1])}
+                  />
+                );
+              })
+            }
+          </g>
+        </svg>
       </div>
     </div>
   );
