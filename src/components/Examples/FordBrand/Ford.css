@@ -1,0 +1,26 @@
+
+.ford-wrapper {
+  height: 85vh;
+  width: 100vw;
+}
+
+.ford-flex {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Controller */
+.ford-controller-wrapper {
+  border: 1px solid green;
+}
+
+/* Pack */
+.ford-pack-wrapper {
+  border: 1px solid green;
+}
+
+/* Line */
+.ford-line-wrapper {
+  border: 1px solid green;
+}
