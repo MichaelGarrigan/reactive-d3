@@ -15,9 +15,8 @@ const DigitalClock = props => {
 
   let timer;
 
-  useLayoutEffect( () => { timer = setInterval(() => tick(), 1000) }, [] );
-
   useLayoutEffect( () => {
+    timer = setInterval(() => tick(), 1000)
     return () => { clearInterval(timer); props.setRoute([]); }
   }, [] );
 
