@@ -19,47 +19,12 @@ function getDimensionObject(node) {
     };
 }
 
-// function useDimensions({ liveMeasure = true }) {
-//     const [dimensions, setDimensions] = useState({width: 960, height: 500});
-//     const [node, setNode] = useState(null);
-
-//     const wrapRef = useCallback(node => {
-//         setNode(node);
-//     }, []);
-
-//     useLayoutEffect(() => {
-//         if (node) {
-//             const measure = () =>
-//                 window.requestAnimationFrame(() => {
-//                   let {width, height} = getDimensionObject(node)
-//                   setDimensions({ 
-//                     width: Math.round(width * .80), 
-//                     height: Math.round(height * .75) 
-//                   })
-//                 });
-            
-//             measure();
-
-//             if (liveMeasure) {
-//                 window.addEventListener("resize", measure);
-
-//                 return () => {
-//                     window.removeEventListener("resize", measure);
-//                 };
-//             }
-//         }
-//     }, [node]);
-
-//     return [wrapRef, dimensions, node];
-// }
-
-
 const Ford = props => {
 
   const [data, setData] = useState(fordHierarchy);
   const [view, setView] = useState('portrait');
   const [year, setYear] = useState('2018');
-  const [category, setCategory] = useState('all');
+  const [category, setCategory] = useState('All');
   const [featuredItem, setFeaturedItem] = useState('');
   const [rankBy, setRankBy] = useState('Yearly Increase');
   const [dimensions, setDimensions] = useState({width: 960, height: 500});
@@ -89,9 +54,6 @@ const Ford = props => {
   }, [node]);
 
 
-  // const [wrapRef, {height, width}] = useDimensions({ liveMeasure: true });
-  // console.log('width: ', width)
-
   useEffect( () => {
     return () => props.setRoute([]);
   }, []);
@@ -108,6 +70,10 @@ const Ford = props => {
           featuredItem={featuredItem}
           view={view}
           year={year}
+
+          setCategory={setCategory}
+          setRankBy={setRankBy}
+          setYear={setYear}
         />
         <FordPack 
           category={category}
