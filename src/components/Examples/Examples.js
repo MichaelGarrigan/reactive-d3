@@ -5,7 +5,7 @@ import './Examples.css';
 import AnalogClock from './AnalogClock/AnalogClock.js';
 import AnimatedCircles from './AnimatedCircles/AnimatedCircles.js';
 import Area from './Area/Area.js';
-import Axes from './Axes/Axes.js';
+import Axis from './Axis/Axis.js';
 import DigitalClock from './DigitalClock/DigitalClock.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
@@ -121,9 +121,9 @@ const Examples = props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/axes`}>
-        <div className="d3-example" onClick={() => setRoute(['axes', Axes])}>
-          <span className="d3-example-text">Axes</span>
+      <Link to={`${props.match.url}/axis`}>
+        <div className="d3-example" onClick={() => setRoute(['axis', Axis])}>
+          <span className="d3-example-text">Axis</span>
         </div>
       </Link>
       
