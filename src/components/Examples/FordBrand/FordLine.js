@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import {extent} from 'd3-array';
 import {axisBottom, axisLeft, axisRight} from 'd3-axis';
-import {scaleLinear, scaleBand} from 'd3-scale';
+import {scaleLinear, scaleBand, scaleOrdinal} from 'd3-scale';
 import {select} from 'd3-selection';
+import {interpolatePiYG} from 'd3-scale-chromatic';
+import {path} from 'd3-path';
 
 import './Ford.css';
 
@@ -36,6 +38,7 @@ const formatData = obj => {
 }
 
 const FordLine = props => {
+  
   const {width, height} = props.dimensions;
   const [data, setData] = useState(formatData({...props}));
   
@@ -44,18 +47,42 @@ const FordLine = props => {
   const svgWidth = width - marginWidth;
   const svgHeight = height - marginHeight;
   
+  // TODO - place both the 2017 and 2018 sales total into array to be 'extent'
   let calcExtentForAxis = () => {
     if (props.category === 'All') {
-      return extent(data.map( item => item[`total_${props.year}`]));
+      let totals = [];
+      data.forEach( item => {
+        totals.push(item['total_2017']);
+        totals.push(item['total_2018']);
+      });
+      let ext = extent(totals);
+      ext[0] -= 200000; // lower the lowest value
+      ext[1] += 200000; // increase the highest value
+      return ext;
     } else {
-      return extent(data.map( item => item[props.year]));
+      let totals = [];
+      data.forEach( item => {
+        totals.push(item['2017']);
+        totals.push(item['2018']);
+      });
+      return extent(totals);
     }
   }
 
+  const renderPath = (x, y, x1, y1) => {
+    let p = path();
+    p.moveTo(x, y);
+    p.lineTo(x1, y1);
+    p.closePath(); 
+
+    return p.toString();
+  }
+  
+  // Scales
   const bottomScale = scaleBand()
     .domain(['2017', '', '2018'])
     .range([0, svgWidth - (marginWidth * 2)])
-    .padding(0.5);
+    .padding(0.9);
 
   const leftScale = scaleBand()
     .domain(data.map( item => item.name))
@@ -83,23 +110,50 @@ const FordLine = props => {
           <g transform={`translate(${svgWidth - (marginWidth * 2)}, 0)`}
             ref={node => select(node).call(axisRight(rightScale))} 
           />
-          
             
-            {/* <g ref={node => select(node).call(axisLeft(y1Scale))} />
-            {
-              data.map( (item, idx) => {
-                return (
-                    <rect 
-                      key={item[`total_${props.year}`]}
-                      fill="steelgray"
-                      x={0}
-                      y={y1Scale(item.name)}
-                      width={xScale(item[`total_${props.year}`])}
-                      height={y1Scale.bandwidth()}
-                    />
-                );
-              })
-            } */}
+          {
+            formatData({...props}).map( (item, idx) => {
+              return (
+                <Fragment>
+                  <circle
+                    cx={bottomScale("2017")}
+                    cy={rightScale(item["total_2017"])}
+                    r={20}
+                    fill={interpolatePiYG(idx * 0.1 - 0.05)}
+                  />
+                  <circle
+                    cx={bottomScale("2018")}
+                    cy={rightScale(item["total_2018"])}
+                    r={20}
+                    fill={interpolatePiYG(idx * 0.1 - 0.05)}
+                  />
+                  <path
+                    d={ renderPath(
+                          bottomScale("2017"),
+                          rightScale(item["total_2017"]),
+                          bottomScale("2018"), 
+                          rightScale(item["total_2018"])
+                        )
+                      }
+                    strokeWidth={10}
+                    stroke="blue"
+                  />
+                  <circle
+                    cx={bottomScale("2017")}
+                    cy={rightScale(item["total_2017"])}
+                    r={10}
+                    fill={interpolatePiYG(idx * 0.1)}
+                  />
+                  <circle
+                    cx={bottomScale("2018")}
+                    cy={rightScale(item["total_2018"])}
+                    r={10}
+                    fill={interpolatePiYG(idx * 0.1)}
+                  />
+                </Fragment>
+              )
+            })
+          }
           
           </g>
       </svg>
