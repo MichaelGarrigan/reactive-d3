@@ -1,6 +1,6 @@
 
 .ford-wrapper {
-  height: 85vh;
+  min-height: 85vh;
   width: 100vw;
 }
 
@@ -11,16 +11,89 @@
 }
 
 /* Controller */
-.ford-controller-wrapper {
-  border: 1px solid green;
+.ford-cont-wrapper {
+  width: 80%;
+}
+.ford-cont-button-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+.ford-cont-button {
+  background: #777;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.5rem;
+  color: #d3d3d3;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+.ford-cont-button-active {
+  background: rgb(177, 156, 36);
+  border: 1px solid #d3d3d3;
+  border-radius: 0.5rem;
+  color: #d3d3d3;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+.ford-cont-sales-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+.ford-cont-p-lg-wrap {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.ford-cont-p-lg {
+  color: #d3d3d3;
+  font-size: 4rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+.ford-cont-p {
+  color: #d3d3d3;
+  font-size: 2.5rem;
+}
+
+.ford-cont-3circles-wrapper {
+  display: flex;
+  margin: 2rem auto;
+}
+.ford-cont-circle-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.svg-circles-inner {
+  fill: #d3d3d3;
 }
 
 /* Pack */
 .ford-pack-wrapper {
   border: 1px solid green;
+  display: flex;
+  width: 100%;
+}
+
+.svg-ford-pack {
+  border: 1px solid plum;
 }
 
 /* Line */
 .ford-line-wrapper {
-  border: 1px solid green;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%
+}
+.svg-ford-line {
+  border: 1px solid maroon;
 }
