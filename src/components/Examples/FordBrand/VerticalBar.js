@@ -3,7 +3,8 @@ import React, { useState, useCallback, useRef, useEffect, useLayoutEffect } from
 
 import { select } from 'd3-selection';
 import { scaleSequential } from 'd3-scale';
-import { interpolateInferno } from 'd3-scale-chromatic';
+import { format } from 'd3-format';
+import { interpolateBlues } from 'd3-scale-chromatic';
 
 import { extent, max } from 'd3-array';
 import { axisLeft, axisRight, axisTop } from 'd3-axis';
@@ -41,9 +42,12 @@ const formatData = obj => {
 }
 
 const VerticalBar = props => {
-  const { width, height } = props.dimensions;
+  const { width } = props.dimensions;
   const [data, setData] = useState(formatData({...props}));
-  const margin = 50;
+  const width50 = width / 2;
+  const margin5 = width50 * 0.05;
+  const margin10 = width50 * 0.1;
+  const margin15 = width50 * 0.15;
 
   let calcMaxForAxis = () => {
     if (props.category === 'All') {
@@ -55,69 +59,54 @@ const VerticalBar = props => {
 
   const xScale = scaleLinear()
       .domain([calcMaxForAxis(), 0])
-      .range([width / 3, 0]);
+      .range([width50 - margin15 - margin5 , 0]);
       
-  const y1Scale = scaleBand()
+  const yScale = scaleBand()
     .domain(data.map( item => item.name))
-    .range([0, height - (margin * 2)])
-    .padding(0.2);
+    .range([0, width50 - margin10])
+    .padding(0.5);
   
+  const color = scaleSequential([8, 0], interpolateBlues);
 
-  
-
-  // const svgRef = useCallback(node => {
-  //     setSvgNode(node);
-  // }, [svgNode]);
-
-  // useLayoutEffect( () => {
-  //   if (svgNode) {
-  //     select(svgNode)
-  //       .selectAll("circle")
-  //       .data(root.descendants())
-  //       .enter()
-  //       .append("circle")
-  //       .attr('cx', d => d.x)
-  //       .attr('cy', d => d.y)
-  //       .attr('r', d => d.r)
-  //       .attr('fill', d => color(d.height))
-
-  //       .append("text").attr("dy", 5)
-  //       .attr('x', d => d.x - 20)
-  //       .attr('y', d => d.y)
-  //       .text( d => d.children === undefined ? d.data.name : '');
-  //   }
-  // }, [svgNode]);
 
   return (
-    <div className="ford-pack-bar-wrapper">
-      <svg 
-        className="svg-ford-vert-bar" 
-        width={width / 2} 
-        height={width / 2}
-      >
-        <g transform={`translate(${margin}, ${margin})`}>
-            <g ref={node => select(node).call(axisTop(xScale))} />
+    <svg 
+      className="svg-ford-vert-bar" 
+      width={width50} 
+      height={width50}
+    >
+      <g transform={`translate(${margin15}, ${margin5})`}>
+          <g ref={
+            node => select(node).call(axisTop(xScale).tickFormat(format(".0s")).ticks(5))
+            } 
+          />
+        
           
-            
-            <g ref={node => select(node).call(axisLeft(y1Scale))} />
-            {
-              data.map( (item, idx) => {
-                return (
-                    <rect 
-                      key={item[`total_${props.year}`]}
-                      fill="steelgray"
-                      x={0}
-                      y={y1Scale(item.name)}
-                      width={xScale(item[`total_${props.year}`])}
-                      height={y1Scale.bandwidth()}
-                    />
-                );
-              })
-            }
-          
-          </g>
-      </svg>
-    </div>
+          <g ref={node => select(node).call(axisLeft(yScale))} />
+          {
+            data.map( (item, idx) => {
+              return (
+                <g key={item[`total_${props.year}`]}>
+                  <rect 
+                    fill={color(idx)}
+                    x={0}
+                    y={yScale(item.name)}
+                    width={xScale(item[`total_${props.year}`])}
+                    height={yScale.bandwidth()}
+                  />
+                  <text
+                    x={xScale(item[`total_${props.year}`]) - 75}
+                    y={yScale(item.name)}
+                    // dy="-5"
+                    style={{fontSize: "2rem", fill: "white"}}
+                  >{19.3}</text>
+                </g>
+              );
+            })
+          }
+        
+        </g>
+    </svg>
   );
 };
 
