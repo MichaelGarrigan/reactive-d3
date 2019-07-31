@@ -2,10 +2,13 @@
 import React, { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
 
 import { fordHierarchy } from './FordData.js';
-import FordController from './FordController.js';
+
+import TitleBanner from '../titleBanner/TitleBanner.js';
+import FordButton from './FordButton.js';
+import FordSales from './FordSales.js';
 import FordPack from './FordPack.js';
 import FordLine from './FordLine.js';
-import TitleBanner from '../titleBanner/TitleBanner.js';
+
 import './Ford.css';
 
 
@@ -22,7 +25,7 @@ function getDimensionObject(node) {
 const Ford = props => {
 
   const [data, setData] = useState(fordHierarchy);
-  const [view, setView] = useState('portrait');
+  const [view, setView] = useState('landscape');
   const [year, setYear] = useState('2018');
   const [category, setCategory] = useState('All');
   const [featuredItem, setFeaturedItem] = useState('');
@@ -63,34 +66,42 @@ const Ford = props => {
     <div className="ford-wrapper" ref={wrapRef}>
       <TitleBanner title='Ford Sales - 2017 & 2018' />
       <div className="ford-flex">
-        <FordController 
+
+        <FordButton 
           category={category}
-          data={data}
-          dimensions={dimensions}
-          featuredItem={featuredItem}
-          view={view}
           year={year}
 
           setCategory={setCategory}
-          setRankBy={setRankBy}
           setYear={setYear}
+        />
+
+        <FordSales 
+          category={category}
+          data={data}
+          dimensions={dimensions}
+          rankBy={rankBy}
+          view={view}
+          year={year}
+
+          setRankBy={setRankBy}
         />
         <FordPack 
           category={category}
           data={data}
           dimensions={dimensions}
           featuredItem={featuredItem}
+          rankBy={rankBy}
           view={view}
           year={year}
         />
-        <FordLine 
+        {/* <FordLine 
           category={category}
           data={data}
           dimensions={dimensions}
           featuredItem={featuredItem}
           view={view}
           year={year}
-        />
+        /> */}
       </div>
     </div>
   );
