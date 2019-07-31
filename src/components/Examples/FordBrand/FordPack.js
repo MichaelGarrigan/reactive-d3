@@ -8,7 +8,7 @@ import VerticalBar from './VerticalBar.js';
 import './Ford.css';
 
 // TODO :: Add a toolbar for hover over each circle
-// TODO :: 
+// TODO :: Make the pack graphic for each category
 
 const FordPack = props => {
   const { width } = props.dimensions;
