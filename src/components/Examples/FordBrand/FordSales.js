@@ -1,30 +1,12 @@
 import React, { Fragment } from 'react';
-
+import { sortMainCategoriesByYear, lookupMainCategory } from './helperFunctions.js';
 import CircleGauge from './CircleGauge.js';
 
 import './Ford.css';
 
-const sortMainCategories = (children, year) => {
-  const copy = [...children];
-
-  return copy.sort( (a, b) => {
-    if ( (a[`${year}_total`] - b[`${year}_total`]) > 0 ) return -1;
-    else if ( (a[`${year}_total`] - b[`${year}_total`]) < 0 ) return 1;
-    else return 0;
-  })
-}
-
-const lookupMainCategory = (children, category) => {
-  for (let child of children) {
-    if (child.name === category) {
-      return child;
-    }
-  }
-}
-
 const FordSales = props => {
   const mainCategory = lookupMainCategory(props.data.children, props.category);
-  const sortedCategories = sortMainCategories(props.data.children, props.year);
+  const sortedCategories = sortMainCategoriesByYear(props.data.children, props.year);
 
   const size = 200;
   
