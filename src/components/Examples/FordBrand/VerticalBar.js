@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
+
+import { 
+  sortMainCategoriesByYear, 
+  sortCategoryByRankBy,
+  lookupMainCategory,
+  calcMaxForAxis } from './helperFunctions.js';
 
 
 import { select } from 'd3-selection';
@@ -12,57 +18,40 @@ import { scaleLinear, scaleBand } from 'd3-scale';
 
 import './Ford.css';
 
-const formatData = obj => {
-  let dataArr = [];
-
-  // extract a subcategory 
-  if (obj.category === 'All') {
-    dataArr = obj.data.children.map(item => item);
+const formatData = props => {
+  if (props.category === 'All') {
+    return sortMainCategoriesByYear(
+      props.data.children, 
+      props.year
+    );
   } else {
-    let category = obj.data.children.forEach(item => {
-      if (item[obj.category]) return item;
-    });
-    dataArr = category.children.map(item => item);
-  }
-
-  // sort the array
-  if (obj.rankBy === 'Yearly Increase') {
-    return dataArr.sort( (a,b) => {
-      if ( (a.yearDiff - b.yearDiff) > 0 ) return -1;
-      else if ( (a.yearDiff - b.yearDiff) < 0 ) return 1;
-      else return 0;
-    });
-  } else {
-    return dataArr.sort( (a,b) => {
-      if ( (a[obj.year] - b[obj.year]) > 0 ) return -1;
-      else if ( (a[obj.year] - b[obj.year]) < 0 ) return 1;
-      else return 0;
-    });
+    return sortCategoryByRankBy(
+      lookupMainCategory(props.data.children, props.category), 
+      props.year,
+      props.rankBy
+    );
   }
 }
 
 const VerticalBar = props => {
   const { width } = props.dimensions;
-  const [data, setData] = useState(formatData({...props}));
+  const [dataSorted, setDataSorted] = useState(formatData(props));
   const width50 = width / 2;
   const margin5 = width50 * 0.05;
   const margin10 = width50 * 0.1;
   const margin15 = width50 * 0.15;
 
-  let calcMaxForAxis = () => {
-    if (props.category === 'All') {
-      return max(data.map( item => item[`total_${props.year}`]));
-    } else {
-      return max(data.map( item => item[props.year]));
-    }
-  }
+  useLayoutEffect( () => {
+     setDataSorted(formatData(props));
+  }, [props.year, props.category, props.rankBy])
 
   const xScale = scaleLinear()
-      .domain([calcMaxForAxis(), 0])
-      .range([width50 - margin15 - margin5 , 0]);
+    .domain([calcMaxForAxis(props), 0])
+    .range([width50 - margin15 - margin5 , 0]);
+
       
   const yScale = scaleBand()
-    .domain(data.map( item => item.name))
+    .domain(dataSorted.map( item => item.name))
     .range([0, width50 - margin10])
     .padding(0.5);
   
@@ -77,32 +66,58 @@ const VerticalBar = props => {
     >
       <g transform={`translate(${margin15}, ${margin5})`}>
           <g ref={
-            node => select(node).call(axisTop(xScale).tickFormat(format(".0s")).ticks(5))
+            node => select(node).call(axisTop(xScale).tickFormat(format("~s")).tickSize(-width50))
             } 
           />
         
           
           <g ref={node => select(node).call(axisLeft(yScale))} />
           {
-            data.map( (item, idx) => {
-              return (
-                <g key={item[`total_${props.year}`]}>
-                  <rect 
-                    fill={color(idx)}
-                    x={0}
-                    y={yScale(item.name)}
-                    width={xScale(item[`total_${props.year}`])}
-                    height={yScale.bandwidth()}
-                  />
-                  <text
-                    x={xScale(item[`total_${props.year}`]) - 75}
-                    y={yScale(item.name)}
-                    // dy="-5"
-                    style={{fontSize: "2rem", fill: "white"}}
-                  >{19.3}</text>
-                </g>
-              );
-            })
+            props.category === 'All'
+            ? (
+              dataSorted.map( (item, idx) => {
+                return (
+                  <g key={item[`${props.year}_total`]}>
+                    <rect 
+                      fill={color(idx)}
+                      x={0}
+                      y={yScale(item.name)}
+                      width={xScale(item[`${props.year}_total`])}
+                      height={yScale.bandwidth()}
+                    />
+                    <text
+                      x={xScale(item[`${props.year}_total`]) - 75}
+                      y={yScale(item.name) + (yScale.bandwidth() * 0.6)}
+                      style={{fontSize: "1.5rem", fill: "white"}}
+                    >{item[`${props.year}_rounded`]}</text>
+                  </g>
+                );
+              })
+            )
+            : (
+              dataSorted.map( (item, idx) => {
+                return (
+                  <g key={item[props.year]}>
+                    <rect 
+                      fill={color(idx)}
+                      x={0}
+                      y={yScale(item.name)}
+                      width={xScale(item[props.year])}
+                      height={yScale.bandwidth()}
+                    />
+                    <text
+                      x={xScale(item[props.year]) - 50}
+                      y={yScale(item.name)}
+                      style={{fontSize: "1.2rem", fill: "white"}}
+                    >{
+                        props.rankBy === "Yearly Increase" 
+                          ? `${item.yearDiff} %`
+                          : item[`${props.year}_rounded`]
+                     }</text>
+                  </g>
+                );
+              })
+            )
           }
         
         </g>
