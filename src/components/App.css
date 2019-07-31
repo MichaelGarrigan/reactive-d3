@@ -6,6 +6,6 @@
 
 .global-container {
   background: #555;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 }
