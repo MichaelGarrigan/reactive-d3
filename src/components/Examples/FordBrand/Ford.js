@@ -94,14 +94,14 @@ const Ford = props => {
           view={view}
           year={year}
         />
-        {/* <FordLine 
+        <FordLine 
           category={category}
           data={data}
           dimensions={dimensions}
           featuredItem={featuredItem}
           view={view}
           year={year}
-        /> */}
+        />
       </div>
     </div>
   );
