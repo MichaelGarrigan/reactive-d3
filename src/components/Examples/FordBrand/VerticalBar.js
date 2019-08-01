@@ -1,37 +1,16 @@
 import React, { useState, useLayoutEffect } from 'react';
 
-import { 
-  sortMainCategoriesByYear, 
-  sortCategoryByRankBy,
-  lookupMainCategory,
-  calcMaxForAxis } from './helperFunctions.js';
-
+import { formatData, calcMaxForAxis } from './helperFunctions.js';
 
 import { select } from 'd3-selection';
 import { scaleSequential } from 'd3-scale';
 import { format } from 'd3-format';
 import { interpolateBlues } from 'd3-scale-chromatic';
-
-import { extent, max } from 'd3-array';
 import { axisLeft, axisRight, axisTop } from 'd3-axis';
 import { scaleLinear, scaleBand } from 'd3-scale';
 
 import './Ford.css';
 
-const formatData = props => {
-  if (props.category === 'All') {
-    return sortMainCategoriesByYear(
-      props.data.children, 
-      props.year
-    );
-  } else {
-    return sortCategoryByRankBy(
-      lookupMainCategory(props.data.children, props.category), 
-      props.year,
-      props.rankBy
-    );
-  }
-}
 
 const VerticalBar = props => {
   const { width } = props.dimensions;
@@ -43,7 +22,7 @@ const VerticalBar = props => {
 
   useLayoutEffect( () => {
      setDataSorted(formatData(props));
-  }, [props.year, props.category, props.rankBy])
+  }, [props.year, props.category, props.rankBy]);
 
   const xScale = scaleLinear()
     .domain([calcMaxForAxis(props), 0])
