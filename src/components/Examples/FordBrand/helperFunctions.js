@@ -77,3 +77,20 @@ export const calcMaxForAxis = props => {
     return max(values);
   }
 }
+
+// @params :: 'props' - the props being passed to this component
+// @return :: an array of objects
+export const formatData = props => {
+  if (props.category === 'All') {
+    return sortMainCategoriesByYear(
+      props.data.children, 
+      props.year
+    );
+  } else {
+    return sortCategoryByRankBy(
+      lookupMainCategory(props.data.children, props.category), 
+      props.year,
+      props.rankBy
+    );
+  }
+}
