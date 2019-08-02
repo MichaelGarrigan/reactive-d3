@@ -1,0 +1,22 @@
+
+/* ==============
+ -- Clocks --
+=============== */
+.clocks-wrapper {
+
+}
+
+/* ==============
+ -- WorldClocks --
+=============== */
+.worldClock-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.citiesClock-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
