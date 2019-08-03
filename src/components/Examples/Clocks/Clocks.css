@@ -17,6 +17,18 @@
 }
 .citiesClock-wrapper {
   align-items: center;
+  background: lightgray;
   display: flex;
   justify-content: space-evenly;
+}
+.city-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+.cityName-p {
+  color: #272727;
+  font-size: 3vw;
+  padding: 2rem;
 }
