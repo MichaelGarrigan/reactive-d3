@@ -7,9 +7,9 @@ import './Clocks.css';
 
 const cities = [
   {name: 'New York', timeDiff: 0},
-  {name: 'London', timeDiff: 3},
-  {name: 'Moscow', timeDiff: 6},
-  {name: 'Tokyo', timeDiff: 9}
+  {name: 'London', timeDiff: 5},
+  {name: 'Moscow', timeDiff: 7},
+  {name: 'Tokyo', timeDiff: 13}
 ];
 
 const WorldClocks = props => {
@@ -34,20 +34,20 @@ const WorldClocks = props => {
 
   let arcSec = arc()
     .innerRadius(0).outerRadius(svgWidth * 0.41)
-    .startAngle( d => scaleSec(d.seconds))
-    .endAngle( d => scaleSec(d.seconds));
+    .startAngle( seconds => scaleSec(seconds))
+    .endAngle( seconds => scaleSec(seconds));
   
   let arcMin = arc()
     .innerRadius(0)
-    .outerRadius(svgWidth * 0.38)
-    .startAngle( d => scaleMin(d.minutes))
-    .endAngle( d => scaleMin(d.minutes));
+    .outerRadius(svgWidth * 0.35)
+    .startAngle( minutes => scaleMin(minutes))
+    .endAngle( minutes => scaleMin(minutes));
 
   let arcHour = arc()
     .innerRadius(0)
-    .outerRadius(svgWidth * 0.3)
-    .startAngle( d => scaleHour(d.hour % 12))
-    .endAngle( d => scaleHour(d.hour % 12));
+    .outerRadius(svgWidth * 0.26)
+    .startAngle( hour => scaleHour(hour % 12))
+    .endAngle( hour => scaleHour(hour % 12));
 
   let arcFace = arc()
     .innerRadius(0).outerRadius(svgWidth * 0.48)
@@ -67,69 +67,71 @@ const WorldClocks = props => {
       {
         cities.map( (city, idx) => {
           return (
-            <svg 
-              key={idx}
-              className="svg-worldClock"
-              height={svgWidth}
-              width={svgWidth}
-            >
-              
-              <g transform={`translate(${svgWidth/2}, ${svgWidth/2})`}>
-                <path d={arcFace()} fill="white" />
-                <path d={arcRing()} fill="#272727" />
-                <path d={arcRingSm()} fill="#333" />
-
-                <text 
-                  x={0} 
-                  y={-(svgWidth * 0.34)} 
-                  style={{
-                    textAnchor: "middle",
-                    fontSize: "2vw"
-                    }}
-                >12</text>
-
-                <text 
-                  x={svgWidth * 0.38} 
-                  y={4} 
-                  style={{
-                    textAnchor: "middle",
-                    fontSize: "2vw"
-                    }}
-                >3</text>
-
-                <text 
-                  x={0} 
-                  y={svgWidth * 0.41} 
-                  style={{
-                    textAnchor: "middle",
-                    fontSize: "2vw"
-                    }}
-                >6</text>
-
-                <text 
-                  x={-(svgWidth * 0.38)} 
-                  y={4} 
-                  style={{
-                    textAnchor: "middle",
-                    fontSize: "2vw"
-                    }}
-                >9</text>
-                    
+            <div className="city-wrapper" key={idx}>
+              <svg 
+                className="svg-worldClock"
+                height={svgWidth}
+                width={svgWidth}
+              >
                 
-                <path
-                  d={arcSec(time)}
-                  style={{stroke: "red", strokeWidth: 2}}
-                />
-                <path
-                  d={arcMin(time)}
-                  style={{stroke: "#272727", strokeWidth: 4}}
-                />
-                <path
-                  d={arcHour(time)}
-                  style={{stroke: "#272727", strokeWidth: 7}}
-                />
-              </g>
-            </svg>
+                <g transform={`translate(${svgWidth/2}, ${svgWidth/2})`}>
+                  <path d={arcFace()} fill="white" />
+                  <path d={arcRing()} fill="#272727" />
+                  <path d={arcRingSm()} fill="#333" />
+
+                  <text 
+                    x={0} 
+                    y={-(svgWidth * 0.34)} 
+                    style={{
+                      textAnchor: "middle",
+                      fontSize: "2vw"
+                      }}
+                  >12</text>
+
+                  <text 
+                    x={svgWidth * 0.38} 
+                    y={6} 
+                    style={{
+                      textAnchor: "middle",
+                      fontSize: "2vw"
+                      }}
+                  >3</text>
+
+                  <text 
+                    x={0} 
+                    y={svgWidth * 0.41} 
+                    style={{
+                      textAnchor: "middle",
+                      fontSize: "2vw"
+                      }}
+                  >6</text>
+
+                  <text 
+                    x={-(svgWidth * 0.38)} 
+                    y={6} 
+                    style={{
+                      textAnchor: "middle",
+                      fontSize: "2vw"
+                      }}
+                  >9</text>
+                      
+                  
+                  <path
+                    d={arcSec(time.seconds)}
+                    style={{stroke: "red", strokeWidth: 2}}
+                  />
+                  <path
+                    d={arcMin(time.minutes)}
+                    style={{stroke: "#272727", strokeWidth: 4}}
+                  />
+                  <path
+                    d={arcHour(time.hour + city.timeDiff)}
+                    style={{stroke: "#272727", strokeWidth: 7}}
+                  />
+                </g>
+              </svg>
+              <p className="cityName-p">{city.name}</p>
+            </div>
           )
         })
       }
