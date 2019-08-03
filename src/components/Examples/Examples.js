@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import './Examples.css';
 
-import AnalogClock from './AnalogClock/AnalogClock.js';
 import AnimatedCircles from './AnimatedCircles/AnimatedCircles.js';
 import Area from './Area/Area.js';
 import Axis from './Axis/Axis.js';
-import DigitalClock from './DigitalClock/DigitalClock.js';
+import Clocks from './Clocks/Clocks.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
 import FrequencyOfLetters from './FrequencyOfLetters/FrequencyOfLetters.js';
@@ -29,10 +28,9 @@ const Examples = props => {
     ? (
     <div className="examples-wrapper">
 
-      <Link to={`${props.match.url}/analogClock`}>
-        <div className="d3-example analogClock" onClick={() => setRoute(['analogClock', AnalogClock])}>
-          <span className="d3-example-text">Analog</span>
-          <span className="d3-example-text">Clock</span>
+      <Link to={`${props.match.url}/clocks`}>
+        <div className="d3-example analogClock" onClick={() => setRoute(['clocks', Clocks])}>
+          <span className="d3-example-text">Clocks</span>
         </div>
       </Link>
 
@@ -56,12 +54,12 @@ const Examples = props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/digitalClock`}>
+      {/* <Link to={`${props.match.url}/digitalClock`}>
         <div className="d3-example digitalClock" onClick={() => setRoute(['digitalClock', DigitalClock])}>
           <span className="d3-example-text">Digital</span>
           <span className="d3-example-text">Clock</span>
         </div>
-      </Link>
+      </Link> */}
 
       <Link to={`${props.match.url}/frequencyOfLetters`}>
         <div className="d3-example" onClick={() => setRoute(['frequencyOfLetters', FrequencyOfLetters])}>
