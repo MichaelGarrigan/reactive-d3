@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
 import './Examples.css';
 
 import AnimatedCircles from './AnimatedCircles/AnimatedCircles.js';
 import Area from './Area/Area.js';
 import Axis from './Axis/Axis.js';
+import BarCharts from './BarCharts/BarCharts.js';
 import Clocks from './Clocks/Clocks.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
-import FrequencyOfLetters from './FrequencyOfLetters/FrequencyOfLetters.js';
 import Gagues from './Gagues/Gagues.js';
 import LineChart from './LineChart/LineChart.js';
 import Lower48 from './Lower48/Lower48.js';
 import Pie3Versions from './Pie3Versions/Pie3Versions.js';
-import Top5States from './Top5States/Top5States.js';
 import Treemap from './Treemap/Treemap.js';
 import Tux from './Tux/Tux.js';
 
 const Examples = props => {
 
   const [route, setRoute] = useState([]);
-
   const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
   
   return (
@@ -41,6 +39,13 @@ const Examples = props => {
         </div>
       </Link>
 
+      <Link to={`${props.match.url}/barCharts`}>
+        <div className="d3-example" onClick={() => setRoute(['barCharts', BarCharts])}>
+          <span className="d3-example-text">Bar</span>
+          <span className="d3-example-text">Charts</span>
+        </div>
+      </Link>
+
       <Link to={`${props.match.url}/treemap`}>
         <div className="d3-example" onClick={() => setRoute(['treemap', Treemap])}>
           <span className="d3-example-text">Treemap</span>
@@ -51,20 +56,6 @@ const Examples = props => {
       <Link to={`${props.match.url}/tux`}>
         <div className="d3-example tux_svg" onClick={() => setRoute(['tux', Tux])}>
           <span className="d3-example-text">SVG Tux</span>
-        </div>
-      </Link>
-
-      {/* <Link to={`${props.match.url}/digitalClock`}>
-        <div className="d3-example digitalClock" onClick={() => setRoute(['digitalClock', DigitalClock])}>
-          <span className="d3-example-text">Digital</span>
-          <span className="d3-example-text">Clock</span>
-        </div>
-      </Link> */}
-
-      <Link to={`${props.match.url}/frequencyOfLetters`}>
-        <div className="d3-example" onClick={() => setRoute(['frequencyOfLetters', FrequencyOfLetters])}>
-          <span className="d3-example-text">Frequency</span>
-          <span className="d3-example-text">Of Letters</span>
         </div>
       </Link>
 
@@ -90,13 +81,6 @@ const Examples = props => {
       <Link to={`${props.match.url}/area`}>
         <div className="d3-example area" onClick={() => setRoute(['area', Area])}>
           <span className="d3-example-text">Area Chart</span>
-        </div>
-      </Link>
-
-      <Link to={`${props.match.url}/top5States`}>
-        <div className="d3-example" onClick={() => setRoute(['top5States', Top5States])}>
-          <span className="d3-example-text">Top 5</span>
-          <span className="d3-example-text">States</span>
         </div>
       </Link>
 
