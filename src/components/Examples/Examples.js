@@ -46,6 +46,13 @@ const Examples = props => {
         </div>
       </Link>
 
+      <Link to={`${props.match.url}/lineChart`}>
+        <div className="d3-example lineChart" onClick={() => setRoute(['lineChart', LineChart])}>
+          <span className="d3-example-text">Line</span>
+          <span className="d3-example-text">Chart</span>
+        </div>
+      </Link>
+
       <Link to={`${props.match.url}/treemap`}>
         <div className="d3-example" onClick={() => setRoute(['treemap', Treemap])}>
           <span className="d3-example-text">Treemap</span>
@@ -81,12 +88,6 @@ const Examples = props => {
       <Link to={`${props.match.url}/area`}>
         <div className="d3-example area" onClick={() => setRoute(['area', Area])}>
           <span className="d3-example-text">Area Chart</span>
-        </div>
-      </Link>
-
-      <Link to={`${props.match.url}/lineChart`}>
-        <div className="d3-example lineChart" onClick={() => setRoute(['lineChart', LineChart])}>
-          <span className="d3-example-text">Line Chart</span>
         </div>
       </Link>
 
