@@ -1,33 +1,125 @@
 
-.line-chart-wrapper {
+.line-wrapper {
   align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
+.line-chart-wrapper {
+  border: 3px solid teal;
+  border-radius: 1rem ;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 0;
+}
+
+/* Line Chart Control Inputs */
+.line-controller {
+  background: white;
+  border-bottom: 3px solid teal;
+  border-radius: 1rem 1rem 0 0;
+  width: 100%;
+}
+.line-controller-dark {
+  background: #202020;
+  border-bottom: 3px solid teal;
+  border-radius: 1rem 1rem 0 0;
+  width: 100%;
+}
+
+.line-controller span {
+  color: #202020;
+  display: inline-block;
+  font-size: 2rem;
+  padding: 0.5rem 0 0 0.5rem;
+}
+.line-controller-dark span {
+  color: white;
+  display: inline-block;
+  font-size: 2rem;
+  padding: 0.5rem;
+}
+
+.line-button-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+}
+
+.line-select {
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  color: #202020;
+  font-size: 1.2rem;
+}
+.line-select option {
+  color: #202020;
+  font-size: 1rem;
+}
+.line-random-button,
+.line-darkMode,
+.line-fill {
+  border-radius: 1rem;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  color: #202020;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.5rem;
+}
+
+
+/* Line Chart SVG */
 .svg-line-chart {
-  border: 1px solid gray;
+  background: white;
+  border-radius: 0 0 1rem 1rem;
+  display: block;
+}
+.svg-line-chart-dark {
+  background: #202020;
+  border-radius: 0 0 1rem 1rem;
+  display: block;
+  
 }
 
-/* Style the lines by removing the fill and applying a stroke */
-.line {
-  fill: blue;
+.line-path-curve {
+  fill: none;
   stroke: #ffab00;
+  stroke-width: 5;
+}
+.line-path-curve-dark {
+  fill: none;
+  stroke: greenyellow;
+  stroke-width: 5;
+}
+
+.line-path-fill {
+  fill: rgba(128, 128, 128, 0.5);
+}
+
+.line-axis text {
+  fill: #202020;
+  font-size: 1.5vw;
+}
+.line-axis-dark text {
+  fill: white;
+  font-size: 1.5vw;
+}
+
+.line-axis path,
+.line-axis line {
+  stroke: #202020;
+  stroke-width: 3;
+}
+.line-axis-dark path,
+.line-axis-dark line {
+  stroke: white;
   stroke-width: 3;
 }
 
-/* .overlay {
-fill: none;
-pointer-events: all;
-} */
-
-/* Style the dots by assigning a fill and stroke */
-.dot {
+.line-data-points {
   fill: maroon;
-  stroke: #fff;
 }
-
-.focus circle {
-fill: none;
-stroke: steelblue;
+.line-data-points-dark {
+  fill: orangered;
+  stroke: black;
 }
