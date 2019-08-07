@@ -1,24 +1,17 @@
 
 import React, { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
+import TitleBanner from '../titleBanner/TitleBanner.js';
+
+import { range } from 'd3-array';
 import { axisBottom, axisLeft } from 'd3-axis';
+import { randomUniform } from 'd3-random';
 import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
-import { line, curveLinear } from 'd3-shape';
-import { range } from 'd3-array';
-import { randomUniform } from 'd3-random';
+import  * as shape from 'd3-shape';
+
+import curveTypes from './curveTypes.js';
  
 import './LineChart.css';
-
-// const curveTypes = {
-//   'curveLinear': curveLinear, 'curveLinearClosed': curveLinearClosed,
-//   'curveBasis': curveBasis, 'curveBasisClosed': curveBasisClosed, 
-//   'curveBasisOpen': curveBasisOpen, 'curveBundle': curveBundle,
-//   'curveCardinal': curveCardinal, 'curveCardinalClosed': curveCardinalClosed, 
-//   'curveCardinalOpen': curveCardinalOpen, 'curveCatmullRom': curveCatmullRom, 
-//   'curveCatmullRomClosed': curveCatmullRomClosed, 'curveCatmullRomOpen': curveCatmullRomOpen, 'curveMonotoneX': curveMonotoneX, 'curveMonotoneY': curveMonotoneY,
-//   'curveNatural': curveNatural, 'curveStep': curveStep, 
-//   'curveStepAfter': curveStepAfter, 'curveStepBefore': curveStepBefore
-// };
 
 function getDimensionObject(node) {
   const rect = node.getBoundingClientRect();
@@ -32,12 +25,15 @@ const randomizeData = () => range(20).map(d => ({ "y": randomUniform(1)() }));
 
 const LineChart = props => {
 
-  const [curve, setCurve] = useState(curveLinear)
+  const [curve, setCurve] = useState('curveLinear')
   const [dataRandom, setDataRandom] = useState(randomizeData());
+  const [darkMode, setDarkMode] = useState(false);
   const [dimensions, setDimensions] = useState({width: 960, height: 500});
+  const [lineFill, setLineFill] = useState(false);
   const [node, setNode] = useState(null);
 
   const wrapRef = useCallback(node => { setNode(node); }, []);
+
 
   useLayoutEffect(() => {
     if (node) {
@@ -76,44 +72,100 @@ const LineChart = props => {
     .domain([0, 1]) 
     .range([svgHeight - (marginHeight * 2), 0]);
 
-  const l = line()
-    .x( (d, i) => xScale(i) ) 
+  const line = shape.line()
+    .x( (d, i) => xScale(i+1) ) 
     .y( d => yScale(d.y) ) 
-    .curve(curveLinear);
+    .curve(shape[curve]);
+
 
   return (
-    <div className="line-chart-wrapper" ref={wrapRef}>
-      <svg className="svg-line-chart" 
+    <div className="line-wrapper" ref={wrapRef}>
+
+      <TitleBanner title='Line Chart with Curves' />
+
+      <div className="line-chart-wrapper">
+
+        <div 
+          className={darkMode ? "line-controller-dark" : "line-controller"}
+          width={svgWidth}
+        >
+          <span>Controls</span>
+        
+          <div className="line-button-wrapper">
+            <button 
+              className="line-darkMode"
+              onClick={ () => setDarkMode(!darkMode)}
+            >
+              {darkMode ? 'Dark Mode - ON' : 'Dark Mode - OFF'}
+            </button>
+            <button 
+              className="line-random-button"
+              onClick={ () => setDataRandom(randomizeData())}
+            >
+              New Random Data
+            </button>
+            <button 
+              className="line-fill"
+              onClick={ () => setLineFill(!lineFill)}
+            >
+              {lineFill ? 'Fill - ON' : 'Fill - OFF'}
+            </button>
+            <select 
+              name="curve" 
+              className="line-select"
+              value={curve}
+              onChange={ e => setCurve(e.target.value) }
+            >
+              { 
+                curveTypes.map( curve => (
+                    <option
+                      key={curve}
+                      className="line-curve-option"
+                    >
+                      {curve}
+                    </option>
+                ))
+              }
+            </select>
+          </div>
+        </div>
+
+      <svg 
+        className={darkMode ? "svg-line-chart-dark" : "svg-line-chart"}
         height={svgHeight} 
         width={svgWidth} 
       >
         <g transform={`translate(${marginWidth},${marginHeight})`}>
           <g
-            className="line-xAxis" 
+            className={darkMode ? "line-axis-dark" : "line-axis"} 
             transform={`translate(0,${svgHeight - (marginHeight * 2)})`}
             ref={node => select(node).call(axisBottom(xScale))} 
           />
           <g 
-            className="line-yAxis"
+            className={darkMode ? "line-axis-dark" : "line-axis"}
             ref={node => select(node).call(axisLeft(yScale))}
           />
           <path
-            className="line"
-            ref={node => select(node).datum(dataRandom).attr("d", l)}
+            className={`
+              ${darkMode ? "line-path-curve-dark" : "line-path-curve"} 
+              ${lineFill ? "line-path-fill" : ""}`
+            }
+            ref={node => select(node).datum(dataRandom).attr("d", line)}
           />
           {
             dataRandom.map( (data, idx) => (
               <circle 
                 key={data.y}
-                className="dot"
-                cx={xScale(idx)}
+                className={darkMode ? "line-data-points-dark" : "line-data-points"}
+                cx={xScale(idx+1)}
                 cy={yScale(data.y)}
-                r="5"
+                r="8"
               />
             ))
           }
         </g>
       </svg>
+      </div>
     </div>
   )
 }
