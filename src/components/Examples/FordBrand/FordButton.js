@@ -6,7 +6,7 @@ import './Ford.css';
 const FordButton = props => (
   <div className="ford-button-wrapper">
 
-    <div>
+    <div className="ford-button-group">
       <button 
         className={
           props.year === "2018"
@@ -27,7 +27,7 @@ const FordButton = props => (
       >2017</button>
     </div>
 
-    <div>
+    <div className="ford-button-group">
       <button 
         className={
           props.category === "All"
