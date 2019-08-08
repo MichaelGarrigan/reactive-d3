@@ -5,12 +5,11 @@ import { fordHierarchy } from './FordData.js';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import FordButton from './FordButton.js';
-import FordSales from './FordSales.js';
+import FordGagues from './FordGagues.js';
 import FordPack from './FordPack.js';
 import FordLine from './FordLine.js';
 
 import './Ford.css';
-
 
 // https://github.com/Swizec/useDimensions
 function getDimensionObject(node) {
@@ -75,7 +74,7 @@ const Ford = props => {
           setYear={setYear}
         />
 
-        <FordSales 
+        <FordGagues 
           category={category}
           data={data}
           dimensions={dimensions}
