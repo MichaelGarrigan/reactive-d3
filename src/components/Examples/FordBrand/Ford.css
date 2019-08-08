@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-/* Button */
+/* FordButton */
 .ford-button-wrapper {
   align-items: center;
   display: flex;
@@ -19,9 +19,9 @@
 }
 .ford-button {
   background: #777;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #333;
   border-radius: 0.5rem;
-  color: #d3d3d3;
+  color: #333;
   cursor: pointer;
   font-size: 2rem;
   margin: 0.5rem;
@@ -29,9 +29,9 @@
 }
 .ford-button-active {
   background: rgb(177, 156, 36);
-  border: 1px solid #d3d3d3;
+  border: 1px solid #333;
   border-radius: 0.5rem;
-  color: #d3d3d3;
+  color: #333;
   cursor: pointer;
   font-size: 2rem;
   margin: 0.5rem;
@@ -59,8 +59,12 @@
 }
 
 .ford-3circles-wrapper {
+  background: #aaaaaa;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   display: flex;
-  margin: 2rem auto;
+  margin: 2rem 0;
 }
 .ford-circle-wrapper {
   align-items: center;
@@ -68,7 +72,7 @@
   flex-direction: column;
 }
 .ford-circle-p {
-  color: #d3d3d3;
+  color: #333;
   font-size: 2.5rem;
 }
 
