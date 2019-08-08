@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useEffect, useRef, useState } from 'react';
 import { arc } from 'd3-shape';
 import { format } from 'd3-format';
 import { interpolate } from 'd3-interpolate';
@@ -6,15 +6,17 @@ import { select } from 'd3-selection';
 import { transition } from 'd3-transition';
 
 const CircleGauge = props => {
-  const { actual, name } = props;
+  const { actual, name, dimensions } = props;
   const twoPI = 2 * Math.PI;
   let circleProgress = 0;
   let total = 2393731;
   let formatPercent = format('.0%');
-
+  
   const [circleNode, setCircleNode] = useState(null);
   const [textNode, setTextNode] = useState(null);
-  const [size, setSize] = useState(props.size);
+  const [width, setWidth] = useState(Math.round(dimensions.width * 0.9))
+
+  const svgWidth = Math.round(width / 3);
 
   const circleRef = useCallback(node => {
     setCircleNode(node);
@@ -25,7 +27,6 @@ const CircleGauge = props => {
   }, []);
 
   let interCircle = interpolate(circleProgress, actual / total);
-
 
   useLayoutEffect(() => {
     if (circleNode) {
@@ -40,54 +41,62 @@ const CircleGauge = props => {
         });
     }
   }, [circleNode]); 
+ 
+  useEffect(() => {
+    setWidth(Math.round(dimensions.width * 0.9))
+  }, [width]);
   
 
   let circleBackground = arc()
-    .innerRadius(60)
-    .outerRadius(90)
+    .innerRadius(Math.round(svgWidth * 0.3))
+    .outerRadius(Math.round(svgWidth * 0.4 ))
     .startAngle(0)
     .endAngle(twoPI);
 
   let circleForeground = arc()
-    .innerRadius(50)
-    .outerRadius(100)
+    .innerRadius(Math.round(svgWidth * 0.25))
+    .outerRadius(Math.round(svgWidth * 0.45))
     .startAngle(twoPI * .4)
     .endAngle(twoPI * .4);
 
   let circleInner = arc()
     .innerRadius(0)
-    .outerRadius(50)
+    .outerRadius(Math.round(svgWidth * 0.25))
     .startAngle(0)
     .endAngle(twoPI);
 
   return (
-    <svg className="ford-ctrl-circle ford-ctrl-circle-car"
-      height={size} width={size}
+    <svg 
+      height={svgWidth} width={svgWidth}
     >
-      <g transform={`translate(${size / 2},${size / 2})`}>
+      <g transform={`translate(${Math.round(svgWidth / 2)},${Math.round(svgWidth / 2)})`}>
         <path
-          fill="#d3d3d3"
+          fill="#777"
+          stroke="#333"
+          strokeWidth="1"
           d={circleBackground()}
         />
         <path
           ref={circleRef}
-          fill="#ff4500"
+          fill="orangered"
+          stroke="#333"
+          strokeWidth="1"
           d={circleForeground()}
         />
         <path
-          fill="#00000000"
+          fill="none"
           d={circleInner()}
         />
         <text 
           ref={textRef} 
           textAnchor="middle" 
           dy="0"
-          style={{fontSize: '2.5rem', fill: 'white'}}
+          style={{fontSize: '3rem', fill: '#333'}}
         ></text>
         <text 
           textAnchor="middle" 
           dy="24px"
-          style={{fontSize: '1rem', fill: 'white'}}
+          style={{fontSize: '1.4rem', fill: '#333'}}
         >Total Sales</text>
         
       </g>
