@@ -6,7 +6,8 @@ import { select } from 'd3-selection';
 import { transition } from 'd3-transition';
 
 const CircleGauge = props => {
-  const { actual, name, dimensions } = props;
+  const { actual, name } = props;
+
   const twoPI = 2 * Math.PI;
   let circleProgress = 0;
   let total = 2393731;
@@ -14,10 +15,11 @@ const CircleGauge = props => {
   
   const [circleNode, setCircleNode] = useState(null);
   const [textNode, setTextNode] = useState(null);
-  const [width, setWidth] = useState(Math.round(dimensions.width * 0.9))
 
-  const svgWidth = Math.round(width / 3);
-
+  const { width } = props.dimensions;
+  const [innerWidth, setInnerWidth] = useState(Math.round(width * 0.9));
+  const svgWidth = Math.round(innerWidth * 0.3);
+  
   const circleRef = useCallback(node => {
     setCircleNode(node);
   }, []);
@@ -29,6 +31,7 @@ const CircleGauge = props => {
   let interCircle = interpolate(circleProgress, actual / total);
 
   useLayoutEffect(() => {
+    
     if (circleNode) {
       transition(name)
         .duration(2000)
@@ -40,10 +43,15 @@ const CircleGauge = props => {
           }
         });
     }
-  }, [circleNode]); 
+  }, [circleNode, innerWidth]); 
  
-  useEffect(() => {
-    setWidth(Math.round(dimensions.width * 0.9))
+  useLayoutEffect(() => {
+    let diff = innerWidth - (Math.round(width * 0.9));
+    
+    if (diff < -20 || diff > 20) {
+      setInnerWidth(Math.round(width * 0.9))
+    }
+    
   }, [width]);
   
 
@@ -91,12 +99,12 @@ const CircleGauge = props => {
           ref={textRef} 
           textAnchor="middle" 
           dy="0"
-          style={{fontSize: '3rem', fill: '#333'}}
+          style={{fontSize: '3vw', fill: '#333'}}
         ></text>
         <text 
           textAnchor="middle" 
           dy="24px"
-          style={{fontSize: '1.4rem', fill: '#333'}}
+          style={{fontSize: '2vw', fill: '#333'}}
         >Total Sales</text>
         
       </g>
