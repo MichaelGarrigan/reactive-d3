@@ -1,148 +1,137 @@
-import React, { useState, useLayoutEffect, Fragment } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
-import { formatData, calcMaxForAxis } from './helperFunctions.js';
+import { formatData, calcExtentForAxis } from './helperFunctions.js';
 
-import {axisBottom, axisLeft, axisRight} from 'd3-axis';
-import {scaleLinear, scaleBand, scaleOrdinal, scalePoint} from 'd3-scale';
-import {select} from 'd3-selection';
-import {interpolatePiYG} from 'd3-scale-chromatic';
-import {path} from 'd3-path';
+import { axisBottom, axisLeft, axisRight } from 'd3-axis';
+import { path } from 'd3-path';
+import { scaleLinear, scaleBand } from 'd3-scale';
+import { interpolatePiYG } from 'd3-scale-chromatic';
+import { select } from 'd3-selection';
 
 import './Ford.css';
 
 
 const FordLine = props => {
   
-  const { width } = props.dimensions;
   const [dataSorted, setDataSorted] = useState(formatData(props));
-  
-  const width10 = width * 0.1;
-  const width20 = width * 0.2;
-  const width50 = width * 0.5;
-  const width80 = width * 0.8;
-  const width90 = width * 0.9;
+  const { width } = props.dimensions;
+  const svgWidth = Math.floor(width * 0.8);
+  const svgHeight = Math.floor(svgWidth * 0.6);
 
-  const margin10 = width * 0.1;
+  const margin5 = Math.floor(svgWidth * 0.05);
+  const margin10 = Math.floor(svgWidth * 0.1);
+  const margin20 = Math.floor(svgWidth * 0.2);
 
   useLayoutEffect( () => {
     setDataSorted(formatData(props));
- }, [props.year, props.category, props.rankBy])
+  }, [props.year, props.category])
   
-
-  const renderPath = (x, y, x1, y1) => {
+  let renderPath = (x, y, x1, y1) => {
     let p = path();
     p.moveTo(x, y);
     p.lineTo(x1, y1);
     p.closePath(); 
 
     return p.toString();
-  }
-  
-  // Scales
-  const bottomScale = scalePoint()
-    .domain(['a', '2017', 'b', 'c', 'd', 'e', '2018', 'f'])
-    .range([0, width80]);
+  };
 
-  const leftScale = scalePoint()
-    .domain([...dataSorted.map( item => item.name).reverse()])
-    .range([width80, 0])
-    .padding(0.5);
+  
+  const bottomScale = scaleBand()
+    .domain(['2017', '', '2018'])
+    .rangeRound([0, svgWidth - margin20])
+    .padding(0.9);
+
+  const leftScale = scaleLinear()
+    .domain(calcExtentForAxis(props.selectedItemData))
+    .range([svgHeight - margin10, 0]);
 
   const rightScale = scaleLinear()
-    .domain([0, calcMaxForAxis(props)]) 
-    .range([width80, 0]);
+    .domain(calcExtentForAxis(props.selectedItemData)) 
+    .range([svgHeight - margin10, 0]);
 
 
   return (
     <div className="ford-line-wrapper">
+      <div className="ford-line-button-wrapper">
+      {
+        dataSorted.map( item => (
+          <button 
+            className={ 
+              props.selectedItemName === item.name
+                ? "ford-line-button-active" 
+                : "ford-line-button" 
+            }
+            key={item.name}
+            onClick={ () => {
+              props.setSelectedItemName(item.name);
+              props.setSelectedItemData(item);
+            }}
+            value={item.name}
+          >
+            {item.name}
+          </button>
+        ))
+      }
+      </div>
       <svg 
         className="svg-ford-line" 
-        width={width} 
-        height={width}
+        width={svgWidth} 
+        height={svgHeight}
       >
-        <g transform={`translate(${margin10}, ${margin10})`}>
-          <g transform={`translate(0, ${width80})`}
-            ref={
-              node => 
-                select(node).call(axisBottom(bottomScale).tickValues(['', '2017', '', '', '', '', '2018', '']))
-            } 
+        <g transform={`translate(${margin10}, ${margin5})`}>
+          <g 
+            transform={`translate(0, ${svgHeight - margin10})`}
+            ref={node => select(node).call(axisBottom(bottomScale) )} 
           />
           <g transform={`translate(0, 0)`}
             ref={node => select(node).call(axisLeft(leftScale))} 
           />
-          <g transform={`translate(${width80}, 0)`}
+          <g transform={`translate(${svgWidth - margin20}, 0)`}
             ref={node => select(node).call(axisRight(rightScale))} 
           />
             
-          {
-            dataSorted.map( (item, idx) => {
-              return (
-                <Fragment key={idx}>
-                  <circle
-                    cx={bottomScale('2017')}
-                    cy={
-                      item['2017_total']
-                       ? rightScale(item['2017_total'])
-                       : rightScale(item['2017'])
-                    }
-                    r={20}
-                    fill={interpolatePiYG(idx * 0.1 - 0.05)}
-                  />
-                  <circle
-                    cx={bottomScale('2018')}
-                    cy={
-                      item['2018_total']
-                       ? rightScale(item['2018_total'])
-                       : rightScale(item['2018'])
-                    }
-                    r={20}
-                    fill={interpolatePiYG(idx * 0.1 - 0.05)}
-                  />
-                  <path
-                    d={ renderPath(
-                          bottomScale('2017'),
-                          (
-                            item['2017_total']
-                              ? rightScale(item['2017_total'])
-                              : rightScale(item['2017'])
-                          ),
-                          bottomScale('2018'), 
-                          (
-                            item['2018_total']
-                              ? rightScale(item['2018_total'])
-                              : rightScale(item['2018'])
-                          )
-                        )
-                      }
-                    strokeWidth={10}
-                    stroke="blue"
-                  />
-                  <circle
-                    cx={bottomScale('2017')}
-                    cy={
-                      item['2017_total']
-                       ? rightScale(item['2017_total'])
-                       : rightScale(item['2017'])
-                    }
-                    r={10}
-                    fill={interpolatePiYG(idx * 0.1)}
-                  />
-                  <circle
-                    cx={bottomScale('2018')}
-                    cy={
-                      item['2018_total']
-                       ? rightScale(item['2018_total'])
-                       : rightScale(item['2018'])
-                    }
-                    r={10}
-                    fill={interpolatePiYG(idx * 0.1)}
-                  />
-                </Fragment>
-              )
-            })
-          }
-          
-          </g>
+          <g>
+            <path
+              d={ renderPath(
+                    bottomScale('2017'),
+                    (
+                      props.selectedItemData['2017_total']
+                        ? rightScale(props.selectedItemData['2017_total'])
+                        : rightScale(props.selectedItemData['2017'])
+                    ),
+                    bottomScale('2018'), 
+                    (
+                      props.selectedItemData['2018_total']
+                        ? rightScale(props.selectedItemData['2018_total'])
+                        : rightScale(props.selectedItemData['2018'])
+                    )
+                  )
+                }
+              strokeWidth={10}
+              stroke="blue"
+            />
+            <circle
+              cx={bottomScale('2017')}
+              cy={
+                props.selectedItemData['2017_total']
+                  ? rightScale(props.selectedItemData['2017_total'])
+                  : rightScale(props.selectedItemData['2017'])
+              }                                                 
+              r={10}
+              fill="teal"
+            />
+            <circle
+              cx={bottomScale('2018')}
+              cy={
+                props.selectedItemData['2018_total']
+                  ? rightScale(props.selectedItemData['2018_total'])
+                  : rightScale(props.selectedItemData['2018'])
+              }
+              r={10}
+              fill="teal"
+            />
+          </g>   
+        </g>
       </svg>
     </div>
   );
