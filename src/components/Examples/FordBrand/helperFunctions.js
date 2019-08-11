@@ -1,5 +1,5 @@
 
-import { max } from 'd3-array';
+import { max, extent } from 'd3-array';
 
 // @params :: 'children' - three subcategories as objects in an array
 // @params :: 'year' - a string of ('2017'|'2018')
@@ -56,26 +56,20 @@ export const lookupMainCategory = (children, category) => {
   }
 }
 
-// @params :: 'props' - the props being passed to this component
-// @return :: the highest number
-export const calcMaxForAxis = props => {
+// @params :: 'item' - an object describing the sales data for a vehicle model
+// @return :: a tuple [ MIN, MAX ]
+export const calcExtentForAxis = item => {
+  let year17 = item['2017_total'] ? item['2017_total'] : item['2017'];
+  let year18 = item['2018_total'] ? item['2018_total'] : item['2018'];
+  let buff10Percent = Math.round(year18 * 0.1); 
+  
+  let tuple = extent([ year17, year18 ]);
+  
+  tuple[0] -= buff10Percent;
+  tuple[1] += buff10Percent;
+  
+  return tuple;
 
-  if (props.category === 'All') {
-    let values = [];
-    props.data.children.forEach( item => {
-      values.push(item['2017_total']);
-      values.push(item['2018_total']);
-    });
-    return max(values);
-  } else {
-    let values = [];
-    let obj = lookupMainCategory(props.data.children, props.category);
-    obj.children.forEach( item => {
-      values.push(item['2017']);
-      values.push(item['2018']);
-    });
-    return max(values);
-  }
 }
 
 // @params :: 'props' - the props being passed to this component
@@ -83,12 +77,12 @@ export const calcMaxForAxis = props => {
 export const formatData = props => {
   if (props.category === 'All') {
     return sortMainCategoriesByYear(
-      props.data.children, 
+      props.DATA.children, 
       props.year
     );
   } else {
     return sortCategoryByRankBy(
-      lookupMainCategory(props.data.children, props.category), 
+      lookupMainCategory(props.DATA.children, props.category), 
       props.year,
       props.rankBy
     );
