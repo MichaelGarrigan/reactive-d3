@@ -34,7 +34,11 @@ const FordButton = props => (
             ? "ford-button-active"
             : "ford-button"
         }
-        onClick={event => props.setCategory(event.target.value)}
+        onClick={() => {
+          props.setCategory("All");
+          props.setSelectedItemName("Trucks");
+          props.setSelectedItemData(props.DATA.children[2])
+        }}
         value="All"
       >All</button>
       <button 
@@ -43,7 +47,11 @@ const FordButton = props => (
             ? "ford-button-active"
             : "ford-button"
         }
-        onClick={event => props.setCategory(event.target.value)}
+        onClick={() => {
+          props.setCategory("Cars");
+          props.setSelectedItemName(props.DATA.children[0].children[0].name);
+          props.setSelectedItemData(props.DATA.children[0].children[0])
+        }}
         value="Cars"
       >Cars</button>
       <button 
@@ -52,7 +60,11 @@ const FordButton = props => (
             ? "ford-button-active"
             : "ford-button"
         }
-        onClick={event => props.setCategory(event.target.value)}
+        onClick={() => {
+          props.setCategory("SUVs");
+          props.setSelectedItemName(props.DATA.children[1].children[0].name);
+          props.setSelectedItemData(props.DATA.children[1].children[0])
+        }}
         value="SUVs"
       >SUVs</button>
       <button 
@@ -61,7 +73,11 @@ const FordButton = props => (
             ? "ford-button-active"
             : "ford-button"
         }
-        onClick={event => props.setCategory(event.target.value)}
+        onClick={() => {
+          props.setCategory("Trucks");
+          props.setSelectedItemName(props.DATA.children[2].children[0].name);
+          props.setSelectedItemData(props.DATA.children[2].children[0])
+        }}
         value="Trucks"
       >Trucks</button>
     </div>
