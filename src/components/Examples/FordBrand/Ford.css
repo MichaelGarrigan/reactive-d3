@@ -1,31 +1,45 @@
 
+/* ===================
+       Ford
+==================== */
 .ford-wrapper {
   min-height: 85vh;
   width: 100vw;
 }
 
 .ford-flex {
-  align-items: center;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
   display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  width: 95vw;
 }
 
-/* FordButton */
+/* ===================
+     FordButton
+==================== */
 .ford-button-wrapper {
-  align-items: center;
+  background: #333;
+  border-radius: 0.5rem 0 0 0.5rem;
   display: flex;
-  justify-content: space-around;
-  width: 80%;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  width: 15vw;
+}
+.ford-button-group {
+  margin: 2rem 0;
 }
 .ford-button {
   background: #777;
-  border: 1px solid #333;
+  border: 1px solid #aaa;
   border-radius: 0.5rem;
   color: #333;
   cursor: pointer;
-  font-size: 2rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  font-size: 3vw;
+  margin: .2rem 0;
+  padding: 0.5rem 0;
+  width: 80%;
 }
 .ford-button-active {
   background: rgb(177, 156, 36);
@@ -33,38 +47,64 @@
   border-radius: 0.5rem;
   color: #333;
   cursor: pointer;
-  font-size: 2rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  font-size: 3vw;
+  margin: .2rem 0;
+  padding: 0.5rem 0;
+  width: 80%;
 }
 
-/* Controller */
-.ford-sales-wrapper {
+/* ===================
+     FordCharts
+==================== */
+.ford-charts-wrapper {
   align-items: center;
+  background: #aaa;
+  border: 1px solid #333;
+  border-radius: 0 0.5rem 0.5rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  margin: 1rem 0;
-  /* width: 80%; */
-}
-.ford-total-wrap {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-.ford-total-p {
-  color: #d3d3d3;
-  font-size: 4rem;
-  margin: 0.5rem 0;
-  text-align: center;
+  overflow-y: auto;
+  width: 80vw;
 }
 
+/* ===================
+   FordSalesTotal 
+==================== */
+.ford-sales-wrapper {
+  background: #333;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  margin: 1rem 0;
+  width: 90%;
+}
+.ford-sales-total {
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+.ford-sales-total h3 {
+  color: #d1d1d1;
+  font-size: 5vw;
+}
+
+/* ===================
+      FordGagues 
+==================== */
+.ford-gague-wrapper {
+  margin: 1rem 0;
+  width: 100%;
+}
 .ford-3circles-wrapper {
-  background: #aaaaaa;
+  background: #aaa;
   border: 1px solid #333;
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   display: flex;
-  margin: 2rem 0;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 90%;
 }
 .ford-circle-wrapper {
   align-items: center;
@@ -73,23 +113,47 @@
 }
 .ford-circle-p {
   color: #333;
-  font-size: 2.5rem;
+  font-size: 4vw;
 }
-
-.ford-rankBy-wrapper {
+.ford-circle-bar-wrapper {
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  width: 100%;
 }
 
-.svg-circles-inner {
-  fill: #d3d3d3;
-}
-
-/* Pack */
-.ford-pack-wrapper {
+/* ===================
+      FordBar 
+==================== */
+.svg-ford-bar {
   
+}
+.svg-ford-bar-yaxis text {
+  color: white;
+  font-size: 1.6vw;
+}
+.ford-bar-rect {
+  stroke: #333;
+  stroke-width: 1;
+}
+
+.svg-ford-bar-yaxis line {
+  stroke: #333;
+  stroke-width: 2;
+}
+.ford-bar-text {
+  fill: #fff;
+  font-size: 2rem;
+}
+
+/* ===================
+      FordPack 
+==================== */
+.ford-pack-wrapper {
+  align-items: center;
   display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 2rem 0;
   width: 100%;
 }
 
@@ -97,14 +161,50 @@
   
 }
 
-/* Line */
+/* ===================
+      FordLine 
+==================== */
 .ford-line-wrapper {
   align-items: center;
+  background: #aaa;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   display: flex;
+  flex-direction: column;
   height: 100%;
-  justify-content: center;
-  width: 100%
+  
+  margin: 2rem 0;
+  width: 90%
 }
 .svg-ford-line {
-  border: 1px solid maroon;
+  
+}
+
+.ford-line-button-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90vw;
+}
+.ford-line-button {
+  background: #777;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  font-size: 2vw;
+  margin: .2rem;
+  padding: 0.5rem;
+}
+
+.ford-line-button-active {
+  background: rgb(177, 156, 36);
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  font-size: 2vw;
+  margin: .2rem;
+  padding: 0.5rem;
 }
