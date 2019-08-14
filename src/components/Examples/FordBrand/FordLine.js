@@ -15,8 +15,8 @@ const FordLine = props => {
   
   const [dataSorted, setDataSorted] = useState(formatData(props));
   const { width } = props.dimensions;
-  const svgWidth = Math.floor(width * 0.8);
-  const svgHeight = Math.floor(svgWidth * 0.6);
+  const svgWidth = Math.floor(width * 0.9);
+  const svgHeight = Math.floor(svgWidth * 0.5);
 
   const margin5 = Math.floor(svgWidth * 0.05);
   const margin10 = Math.floor(svgWidth * 0.1);
@@ -40,7 +40,7 @@ const FordLine = props => {
     .domain(['2017', '', '2018'])
     .rangeRound([0, svgWidth - margin20])
     .padding(0.9);
-
+  
   const leftScale = scaleLinear()
     .domain(calcExtentForAxis(props.selectedItemData))
     .range([svgHeight - margin10, 0]);
