@@ -1,12 +1,13 @@
 
-import React, { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useCallback, useLayoutEffect } from 'react';
 
-import { fordHierarchy } from './FordData.js';
+// import { fordHierarchy } from './FordData.js';
 
 import FordSalesTotal from './FordSalesTotal.js';
-import FordGagues from './FordGagues.js';
+import FordGauges from './FordGauges.js';
 import FordPack from './FordPack.js';
-// import FordLine from './FordLine.js';
+import FordLine from './FordLine.js';
+// import VerticalBar from './VerticalBar.js';
 
 import './Ford.css';
 
@@ -21,6 +22,7 @@ function getDimensionObject(node) {
 
 const FordCharts = props => {
 
+  // const [data, setData] = useState(fordHierarchy);
   const [dimensions, setDimensions] = useState({width: 960, height: 500});
   const [node, setNode] = useState(null);
 
@@ -53,33 +55,37 @@ const FordCharts = props => {
 
       <FordSalesTotal
         category={props.category}
-        data={props.data}
+        DATA={props.DATA}
         year={props.year}
       />
 
-      <FordGagues 
+      <FordGauges 
         category={props.category}
-        data={props.data}
+        DATA={props.DATA}
         dimensions={dimensions}
+        selectedItemName={props.selectedItemName}
         year={props.year}
       />
       
+      <FordLine 
+        category={props.category}
+        DATA={props.DATA}
+        dimensions={dimensions}
+        selectedItemName={props.selectedItemName}
+        selectedItemData={props.selectedItemData}
+        year={props.year}
+
+        setCategory={props.setCategory}
+        setSelectedItemName={props.setSelectedItemName}
+        setSelectedItemData={props.setSelectedItemData}
+      /> 
+
       <FordPack 
         category={props.category}
-        data={props.data}
+        DATA={props.DATA}
         dimensions={dimensions}
-        featuredItem={props.featuredItem}
-        rankBy={props.rankBy}
         year={props.year}
       />
-      {/* <FordLine 
-        category={category}
-        data={data}
-        dimensions={dimensions}
-        featuredItem={featuredItem}
-        year={year}
-        /> */
-      }
   
     </div>
   );
