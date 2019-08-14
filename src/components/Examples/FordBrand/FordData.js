@@ -1,7 +1,7 @@
 // data from:
 // https://www.best-selling-cars.com/usa/2018-full-year-usa-ford-sales-americas-favorite-car-brand/
 
-export const fordHierarchy = {
+export default {
   name: "Ford",
   "2017_total": 2475556,
   "2018_total": 2393731,
