@@ -19,8 +19,8 @@ const NavBar = () => (
       <Link to="/EditorShell">
         <div className="nav-link">Editors</div>
       </Link>
-      <Link to="/Blog">
-        <div className="nav-link">Blog</div>
+      <Link to="/Resources">
+        <div className="nav-link">Resources</div>
       </Link>
     </div>
   </div>
