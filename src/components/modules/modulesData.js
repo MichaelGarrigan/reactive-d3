@@ -101,7 +101,7 @@ const modulesData =
     },
     {
       name: 'd3-scale',
-      subs: ['Continuous', 'Sequential', 'Diverging', 'Quantize', 'Ordinal']
+      subs: ['Continuous', 'Sequential', 'Diverging', 'Quantize', 'Quantile', 'Threshold', 'Ordinal']
     },
     {
       name: 'd3-selection', 
