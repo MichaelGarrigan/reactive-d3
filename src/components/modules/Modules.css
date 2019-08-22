@@ -1,7 +1,91 @@
 
+/* ================
+      Modules 
+================= */
 .modules-wrapper {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100vw;
+}
+
+.modules-flex {
+  align-items: center;
+  background: darkcyan;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+  width: 95vw;
+}
+
+.module-wrapper {
+  background: rgb(173, 183, 190);
+  border-radius: 5px;
+  margin: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+.module-header {
+  margin: 0;
+}
+.module-title {
+
+}
+.module-body {
+  
+}
+.module-body-item {
+
+}
+
+/* ================
+    TimeScale 
+================= */
+
+.timeScale-wrapper {
+  margin: 1rem 0;
+  width: 95vw;
+}
+.timeScale-wrapper h2 {
+  color: white;
+  font-size: 4vw;
+  margin: 1rem 0;
+  padding-left: 2vw;
+}
+.ts-example {
+  background: lightslategray;
+  border: none;
+  border-radius: 5px;
+  margin: 1rem auto;
+  padding: 1rem 0;
+  width: 95vw;
+}
+.ts-summary {
+  color: #333;
+  font-size: 3vw;
+  text-align: center;
+}
+.ts-code {
+  margin: 1rem auto !important;
+  width: 90vw;
+}
+.ts-svg {
+  background: rgb(173, 183, 190);
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin: 1rem auto;
+}
+.ts-g path {
+  stroke: #333;
+  stroke-width: 3px;
+}
+.ts-g .tick line {
+  stroke: #333;
+  stroke-width: 3px;
+}
+.ts-g .tick text {
+  font-size: 1.6vw;
+  fill: #333;
 }
