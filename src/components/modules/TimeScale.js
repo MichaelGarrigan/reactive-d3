@@ -10,6 +10,7 @@ import './Modules.css';
 import '../../../node_modules/prismjs/themes/prism-okaidia.css';
 
 export default props => {
+  
   const svgWidth = Math.round(props.dimensions.width * 0.9);
   const svgHeight = Math.round(svgWidth * 0.1);
 

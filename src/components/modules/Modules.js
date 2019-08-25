@@ -1,50 +1,19 @@
 
-import React, { useState, useLayoutEffect, useCallback } from 'react';
+import React from 'react';
 
 import TimeScale from './TimeScale.js';
 import modulesData from './modulesData.js';
 
-function getDimensionObject(node) {
-  const rect = node.getBoundingClientRect();
-
-  return {
-      width: rect.width,
-      height: rect.height,
-  };
-}
-
+import useElementSize from '../../useElementSize.js';
 
 import './Modules.css';
 
 export default props => {
-  const [dimensions, setDimensions] = useState({width: 960, height: 500});
-  const [node, setNode] = useState(null);
 
-  const wrapRef = useCallback(node => {
-      setNode(node);
-  }, []);
-
-  useLayoutEffect(() => {
-    if (node) {
-      const measure = () =>
-        window.requestAnimationFrame(() => {
-          let {width, height} = getDimensionObject(node);
-          setDimensions({ 
-            width: Math.round(width), 
-            height: Math.round(height) 
-          })
-        });
-      
-      measure();
-
-      window.addEventListener("resize", measure);
-
-      return () => { window.removeEventListener("resize", measure); };
-      }
-  }, [node]);
+  let { sizeRef, dimensions } = useElementSize();
 
   return (
-    <div className="modules-wrapper" ref={wrapRef}>
+    <div className="modules-wrapper" ref={sizeRef}>
       <TimeScale 
         dimensions={dimensions}
       />
