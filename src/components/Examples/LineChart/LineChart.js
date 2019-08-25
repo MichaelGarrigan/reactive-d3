@@ -9,17 +9,10 @@ import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 import  * as shape from 'd3-shape';
 
+import useElementSize from '../../../useElementSize.js';
 import curveTypes from './curveTypes.js';
  
 import './LineChart.css';
-
-function getDimensionObject(node) {
-  const rect = node.getBoundingClientRect();
-  return {
-      width: rect.width,
-      height: rect.height,
-  };
-}
  
 const randomizeData = () => range(20).map(d => ({ "y": randomUniform(1)() }));
 
@@ -28,32 +21,9 @@ const LineChart = props => {
   const [curve, setCurve] = useState('curveLinear')
   const [dataRandom, setDataRandom] = useState(randomizeData());
   const [darkMode, setDarkMode] = useState(false);
-  const [dimensions, setDimensions] = useState({width: 960, height: 500});
   const [lineFill, setLineFill] = useState(false);
-  const [node, setNode] = useState(null);
 
-  const wrapRef = useCallback(node => { setNode(node); }, []);
-
-
-  useLayoutEffect(() => {
-    if (node) {
-      const measure = () =>
-        window.requestAnimationFrame(() => {
-          let {width, height} = getDimensionObject(node);
-          setDimensions({ 
-            width: Math.round(width), 
-            height: Math.round(height) 
-          })
-        });
-      
-      measure();
-
-      window.addEventListener("resize", measure);
-
-      return () => { window.removeEventListener("resize", measure); };
-      }
-  }, [node]);
-
+  let { sizeRef, dimensions } = useElementSize();
 
   useEffect( () => {
     return () => props.setRoute([]);
@@ -79,7 +49,7 @@ const LineChart = props => {
 
 
   return (
-    <div className="line-wrapper" ref={wrapRef}>
+    <div className="line-wrapper" ref={sizeRef}>
 
       <TitleBanner title='Line Chart with Curves' />
 

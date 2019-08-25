@@ -23,9 +23,7 @@ const FordGauges = props => {
                   className="ford-circle-wrapper"
                   key={item.name}
                 >
-                  <p className="ford-circle-p">
-                    {item.name}
-                  </p>
+                  <div className={`ford-${item.name}-icon`}></div>
                   <CircleGauge
                     name={item.name}
                     dimensions={props.dimensions}
