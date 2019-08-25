@@ -120,6 +120,30 @@
   display: flex;
   width: 100%;
 }
+.ford-Trucks-icon {
+  background-image: url('/icons/truck.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50%;
+  width: 60%;
+  z-index: 5;
+}
+.ford-SUVs-icon {
+  background-image: url('/icons/suv.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50%;
+  width: 60%;
+  z-index: 5;
+}
+.ford-Cars-icon {
+  background-image: url('/icons/car.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50%;
+  width: 60%;
+  z-index: 5;
+}
 
 /* ===================
       FordBar 
