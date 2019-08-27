@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TitleBanner from '../titleBanner/TitleBanner.js';
 
 import { range } from 'd3-array';
@@ -16,7 +16,7 @@ import './LineChart.css';
  
 const randomizeData = () => range(20).map(d => ({ "y": randomUniform(1)() }));
 
-const LineChart = props => {
+export default props => {
 
   const [curve, setCurve] = useState('curveLinear')
   const [dataRandom, setDataRandom] = useState(randomizeData());
@@ -66,7 +66,7 @@ const LineChart = props => {
               className="line-darkMode"
               onClick={ () => setDarkMode(!darkMode)}
             >
-              {darkMode ? 'Dark Mode - ON' : 'Dark Mode - OFF'}
+              {darkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
             <button 
               className="line-random-button"
@@ -138,6 +138,4 @@ const LineChart = props => {
       </div>
     </div>
   )
-}
-
-  export default LineChart;
+};
