@@ -1,231 +1,169 @@
 
-import React, { Component, Fragment } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import TitleBanner from '../titleBanner/TitleBanner.js';
-import * as d3 from 'd3';
+import Raindrop from './Raindrop.js';
 
+import { range } from 'd3-array';
+import { axisBottom, axisLeft } from 'd3-axis';
+import { scaleLinear, scalePoint } from 'd3-scale';
+import { schemeDark2 } from 'd3-scale-chromatic';
+import { select } from 'd3-selection';
+import  * as shape from 'd3-shape';
+
+import  * as d3 from 'd3';
+
+import useElementSize from '../../../useElementSize.js';
+import curveTypes from '../LineChart/curveTypes.js';
+import rainData from './AreaData.js';
+ 
 import './Area.css';
+ 
 
 
-export default class Area extends Component {
+export default props => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [curve, setCurve] = useState('curveLinear');
+  const [citiesSelected, setCitiesSelected] = useState([rainData['NYC']]);
+  
+  
+  let { sizeRef, dimensions } = useElementSize();
 
-  render() {
+  useEffect( () => {
+    return () => props.setRoute([]);
+  }, []);
+  
+  const svgWidth = Math.round((dimensions.width * 0.95) * 0.8);
+  const svgHeight = Math.round(svgWidth * 0.6);
+  const marginWidth = Math.round(svgWidth * 0.05);
+  const marginHeight = Math.round(svgHeight * 0.05);
+  
+  const xScale = scalePoint()
+    .domain([2015, 2016, 2017, 2018, 2019])
+    .range([ 20, svgWidth - (marginWidth * 2) - 20]); 
 
-    const areaData = [
-      { name: 'A', value: 4 }, 
-      { name: 'B', value: 8 }, 
-      { name: 'C', value: 6 },
-      { name: 'D', value: 2 }, 
-      { name: 'E', value: 7 }
-    ];
-    const areaData_2 = [
-      { name: 'A', value: 5 }, 
-      { name: 'B', value: 4 }, 
-      { name: 'C', value: 3 },
-      { name: 'D', value: 9 }, 
-      { name: 'E', value: 5 }
-    ];
+  const yScale = scaleLinear()
+    .domain([30, 70]) 
+    .range([svgHeight - (marginHeight * 2) - 20, 20]);
 
-    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
-    const width = 960;
-    const height = 600;
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
-    let step = Math.floor(innerWidth / areaData.length);
+  const areaChart = d3.area()
+    .x(d => xScale(d.year))
+    .y0(d => yScale(30))
+    .y1(d => yScale(d.rain))
+    .curve(shape[curve]);
 
-    const xScale = d3.scaleOrdinal()
-      .domain(areaData.map(d => d.name))
-      .range([0, step, step*2, step*3, step*4, step*4]);
+  return (
+    <div className="area-wrapper" ref={sizeRef}>
 
-    const yScale = d3.scaleLinear()
-      .domain([0,d3.max(
-        [
-          ...areaData.map(d => d.value),
-          ...areaData_2.map(d => d.value)
-        ]
-        )])
-      .range([innerHeight, 0]);
+      <TitleBanner title="Area Chart for Rainfall" />
 
-    const areaChart = d3.area()
-      .x(d => xScale(d.name))
-      .y0(d => yScale(0))
-      .y1(d => yScale(d.value))
-      .curve(d3.curveNatural);
+      <div className="area-chart-wrapper">
 
-    
-    return (
-      <>
-        <TitleBanner title='Area' />
-        <div className="area-wrapper">
-          <svg
-            className='svg-area'
-            width={width}
-            height={height}
+        <div className="area-chart">
+
+          <div 
+            className={darkMode ? "area-controller-dark" : "area-controller"}
           >
-            <g
-              transform={`translate(${margin.left},${margin.top})`}
-            >
+            <div className="area-button-wrapper">
+              <div className="area-button-group">
+                <span>View in: </span>
+                <button 
+                  className="area-darkMode"
+                  onClick={ () => setDarkMode(!darkMode)}
+                >
+                  {darkMode ? 'Light Mode' : 'Dark Mode'}
+                </button>
+              </div>
+
+              <div className="area-button-group">
+                <span>Set Curve: </span>
+                <select 
+                  name="curve" 
+                  className="area-select"
+                  value={curve}
+                  onChange={ e => setCurve(e.target.value) }
+                >
+                  { 
+                    curveTypes.map( curve => (
+                        <option
+                          key={curve}
+                          className="area-curve-option"
+                        >
+                          {curve}
+                        </option>
+                    ))
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div className="area-cities-selected-wrapper">
+              {/* {
+                citiesSelected.map( (city, idx) => (
+                  <button
+                    key={city.name + idx}
+                    className="area-cities-selected"
+                    onClick={ () => setCitiesSelected(citiesSelected.filter((obj, i) => idx !== i)) }
+                  >
+                    {city.name}
+                  </button>
+                ))
+              } */}
+            </div>
+          </div>
+
+
+
+          <svg 
+            className={darkMode ? "svg-area-chart-dark" : "svg-area-chart"}
+            height={svgHeight} 
+            width={svgWidth} 
+          >
+            <g transform={`translate(${marginWidth},${marginHeight})`}>
               <path
                 className="area1-path"
                 ref={node => {
-                  d3.select(node).datum(areaData).attr('d', areaChart)
+                  select(node).datum(rainData['NYC'].data).attr('d', areaChart)
                 }}
               />
-              <path
-                className="area1-path-2"
-                ref={node => {
-                  d3.select(node).datum(areaData_2).attr('d', areaChart)
-                }}
-              />
+            
               {
-                areaData.map( d => {
-                  return (
-                    <circle
-                      key={d.name}
-                      className="area1-circle-1"
-                      cx={xScale(d.name)}
-                      cy={yScale(d.value)}
-                      r="6"
-                    />
-                  )
-                })
+                citiesSelected.length > 0 
+                  ? rainData['NYC'].data.map( (d, idx) => (
+                      <g
+                        key={rainData['NYC'].city + idx}
+                        transform={`translate(${xScale(d.year) - 10},${yScale(d.rain) - 32})`}
+                      ><Raindrop /></g>
+                    ))
+                  : ''
               }
-              {
-                areaData_2.map( d => {
-                  return (
-                    <circle
-                      key={d.name}
-                      className="area1-circle-2"
-                      cx={xScale(d.name)}
-                      cy={yScale(d.value)}
-                      r="6"
-                    />
-                  )
-                })
-              }
+              
               <g
-                className='x axis'
-                transform={`translate(0,${innerHeight})`}
+                className="area-xaxis"
+                transform={`translate(0,${svgHeight - (marginHeight * 2)})`}
                 ref={node => d3.select(node).call(d3.axisBottom(xScale))}
               />
-              <g className='y axis'>
-                <g
-                  ref={node => d3.select(node).call(d3.axisLeft(yScale))}
-                />
-              </g>
+              <g 
+                className="area-yaxis"
+                ref={node => d3.select(node).call(d3.axisLeft(yScale))}
+              />
             </g>
           </svg>
-
-          <pre className="area1-pre">{`
-            export default class Area1 extends Component {
-
-              render() {
-
-                const area1Data_1 = [
-                  { name: 'A', value: 4 }, 
-                  { name: 'B', value: 8 }, 
-                  { name: 'C', value: 6 },
-                  { name: 'D', value: 2 }, 
-                  { name: 'E', value: 7 }
-                ];
-                const area1Data_2 = [
-                  { name: 'A', value: 5 }, 
-                  { name: 'B', value: 4 }, 
-                  { name: 'C', value: 3 },
-                  { name: 'D', value: 9 }, 
-                  { name: 'E', value: 5 }
-                ];
-
-              const margin = { top: 50, right: 50, bottom: 50, left: 50 };
-              const width = 960;
-              const height = 600;
-              const innerWidth = width - margin.left - margin.right;
-              const innerHeight = height - margin.top - margin.bottom;
-              let step = Math.floor(innerWidth / area1Data_1.length);
-
-              const xScale = d3.scaleOrdinal()
-                .domain(area1Data_1.map(d => d.name))
-                .range([0, step, step*2, step*3, step*4, step*4]);
-
-              const yScale = d3.scaleLinear()
-                .domain([0,d3.max(
-                  [
-                    ...area1Data_1.map(d => d.value),
-                    ...area1Data_2.map(d => d.value)
-                  ]
-                  )])
-                .range([innerHeight, 0]);
-
-              const areaChart = d3.area()
-                .x(d => xScale(d.name))
-                .y0(d => yScale(0))
-                .y1(d => yScale(d.value))
-                .curve(d3.curveNatural);
-
-            
-              return (
-                <div className="area1-wrapper">
-                  <svg
-                    className='svg-area1'
-                    width={width}
-                    height={height}
-                  >
-                    <g
-                      transform={'translate('+margin.left+','+margin.top+')'}
-                    >
-                      <path
-                        className="area1-path-1"
-                        ref={node => {
-                          d3.select(node).datum(area1Data_1).attr('d', areaChart)
-                        }}
-                      />
-                      <path
-                        className="area1-path-2"
-                        ref={node => {
-                          d3.select(node).datum(area1Data_2).attr('d', areaChart)
-                        }}
-                      />
-                      {
-                        area1Data_1.map( d => {
-                          return (
-                            <circle
-                              key={d.name}
-                              className="area1-circle-1"
-                              cx={xScale(d.name)}
-                              cy={yScale(d.value)}
-                              r="6"
-                            />
-                          )
-                        })
-                      }
-                      {
-                        area1Data_2.map( d => {
-                          return (
-                            <circle
-                              key={d.name}
-                              className="area1-circle-2"
-                              cx={xScale(d.name)}
-                              cy={yScale(d.value)}
-                              r="6"
-                            />
-                          )
-                        })
-                      }
-                    <g
-                      className='x axis'
-                      transform={'translate(0,'+innerHeight+')'}
-                      ref={node => d3.select(node).call(d3.axisBottom(xScale))}
-                    />
-                    <g className='y axis'>
-                      <g
-                        ref={node => d3.select(node).call(d3.axisLeft(yScale))}
-                      />
-                    </g>
-                  </g>
-                </svg>
-                `}
-          </pre>
         </div>
-      </>
-    );
-  }
-}
+
+        <div 
+          className={darkMode ? "area-cities-wrapper-dark" : "area-cities-wrapper"}
+        >
+          <p>US Cities</p>
+          <p>Click up to 3 cities to view</p>
+          {
+            Object.keys(rainData).map( city => (
+              <p key={city}>{city}</p>
+            ))
+          }
+        </div>
+
+      </div>
+    </div>
+  )
+};
