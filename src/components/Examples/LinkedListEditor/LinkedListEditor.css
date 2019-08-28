@@ -1,0 +1,26 @@
+.linked-list-editor-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.linked-list-editor-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.linked-list-svg {
+  border: 1px solid black;
+  margin-top: 3rem;
+}
+
+.linked-list-controller-wrapper {
+  border: 1px solid black;
+  min-width: 300px;
+}
+
+.ll-text {
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 100;
+}
