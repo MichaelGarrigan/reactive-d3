@@ -3,7 +3,6 @@ import React from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
-import EditorShell from './editors/editor/EditorShell.jsx';
 import Examples from './Examples/Examples.js';
 import Home from './home/Home.jsx';
 import Modules from './modules/Modules.js';
@@ -16,7 +15,6 @@ const App = () => (
     <NavBar />
 
     <Route exact path='/' component={Home} />
-    <Route exact path='/EditorShell' component={EditorShell} />
     <Route path='/Examples' component={Examples} />
     <Route exact path='/Modules' component={Modules} />
     <Route exact path='/Resources' component={Resources} />
