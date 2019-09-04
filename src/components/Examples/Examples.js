@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
 import './Examples.css';
 
-import AnimatedCircles from './AnimatedCircles/AnimatedCircles.js';
 import Area from './Area/Area.js';
 import Axis from './Axis/Axis.js';
 import BarCharts from './BarCharts/BarCharts.js';
-import Clocks from './Clocks/Clocks.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
-import Gagues from './Gagues/Gagues.js';
 import LineChart from './LineChart/LineChart.js';
 import Lower48 from './Lower48/Lower48.js';
 import Pie3Versions from './Pie3Versions/Pie3Versions.js';
 import Treemap from './Treemap/Treemap.js';
 import Tux from './Tux/Tux.js';
+import WorldClocks from './Clocks/WorldClocks.js';
 
 const Examples = props => {
 
@@ -26,8 +24,8 @@ const Examples = props => {
     ? (
     <div className="examples-wrapper">
 
-      <Link to={`${props.match.url}/clocks`}>
-        <div className="example-wrapper" onClick={() => setRoute(['clocks', Clocks])}>
+      <Link to={`${props.match.url}/worldClocks`}>
+        <div className="example-wrapper" onClick={() => setRoute(['worldClocks', WorldClocks])}>
           <p className="example-text">World</p>
           <p className="example-text">Clocks</p>
           <svg 
@@ -262,12 +260,6 @@ const Examples = props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/gagues`}>
-        <div className="d3-example gague-circle1" onClick={() => setRoute(['gagues', Gagues])}>
-          <span className="d3-example-text">Gagues</span>
-        </div>
-      </Link>
-
       <Link to={`${props.match.url}/pie3Versions`}>
         <div className="d3-example" onClick={() => setRoute(['pie3Versions', Pie3Versions])}>
           <span className="d3-example-text">d3 & React</span>
@@ -278,12 +270,6 @@ const Examples = props => {
       <Link to={`${props.match.url}/force`}>
         <div className="d3-example force" onClick={() => setRoute(['force', Force])}>
           <span className="d3-example-text">Force</span>
-        </div>
-      </Link>
-
-      <Link to={`${props.match.url}/animatedCircles`}>
-        <div className="d3-example" onClick={() => setRoute(['animatedCircles', AnimatedCircles])}>
-          <span className="d3-example-text">Animated Circles</span>
         </div>
       </Link>
 
