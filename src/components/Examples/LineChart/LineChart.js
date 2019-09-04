@@ -23,7 +23,7 @@ export default props => {
   const [darkMode, setDarkMode] = useState(false);
   const [lineFill, setLineFill] = useState(false);
 
-  let { sizeRef, dimensions } = useElementSize();
+  let [ sizeRef, dimensions ] = useElementSize();
 
   useEffect( () => {
     return () => props.setRoute([]);
