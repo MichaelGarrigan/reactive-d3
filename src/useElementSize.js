@@ -30,5 +30,5 @@ export default () => {
       }
   }, [node]);
 
-  return ({ sizeRef, dimensions });
-}
+  return [sizeRef, dimensions];
+};
