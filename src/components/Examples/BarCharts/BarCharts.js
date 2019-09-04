@@ -5,59 +5,18 @@ import TitleBanner from '../titleBanner/TitleBanner.js';
 import FrequencyOfLetters from './FrequencyOfLetters.js';
 import StatesPopulation from './StatesPopulation.js';
 
+import useElementSize from '../../../useElementSize.js';
+
 import './BarCharts.css';
 
 
-function getDimensionObject(node) {
-    const rect = node.getBoundingClientRect();
+export default props => {
 
-    return {
-        width: rect.width,
-        height: rect.height,
-    };
-}
-
-const BarCharts = props => {
-  
-  const [dimensions, setDimensions] = useState({
-    width: 960, height: 500
-  });
-  const [node, setNode] = useState(null);
-
-  const wrapRef = useCallback(node => {
-      setNode(node);
-  }, []);
-
-  useLayoutEffect(() => {
-    if (node) {
-      const measure = () => {
-        window.requestAnimationFrame(() => {
-          let {width, height} = getDimensionObject(node);
-          setDimensions({ 
-            width: Math.round(width), 
-            height: Math.round(height) 
-          });
-        });
-      };
-      
-      measure();
-      window.addEventListener("resize", measure);
-
-      return () => { 
-        window.removeEventListener("resize", measure);
-      };
-    }
-  }, [node]);
-
-  useLayoutEffect( () => {
-
-    return () => { 
-      props.setRoute([]); }
-  }, [] );
+  const [sizeRef, dimensions] = useElementSize();
 
   
   return (
-    <div className="barCharts-wrapper" ref={wrapRef}> 
+    <div className="barCharts-wrapper" ref={sizeRef}> 
 
       <TitleBanner title='Frequency of Letters' />
 
@@ -70,5 +29,3 @@ const BarCharts = props => {
     </div>
   );
 };
-
-export default BarCharts;
