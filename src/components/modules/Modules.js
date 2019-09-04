@@ -10,7 +10,7 @@ import './Modules.css';
 
 export default props => {
 
-  let { sizeRef, dimensions } = useElementSize();
+  let [ sizeRef, dimensions ] = useElementSize();
 
   return (
     <div className="modules-wrapper" ref={sizeRef}>
