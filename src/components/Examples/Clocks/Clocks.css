@@ -3,7 +3,14 @@
  -- Clocks --
 =============== */
 .clocks-wrapper {
-
+  background-color: black;
+  background-image: url('/images/brick-wall.png');
+  background-size: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 85vh;
+  width: 100vw;
 }
 
 /* ==============
@@ -12,13 +19,14 @@
 .worldClock-wrapper {
   align-items: center;
   display: flex;
+  height: 60%;
   justify-content: center;
   margin: 2rem 0;
 }
 .citiesClock-wrapper {
   align-items: center;
-  background: lightgray;
   display: flex;
+  height: 100%;
   justify-content: space-evenly;
 }
 .city-wrapper {
@@ -28,7 +36,7 @@
   padding-top: 1rem;
 }
 .cityName-p {
-  color: #272727;
-  font-size: 3vw;
+  color: #f0ecec;
+  font-size: 4vw;
   padding: 2rem;
 }

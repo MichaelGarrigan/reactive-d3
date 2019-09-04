@@ -8,9 +8,32 @@
 Frequency of Letters
 ================= */
 .frequency-wrapper {
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   width: 100%;
+}
+.freq-summary {
+  background: #999;
+  color: #333;
+  font-size: 2.5vw;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 80%;
+}
+.freq-tooltip {	
+  background: black;	
+  border: 0px;		
+  border-radius: 8px;	
+  color: white;
+  font-size: 3vw;				
+  opacity: 0;		
+  padding: 0.5rem 1rem;	
+  pointer-events: none;	
+  position: absolute;			
+  text-align: center;	
+  transition: opacity 1000ms ease-in-out;	
 }
 .freq-svg {
   background: gray;
@@ -35,6 +58,7 @@ Frequency of Letters
   stroke: #202020;
   stroke-width: 3;
 }
+
 
 /* =================
   States Population
