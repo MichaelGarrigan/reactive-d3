@@ -26,8 +26,7 @@ export default props => {
   const [curve, setCurve] = useState('curveLinear');
   const [citiesSelected, setCitiesSelected] = useState([rainData['NYC']]);
   
-  
-  let { sizeRef, dimensions } = useElementSize();
+  let [ sizeRef, dimensions ] = useElementSize();
 
   useEffect( () => {
     return () => props.setRoute([]);
