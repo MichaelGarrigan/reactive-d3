@@ -1,5 +1,20 @@
-.area-wrapper {
-  
+.area-chart-summary {
+  background: gray;
+  border: none;
+  border-radius: 1rem;
+  margin: 2rem auto 0;
+  width: 80%;
+}
+.area-chart-summary p {
+  color: #333;
+  font-size: 2.5vw;
+  text-align: center;
+}
+.area-chart-summary a {
+  display: block;
+  font-size: 2.5vw;
+  margin: 0.5rem 0 1rem;
+  text-align: center;
 }
 
 .area-chart-wrapper {
@@ -7,6 +22,7 @@
   border-radius: 1rem ;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   display: flex;
+  height: 70vw;
   margin: 4rem auto;
   width: 95vw;
 }
@@ -19,6 +35,33 @@
   width: 80%;
 }
 
+.freq-tooltip {	
+  background: black;	
+  border: 0px;		
+  border-radius: 8px;	
+  color: white;
+  font-size: 3vw;				
+  opacity: 0;		
+  padding: 0.5rem 1rem;	
+  pointer-events: none;	
+  position: absolute;			
+  text-align: center;	
+  transition: opacity 500ms ease-in-out;	
+}
+.freq-tooltip-dark {	
+  background: white;	
+  border: 0px;		
+  border-radius: 8px;	
+  color: black;
+  font-size: 3vw;				
+  opacity: 0;		
+  padding: 0.5rem 1rem;	
+  pointer-events: none;	
+  position: absolute;			
+  text-align: center;	
+  transition: opacity 500ms ease-in-out;	
+}
+
 /* =================
     Controller
 ================== */
@@ -27,25 +70,27 @@
   background: white;
   border-bottom: 3px solid teal;
   border-radius: 1rem 0 0 0;
+  height: 15%;
   width: 100%;
 }
 .area-controller-dark {
   background: #202020;
   border-bottom: 3px solid teal;
   border-radius: 1rem 0 0 0;
+  height: 15%;
   width: 100%;
 }
 
 .area-controller span {
   color: #202020;
   display: inline-block;
-  font-size: 2rem;
+  font-size: 2.4vw;
   padding: 0.5rem 0 0 0.5rem;
 }
 .area-controller-dark span {
   color: white;
   display: inline-block;
-  font-size: 2rem;
+  font-size: 2.4vw;
   padding: 0.5rem;
 }
 
@@ -53,26 +98,54 @@
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
+}
+.area-button-group {
+  display: flex;
+}
+.area-button-group span{
+  padding-right: 1rem;
 }
 
 .area-select {
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   color: #202020;
-  font-size: 1.2rem;
+  font-size: 2vw;
 }
 .area-select option {
   color: #202020;
-  font-size: 1rem;
+  font-size: 2vw;
 }
-.line-random-button,
-.area-darkMode,
-.area-fill {
-  border-radius: 1rem;
+
+.area-darkMode {
+  border-radius: 0.5rem;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   color: #202020;
-  font-size: 1.2rem;
+  font-size: 2vw;
   padding: 0.3rem 0.5rem;
+}
+.area-controller-info {
+  margin: 0 0 0.5rem;
+  width: 100%;
+}
+.area-controller-info-dark {
+  margin: 0 0 0.5rem;
+  width: 100%;
+}
+.area-controller-info p {
+  color: #333;
+  font-size: 2.4vw;
+  text-align: center;
+}
+.area-controller-info-dark p {
+  color: white;
+  font-size: 2.4vw;
+  text-align: center;
+}
+.area-controller-info p span, 
+.area-controller-info-dark p span {
+  color: magenta;
+  font-size: 3vw;
 }
 
 /* =================
@@ -91,63 +164,40 @@
   
 }
 
-.line-path-curve {
-  fill: none;
-  stroke: #ffab00;
-  stroke-width: 5;
-}
-.line-path-curve-dark {
-  fill: none;
-  stroke: greenyellow;
-  stroke-width: 5;
-}
-
-.line-path-fill {
-  fill: rgba(128, 128, 128, 0.5);
-}
-
-.line-axis text {
-  fill: #202020;
-  font-size: 1.5vw;
-}
-.line-axis-dark text {
+.area-path-background {
   fill: white;
-  font-size: 1.5vw;
-}
-
-.line-axis path,
-.line-axis line {
-  stroke: #202020;
-  stroke-width: 3;
-}
-.line-axis-dark path,
-.line-axis-dark line {
   stroke: white;
-  stroke-width: 3;
+  stroke-width: 5px;
+}
+.area-path {
+  fill: rgba(165, 243, 165, 0.9);
+  stroke: lime;
+  stroke-width: 5px;
+}
+.area-mean-line {
+  stroke: magenta;
+  stroke-dasharray: 5, 5;
+  stroke-width: 3px;
 }
 
-.line-data-points {
-  fill: maroon;
+.area-axis text {
+  fill: #333;
+  font-size: 2vw;
 }
-.line-data-points-dark {
-  fill: orangered;
-  stroke: black;
+.area-axis-dark text {
+  fill: white;
+  font-size: 2vw;
 }
 
-.svg-area {
-  border: 1px solid black;
+.area-axis path,
+.area-axis line {
+  stroke: #333;
+  stroke-width: 2;
 }
-.area1-path {
-  fill: rgba(255, 68, 0, 0.3);
-}
-.area1-path-2 {
-  fill: rgba(0, 0, 255, 0.3);
-}
-.area1-circle-1 {
-  fill: orangered;
-}
-.area1-circle-2 {
-  fill: blue;
+.area-axis-dark path,
+.area-axis-dark line {
+  stroke: white;
+  stroke-width: 2;
 }
 
 
@@ -155,14 +205,66 @@
 Cities (Right Panel)
 ================== */
 .area-cities-wrapper {
+  align-items: center;
   background: white;
   border-left: 3px solid teal;
   border-radius: 0 1rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 20%;
 }
+
 .area-cities-wrapper-dark {
+  align-content: center;
+  align-items: center;
   background: #202020;
   border-left: 3px solid teal;
   border-radius: 0 1rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 20%;
+}
+.area-cities-title {
+  background: rgb(2, 201, 201);
+  color: #333;
+  font-size: 2.8vw;
+  height: 15%;
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+.area-cities-flex {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  justify-content: space-evenly;
+}
+.area-city-selected {
+  background: orangered;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  color: white;
+  font-size: 2vw;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  text-align: center;
+  width: 90%;
+}
+
+.area-city {
+  background: orange;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  color: #333;
+  font-size: 2vw;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  text-align: center;
+  width: 90%;
 }
