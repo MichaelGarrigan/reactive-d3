@@ -11,6 +11,9 @@ export default props => {
 
       <h2>Web Pages</h2>
 
+      <h2>Visualization Companies</h2>
+      <p>Two-n.com</p>
+
       <h2>People</h2>
     </div>
   )
