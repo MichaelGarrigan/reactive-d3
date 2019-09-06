@@ -5,6 +5,7 @@ import './Examples.css';
 import Area from './Area/Area.js';
 import Axis from './Axis/Axis.js';
 import BarCharts from './BarCharts/BarCharts.js';
+import DayNight from './DayNightMap/DayNight.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
 import LineChart from './LineChart/LineChart.js';
@@ -244,6 +245,13 @@ const Examples = props => {
             />
           </g>
         </svg>
+        </div>
+      </Link>
+
+      <Link to={`${props.match.url}/dayNight`}>
+        <div className="example-wrapper" onClick={() => setRoute(['dayNight', DayNight])}>
+          <p className="example-text">Day/Night</p>
+          <p className="example-text">Tracker</p>
         </div>
       </Link>
 
