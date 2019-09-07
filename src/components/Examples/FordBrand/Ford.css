@@ -42,7 +42,7 @@
   width: 80%;
 }
 .ford-button-active {
-  background: rgb(177, 156, 36);
+  background: rgb(248, 212, 10);
   border: 1px solid #333;
   border-radius: 0.5rem;
   color: #333;
@@ -223,7 +223,7 @@
 }
 
 .ford-line-button-active {
-  background: rgb(177, 156, 36);
+  background: rgb(248, 212, 10);
   border: 1px solid #333;
   border-radius: 0.5rem;
   color: #333;
