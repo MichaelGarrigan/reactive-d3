@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
 import { arc } from 'd3-shape';
 import { format } from 'd3-format';
 import { interpolate } from 'd3-interpolate';
@@ -99,12 +99,12 @@ const CircleGauge = props => {
           ref={textRef} 
           textAnchor="middle" 
           dy="0"
-          style={{fontSize: '3vw', fill: '#333'}}
+          style={{fontSize: '4vw', fill: '#333'}}
         ></text>
         <text 
           textAnchor="middle" 
-          dy="24px"
-          style={{fontSize: '2vw', fill: '#333'}}
+          dy="28px"
+          style={{fontSize: '1.5vw', fill: '#333'}}
         >Total Sales</text>
         
       </g>
