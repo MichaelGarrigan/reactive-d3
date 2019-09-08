@@ -10,6 +10,10 @@ import './Ford.css';
 
 const FordGauges = props => {
   const sortedCategories = sortMainCategoriesByYear(props.DATA.children, props.year);
+
+  const width = Math.round(props.dimensions.width * 0.9);
+  const svgWidth = Math.round(width * 0.2);
+  const svgHeight = Math.round(width * 0.12);
   
   return (
     <div className="ford-gague-wrapper">
@@ -17,21 +21,32 @@ const FordGauges = props => {
       props.category === "All"
         ? (
           <div className="ford-3circles-wrapper">
-            {
-              sortedCategories.map(item => (
-                <div 
-                  className="ford-circle-wrapper"
-                  key={item.name}
-                >
-                  <div className={`ford-${item.name}-icon`}></div>
-                  <CircleGauge
-                    name={item.name}
-                    dimensions={props.dimensions}
-                    actual={item[`${props.year}_total`]}
-                  />
-                </div>
-              ))
-            }
+            <div className="ford-circles-icon-wrapper">
+              <div 
+                className="ford-Trucks-icon"
+                style={{height: svgHeight, width: svgWidth, fill: 'none', stroke: '#orangered', strokeWidth: '3px'}}
+              ></div>
+              <div 
+                className="ford-SUVs-icon"
+                style={{height: svgHeight, width: svgWidth}}
+              ></div>
+              <div 
+                className="ford-Cars-icon"
+                style={{height: svgHeight, width: svgWidth}}
+              ></div>
+            </div>
+            <div className="ford-circle-wrapper">
+              {
+                sortedCategories.map(item => (
+                    <CircleGauge
+                      key={item.name}
+                      name={item.name}
+                      dimensions={props.dimensions}
+                      actual={item[`${props.year}_total`]}
+                    />
+                ))
+              }
+            </div>
           </div>
         )
         : (
