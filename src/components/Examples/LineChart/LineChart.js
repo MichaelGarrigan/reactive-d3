@@ -63,26 +63,26 @@ export default props => {
         
           <div className="line-button-wrapper">
             <button 
-              className="line-darkMode"
+              className={darkMode ? "line-darkMode-dark" : "line-darkMode"}
               onClick={ () => setDarkMode(!darkMode)}
             >
               {darkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
             <button 
-              className="line-random-button"
+              className={darkMode ? "line-random-button-dark" : "line-random-button"}
               onClick={ () => setDataRandom(randomizeData())}
             >
               New Random Data
             </button>
             <button 
-              className="line-fill"
+              className={darkMode ? "line-fill-dark" : "line-fill"}
               onClick={ () => setLineFill(!lineFill)}
             >
               {lineFill ? 'Fill - ON' : 'Fill - OFF'}
             </button>
             <select 
               name="curve" 
-              className="line-select"
+              className={darkMode ? "line-select-dark" : "line-select"}
               value={curve}
               onChange={ e => setCurve(e.target.value) }
             >
@@ -90,7 +90,7 @@ export default props => {
                 curveTypes.map( curve => (
                     <option
                       key={curve}
-                      className="line-curve-option"
+                      className={darkMode ? "line-curve-option-dark" : "line-curve-option"}
                     >
                       {curve}
                     </option>
