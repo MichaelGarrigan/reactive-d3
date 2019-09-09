@@ -9,9 +9,11 @@ import { interpolatePiYG } from 'd3-scale-chromatic';
 import { select } from 'd3-selection';
 
 import './Ford.css';
+import { format } from 'util';
 
 
-const FordLine = props => {
+export default props => {
+  const data = props.selectedItemData;
   
   const [dataSorted, setDataSorted] = useState(formatData(props));
   const { width } = props.dimensions;
@@ -35,6 +37,17 @@ const FordLine = props => {
     return p.toString();
   };
 
+  const calcPercent = (year17, year18) => {
+    let percent = ( (data[year17] - data[year18]) / data[year18] ) * 100;
+    let formatPercent = parseFloat(Math.round(percent * 100) / 100).toFixed(2);
+
+    // flip negative to positive and positive to negative
+    let flipSign = formatPercent * -1; 
+
+    if (flipSign > 0) return `Up ${flipSign}%`;
+    else return `Down ${flipSign}%`;
+  };
+
   
   const bottomScale = scaleBand()
     .domain(['2017', '', '2018'])
@@ -42,11 +55,11 @@ const FordLine = props => {
     .padding(0.9);
   
   const leftScale = scaleLinear()
-    .domain(calcExtentForAxis(props.selectedItemData))
+    .domain(calcExtentForAxis(data))
     .range([svgHeight - margin10, 0]);
 
   const rightScale = scaleLinear()
-    .domain(calcExtentForAxis(props.selectedItemData)) 
+    .domain(calcExtentForAxis(data)) 
     .range([svgHeight - margin10, 0]);
 
 
@@ -81,29 +94,56 @@ const FordLine = props => {
         <g transform={`translate(${margin10}, ${margin5})`}>
           <g 
             transform={`translate(0, ${svgHeight - margin10})`}
+            className="svg-ford-axis"
             ref={node => select(node).call(axisBottom(bottomScale) )} 
           />
           <g transform={`translate(0, 0)`}
-            ref={node => select(node).call(axisLeft(leftScale))} 
+            className="svg-ford-axis-side"
+            ref={node => select(node).call(axisLeft(leftScale).ticks(6, "s"))} 
           />
           <g transform={`translate(${svgWidth - margin20}, 0)`}
-            ref={node => select(node).call(axisRight(rightScale))} 
+            className="svg-ford-axis-side"
+            ref={node => select(node).call(axisRight(rightScale).ticks(6, "s"))} 
           />
+
+          {
+            data['2017_total']
+            ? (
+              <text
+                className="svg-text-percent"
+                x={bottomScale('')}
+                y={20}
+                textAnchor="middle"
+              >
+                {calcPercent('2017_total', '2018_total')}
+              </text>
+            )
+            : (
+              <text
+                className="svg-text-percent"
+                x={bottomScale('')}
+                y={20}
+                textAnchor="middle"
+              >
+                {calcPercent('2017', '2018')}
+              </text>
+            )
+          }
             
           <g>
             <path
               d={ renderPath(
                     bottomScale('2017'),
                     (
-                      props.selectedItemData['2017_total']
-                        ? rightScale(props.selectedItemData['2017_total'])
-                        : rightScale(props.selectedItemData['2017'])
+                      data['2017_total']
+                        ? rightScale(data['2017_total'])
+                        : rightScale(data['2017'])
                     ),
                     bottomScale('2018'), 
                     (
-                      props.selectedItemData['2018_total']
-                        ? rightScale(props.selectedItemData['2018_total'])
-                        : rightScale(props.selectedItemData['2018'])
+                      data['2018_total']
+                        ? rightScale(data['2018_total'])
+                        : rightScale(data['2018'])
                     )
                   )
                 }
@@ -113,9 +153,9 @@ const FordLine = props => {
             <circle
               cx={bottomScale('2017')}
               cy={
-                props.selectedItemData['2017_total']
-                  ? rightScale(props.selectedItemData['2017_total'])
-                  : rightScale(props.selectedItemData['2017'])
+                data['2017_total']
+                  ? rightScale(data['2017_total'])
+                  : rightScale(data['2017'])
               }                                                 
               r={10}
               fill="teal"
@@ -123,9 +163,9 @@ const FordLine = props => {
             <circle
               cx={bottomScale('2018')}
               cy={
-                props.selectedItemData['2018_total']
-                  ? rightScale(props.selectedItemData['2018_total'])
-                  : rightScale(props.selectedItemData['2018'])
+                data['2018_total']
+                  ? rightScale(data['2018_total'])
+                  : rightScale(data['2018'])
               }
               r={10}
               fill="teal"
@@ -136,5 +176,3 @@ const FordLine = props => {
     </div>
   );
 };
-
-export default FordLine;
