@@ -97,19 +97,24 @@
   width: 100%;
 }
 .ford-3circles-wrapper {
-  background: #aaa;
+  background-image: linear-gradient(rgb(247, 248, 194), rgb(237, 243, 212));
   border: 1px solid #333;
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   margin: 0 auto;
   width: 90%;
+}
+.ford-circles-icon-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }
 .ford-circle-wrapper {
   align-items: center;
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
 }
 .ford-circle-p {
   color: #333;
@@ -124,25 +129,16 @@
   background-image: url('/icons/truck.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 50%;
-  width: 60%;
-  z-index: 5;
 }
 .ford-SUVs-icon {
   background-image: url('/icons/suv.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 50%;
-  width: 60%;
-  z-index: 5;
 }
 .ford-Cars-icon {
   background-image: url('/icons/car.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 50%;
-  width: 60%;
-  z-index: 5;
 }
 
 /* ===================
@@ -190,7 +186,7 @@
 ==================== */
 .ford-line-wrapper {
   align-items: center;
-  background: #aaa;
+  background-image: linear-gradient(rgb(247, 248, 194), rgb(237, 243, 212));
   border: 1px solid #333;
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
@@ -231,4 +227,24 @@
   font-size: 2vw;
   margin: .2rem;
   padding: 0.5rem;
+}
+.svg-ford-axis text {
+  fill: #333;
+  font-size: 2vw;
+}
+.svg-ford-axis path {
+  stroke: #333;
+  stroke-width: 2px;
+}
+.svg-ford-axis-side text {
+  fill: #333;
+  font-size: 1.5vw;
+}
+.svg-ford-axis-side path {
+  stroke: #333;
+  stroke-width: 2px;
+}
+.svg-text-percent {
+  fill: #333;
+  font-size: 4vw;
 }

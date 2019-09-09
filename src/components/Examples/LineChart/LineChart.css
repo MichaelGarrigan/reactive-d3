@@ -47,9 +47,13 @@
   justify-content: space-evenly;
   padding: 1rem 0;
 }
-
 .line-select {
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  color: #202020;
+  font-size: 1.2rem;
+}
+.line-select-dark {
+  box-shadow: 3px 3px 15px 0px rgba(250, 246, 15, 0.75);
   color: #202020;
   font-size: 1.2rem;
 }
@@ -62,6 +66,15 @@
 .line-fill {
   border-radius: 1rem;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  color: #202020;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.5rem;
+}
+.line-random-button-dark,
+.line-darkMode-dark,
+.line-fill-dark {
+  border-radius: 1rem;
+  box-shadow: 3px 3px 15px 0px rgba(250, 246, 15, 0.75);
   color: #202020;
   font-size: 1.2rem;
   padding: 0.3rem 0.5rem;
