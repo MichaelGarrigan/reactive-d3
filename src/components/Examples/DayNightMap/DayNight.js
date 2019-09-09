@@ -1,6 +1,6 @@
 
 
-import React, { useState, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import Map from './Map.js';
@@ -12,6 +12,10 @@ import useElementSize from '../../../useElementSize.js';
 import './DayNight.css';
 
 export default props => {
+
+  useEffect( () => {
+    return () => props.setRoute([]);
+  }, []);
 
   const [sizeRef, dimensions] = useElementSize();
 

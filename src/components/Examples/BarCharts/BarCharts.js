@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useLayoutEffect, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import FrequencyOfLetters from './FrequencyOfLetters.js';
@@ -14,6 +14,9 @@ export default props => {
 
   const [sizeRef, dimensions] = useElementSize();
 
+  useEffect( () => {
+    return () => props.setRoute([]);
+  }, []);
   
   return (
     <div className="barCharts-wrapper" ref={sizeRef}> 
