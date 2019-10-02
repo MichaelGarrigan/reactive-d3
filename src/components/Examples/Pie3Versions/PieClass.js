@@ -1,25 +1,28 @@
 
 
 import React, { createRef, Component } from "react";
-import * as d3 from "d3";
+
+import { format } from 'd3-format';
+import { scaleOrdinal } from 'd3-scale';
+import { schemeCategory10 } from 'd3-scale-chromatic';
+import { select } from 'd3-selection';
+import { arc, pie } from 'd3-shape';
 
 class PieClass extends Component {
   constructor(props) {
     super(props);
     this.ref = createRef();
-    this.createPie = d3
-      .pie()
+    this.createPie = pie()
       .value(d => d.value)
       .sort(null);
-    this.createArc = d3
-      .arc()
+    this.createArc = arc()
       .innerRadius(props.innerRadius)
       .outerRadius(props.outerRadius);
-    this.colors = d3.scaleOrdinal(d3.schemeCategory10);
-    this.format = d3.format(".2f");
+    this.colors = scaleOrdinal(d3.schemeCategory10);
+    this.formatText = format(".2f");
   }
   componentDidMount() {
-    const svg = d3.select(this.ref.current);
+    const svg = select(this.ref.current);
     const data = this.createPie(this.props.data);
     const { width, height, innerRadius, outerRadius } = this.props;
 
@@ -52,7 +55,7 @@ class PieClass extends Component {
       .attr("transform", d => `translate(${this.createArc.centroid(d)})`)
       .style("fill", "white")
       .style("font-size", 10)
-      .text(d => this.format(d.value));
+      .text(d => this.formatText(d.value));
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -84,7 +87,7 @@ class PieClass extends Component {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("transform", d => `translate(${this.createArc.centroid(d)})`)
-      .text(d => this.format(d.value));
+      .text(d => this.formatText(d.value));
   }
 
   render() {

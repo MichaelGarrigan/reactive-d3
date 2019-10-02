@@ -1,7 +1,9 @@
 
 import React, { useState, useLayoutEffect } from "react";
 import ReactDOM from "react-dom";
-import * as d3 from "d3";
+
+import { range } from 'd3-array';
+
 import PieClass from "./PieClass";
 import PieHooks from "./PieHooks";
 import PieSVG from "./PieSVG";
@@ -15,7 +17,7 @@ const Pie3Versions = props => {
   });
 
   const generateData = (value, length = 5) =>
-    d3.range(length).map((item, index) => ({
+    range(length).map((item, index) => ({
       date: index,
       value: value === null || value === undefined ? Math.random() * 100 : value
     }));

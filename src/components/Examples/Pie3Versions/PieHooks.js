@@ -1,25 +1,28 @@
 
 
 import React, { useEffect, useRef } from "react";
-import * as d3 from "d3";
+// import * as d3 from "d3";
+import { format } from 'd3-format';
+import { scaleOrdinal } from 'd3-scale';
+import { schemeCategory10 } from 'd3-scale-chromatic';
+import { select } from 'd3-selection';
+import { arc, pie } from 'd3-shape';
 
 const PieHooks = props => {
   const ref = useRef(null);
-  const createPie = d3
-    .pie()
+  const createPie = pie()
     .value(d => d.value)
     .sort(null);
-  const createArc = d3
-    .arc()
+  const createArc = arc()
     .innerRadius(props.innerRadius)
     .outerRadius(props.outerRadius);
-  const colors = d3.scaleOrdinal(d3.schemeCategory10);
-  const format = d3.format(".2f");
+  const colors = scaleOrdinal(schemeCategory10);
+  const formatText = format(".2f");
 
   useEffect(
     () => {
       const data = createPie(props.data);
-      const group = d3.select(ref.current);
+      const group = select(ref.current);
       const groupWithData = group.selectAll("g.arc").data(data);
 
       groupWithData.exit().remove();
@@ -48,7 +51,7 @@ const PieHooks = props => {
         .attr("transform", d => `translate(${createArc.centroid(d)})`)
         .style("fill", "white")
         .style("font-size", 10)
-        .text(d => format(d.value));
+        .text(d => formatText(d.value));
     },
     [props.data]
   );
