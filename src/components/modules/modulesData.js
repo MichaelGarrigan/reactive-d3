@@ -1,144 +1,159 @@
 
-const modulesData = 
-  [
-    {
-      name: 'd3-array', 
-      subs: ['Statistics', 'Search', 'Transformations', 'Histograms']
-    },
-    {
-      name: 'd3-axis',
-      subs: ['axisTop', 'axisBottom', 'axisRight', 'axisLeft']
-    },
-    {
-      name: 'd3-brush', 
-      subs: ['brush', 'brushX', 'brushY', 'brushSelection']
-    },
-    {
-      name: 'd3-chord',
-      subs: ['chord', 'ribbon']
-    },
-    {
-      name: 'd3-collection', 
-      subs: ['Objects', 'Maps', 'Sets', 'Nests']
-    },
-    {
-      name: 'd3-color',
-      subs: ['color', 'rgb', 'hsl', 'lab', 'hcl', 'lch', 'gray', 'cubehelix']
-    },
-    {
-      name: 'd3-scale-chromatic', 
-      subs: [
-        'schemeCategory10', 'schemeAccent', 'schemeDark2', 'schemePaired',
-        'schemePastel1', 'schemePastel2', 'schemeSet1', 'schemeSet2', 'schemeSet3'
-      ]
-    },
-    {
-      name: 'd3-contour',
-      subs: ['contours', 'contourDestiny']
-    },
-    {
-      name: 'd3-dispatch', 
-      subs: ['dispatch']
-    },
-    {
-      name: 'd3-drag',
-      subs: ['drag', 'dragDisable', 'dragEnable']
-    },
-    {
-      name: 'd3-dsv', 
-      subs: [
-        'dsvFormat', 'csvParse', 'csvParseRows', 'csvFormat', 'csvFormatRows',
-        'tsvParse', 'tsvParseRows', 'tsvFormat', 'tsvFormatRows'
-      ]
-    },
-    {
-      name: 'd3-ease',
-      subs: ['easeLinear', 'easePolyIn', 'easePolyOut', 'easePolyInOut']
-    },
-    {
-      name: 'd3-fetch', 
-      subs: ['blob', 'buffer', 'csv', 'dsv', 'image', 'json', 'text', 'tsv']
-    },
-    {
-      name: 'd3-force',
-      subs: ['forceSimulation', 'forceCenter', 'forceCollide', 'forceLink', 'forceManyBody', 'forceX', 'forceY', 'forceRadial']
-    },
-    {
-      name: 'd3-format', 
-      subs: [
-        'format', 'formatPrefix', 'formatSpecifier', 'formatLocale', 'formatDefaultLocale','precisionFixed', 'precisionPrefix', 'precisionRound'
-      ]
-    },
-    {
-      name: 'd3-geo',
-      subs: ['Paths', 'Projections', 'Spherical Math', 'Spherical Shapes', 'Streams', 'Transforms']
-    },
-    {
-      name: 'd3-hierarchies',
-      subs: ['hierarchy', 'stratify', 'cluster', 'tree', 'treemap', 'partition', 'pack']
-    },
-    {
-      name: 'd3-interpolate', 
-      subs: ['interpolate', 'piecewise', 'quantize']
-    },
-    {
-      name: 'd3-path',
-      subs: ['path']
-    },
-    {
-      name: 'd3-polygon', 
-      subs: [
-        'polygonArea', 'polygonCentroid', 'polygonHull', 'polygonComtains', 'polygonLength'
-      ]
-    },
-    {
-      name: 'd3-quadtree',
-      subs: ['quadtree']
-    },
-    {
-      name: 'd3-random', 
-      subs: ['randomUniform', 'randomNormal', 'randomLogNormal', 'randomBates', 'randomIrwinHall', 'randomExponential']
-    },
-    {
-      name: 'd3-scale',
-      subs: ['Continuous', 'Sequential', 'Diverging', 'Quantize', 'Quantile', 'Threshold', 'Ordinal']
-    },
-    {
-      name: 'd3-selection', 
-      subs: [
-        'selection', 'select', 'selectAll', 'matcher', 'selector', 'selectorAll', 'window', 'style', 'Modifying', 'Data', 'Events', 'Control', 'Local Variables'
-      ]
-    },
-    {
-      name: 'd3-shape',
-      subs: ['Arcs', 'Pies', 'Lines', 'Areas', 'Curves', 'Links', 'Symbols', 'Stacks']
-    },
-    {
-      name: 'd3-time-format',
-      subs: ['timeFormat', 'timeParse', 'utcFormat', 'utcParse', 'isoFormat', 'isoParse', 'timeFormatLocale', 'timeFormatDefaultLocale']
-    },
-    {
-      name: 'd3-time', 
-      subs: ['timeInterval', 'timeMillisecond', 'timeSecond', 'timeMinute', 'timeHour', 'timeDay']
-    },
-    {
-      name: 'd3-timer',
-      subs: ['now', 'timer', 'timerFlush', 'timeout', 'interval']
-    },
-    {
-      name: 'd3-transition', 
-      subs: [
-        'transition', 'active', 'interrupt'
-      ]
-    },
-    {
-      name: 'd3-voronoi',
-      subs: ['voronoi']
-    },
-    {
-      name: 'd3-zoom',
-      subs: ['zoom', 'zoomTransform', 'zoomIdentity']
-    }
-  ];
+import array from '../Resources/json/array.json';
+import axis from '../Resources/json/axis.json';
+import brush from '../Resources/json/brush.json';
+import chord from '../Resources/json/chord.json';
+import collection from '../Resources/json/collection.json';
+import color from '../Resources/json/color.json';
+import contour from '../Resources/json/contour.json';
+import dispatch from '../Resources/json/dispatch.json';
+import drag from '../Resources/json/drag.json';
+import dsv from '../Resources/json/dsv.json';
+import ease from '../Resources/json/ease.json';
+import fetch from '../Resources/json/fetch.json';
+import force from '../Resources/json/force.json';
+import format from '../Resources/json/format.json';
+import geo from '../Resources/json/geo.json';
+import hierarchy from '../Resources/json/hierarchy.json';
+import interpolate from '../Resources/json/interpolate.json';
+import path from '../Resources/json/path.json';
+import polygon from '../Resources/json/polygon.json';
+import quadtree from '../Resources/json/quadtree.json';
+import random from '../Resources/json/random.json';
+import scale from '../Resources/json/scale.json';
+import scalechromatic from '../Resources/json/scalechromatic.json';
+import selection from '../Resources/json/selection.json';
+import shape from '../Resources/json/shape.json';
+import time from '../Resources/json/time.json';
+import timeformat from '../Resources/json/timeformat.json';
+import timer from '../Resources/json/timer.json';
+import transition from '../Resources/json/transition.json';
+import voronoi from '../Resources/json/voronoi.json';
+import zoom from '../Resources/json/zoom.json';
 
-export default modulesData;
+export default [
+  {
+    name: 'd3-array', 
+    data: array
+  },
+  {
+    name: 'd3-axis',
+    data: axis
+  },
+  {
+    name: 'd3-brush',
+    data: brush
+  },
+  {
+    name: 'd3-chord',
+    data: chord
+  },
+  {
+    name: 'd3-collection',
+    data: collection
+  },
+  {
+    name: 'd3-color',
+    data: color
+  },
+  {
+    name: 'd3-contour',
+    data: contour
+  },
+  {
+    name: 'd3-dispatch',
+    data: dispatch
+  },
+  {
+    name: 'd3-drag',
+    data: drag
+  },
+  {
+    name: 'd3-dsv',
+    data: dsv
+  },
+  {
+    name: 'd3-ease',
+    data: ease
+  },
+  {
+    name: 'd3-fetch',
+    data: fetch
+  },
+  {
+    name: 'd3-force',
+    data: force
+  },
+  {
+    name: 'd3-format',
+    data: format
+  },
+  {
+    name: 'd3-geo',
+    data: geo
+  },
+  {
+    name: 'd3-hierarchy',
+    data: hierarchy
+  },
+  {
+    name: 'd3-interpolate',
+    data: interpolate
+  },
+  {
+    name: 'd3-path',
+    data: path
+  },
+  {
+    name: 'd3-polygon',
+    data: polygon
+  },
+  {
+    name: 'd3-quadtree',
+    data: quadtree
+  },
+  {
+    name: 'd3-random',
+    data: random
+  },
+  {
+    name: 'd3-scale',
+    data: scale
+  },
+  {
+    name: 'd3-scale-chromatic',
+    data: scalechromatic
+  },
+  {
+    name: 'd3-selection',
+    data: selection
+  },
+  {
+    name: 'd3-shape',
+    data: shape
+  },
+  {
+    name: 'd3-time',
+    data: time
+  },
+  {
+    name: 'd3-time-format',
+    data: timeformat
+  },
+  {
+    name: 'd3-timer',
+    data: timer
+  },
+  {
+    name: 'd3-transition',
+    data: transition
+  },
+  {
+    name: 'd3-voroni',
+    data: voronoi
+  },
+  {
+    name: 'd3-zoom',
+    data: zoom
+  }
+];
