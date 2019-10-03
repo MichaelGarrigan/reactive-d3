@@ -3,16 +3,62 @@
   align-items: center;
   background: #333;
   display: flex;
-  height: 15vh;
+  height: 12vw;
   justify-content: space-between;
+  width: 100vw;
 }
 
-.app-title {
-  color: #FFF;
+.nav-title-grid {
+  background: #333;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  margin: auto 0;
+}
+.nav-bar-1 {
+  background: rgba(255, 255, 0, 0.8);
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.nav-bar-2 {
+  background: rgba(0, 255, 255, 0.8);
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+.nav-bar-3 {
+  background: rgba(0, 255, 0, 0.8);
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+.nav-bar-4 {
+  background: rgba(255, 0, 255, 0.8);
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+.nav-bar-5 {
+  background: rgba(255, 0, 0, 0.8);
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+.nav-bar-6 {
+  background: rgba(0, 0, 255, 0.8);
+  grid-column: 6 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.nav-title-wrapper {
+  color: black;
   font-family: 'Montserrat', sans-serif;
-  font-size: 4vw;
-  font-weight: 200;
-  margin: 0;
+  font-weight: 600;
+  grid-column: 1 / span 6;
+  grid-row: 1 / span 1;
+  line-height: .9;
+  margin: auto;
+  padding: 0 1.5vw;
+  text-align: center;
+}
+.nav-title {
+  text-shadow: 2px 2px 8px white;
 }
 
 .nav-link-group {
@@ -22,10 +68,35 @@
 }
 
 .nav-link, a{
+  border-bottom: 1px solid transparent;
   color: #FFF;
   font-family: 'Montserrat', sans-serif;
   font-size: 2.5vw;
-  font-weight: 100;
-  margin: 0 1rem;
+  margin: 0 2vw;
+  padding: 0 1vw;
+  text-decoration: none;
+}
+.nav-examples-link:hover {
+  border-bottom: 1px solid gold;
+  color: gold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vw;
+  margin: 0 2vw;
+  text-decoration: none;
+}
+.nav-modules-link:hover {
+  border-bottom: 1px solid gold;
+  color: gold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vw;
+  margin: 0 2vw;
+  text-decoration: none;
+}
+.nav-resources-link:hover {
+  border-bottom: 1px solid gold;
+  color: gold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vw;
+  margin: 0 2vw;
   text-decoration: none;
 }
