@@ -1,0 +1,1 @@
+{"name":"d3-polygon","version":"1.0.5","modules":[{"name":"polygonArea","type":"function"},{"name":"polygonCentroid","type":"function"},{"name":"polygonHull","type":"function"},{"name":"polygonContains","type":"function"},{"name":"polygonLength","type":"function"}]}

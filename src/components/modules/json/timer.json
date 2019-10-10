@@ -1,0 +1,1 @@
+{"name":"d3-timer","version":"1.0.9","modules":[{"name":"now","type":"function"},{"name":"timer","type":"function"},{"name":"timerFlush","type":"function"},{"name":"timeout","type":"function"},{"name":"interval","type":"function"}]}
