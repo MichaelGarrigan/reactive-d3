@@ -1,51 +1,21 @@
 
 import React from 'react';
-import axios from 'axios';
 
+import Organization from './Organization.js';
 import TimeScale from './TimeScale.js';
 import modulesData from './modulesData.js';
-
-import useElementSize from '../../useElementSize.js';
-
 import './Modules.css';
 
-import * as i from 'd3-zoom';
 
-const keys = Object.keys(i);
-
-const dict = keys.map( (item, idx) => {
-  return (
-    {
-      name: item,
-      type: typeof i[item]
-    }
-  )
-});
-
-const obj = {
-  name: 'd3-zoom',
-  version: '1.8.3',
-  modules: dict
-};
-
-
-export default props => {
-
-  let [ sizeRef, dimensions ] = useElementSize();
-
-  let call = () => {
-    axios({
-      method: 'post',
-      url: '/d3',
-      data: {name: JSON.stringify(obj)}
-    });
-  };
-  
+export default ({dimensions}) => {
 
   return (
-    <div className="modules-wrapper" ref={sizeRef}>
-      <button onClick={ () => call() }>FILE</button>
-
+    <div className="modules-wrapper" >
+      
+      <div className="modules-title-wrapper"> 
+        <Organization dimensions={dimensions} />
+        <p className="modules-title">Modules</p>
+      </div>
 
       <div className="modules-flex">
 
