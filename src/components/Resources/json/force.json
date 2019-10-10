@@ -1,1 +1,0 @@
-{"name":"d3-force","version":"2.0.1","modules":[{"name":"forceCenter","type":"function"},{"name":"forceCollide","type":"function"},{"name":"forceLink","type":"function"},{"name":"forceManyBody","type":"function"},{"name":"forceRadial","type":"function"},{"name":"forceSimulation","type":"function"},{"name":"forceX","type":"function"},{"name":"forceY","type":"function"}]}

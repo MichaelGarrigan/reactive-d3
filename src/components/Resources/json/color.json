@@ -1,1 +1,0 @@
-{"name":"d3-color","version":"1.4.0","modules":[{"name":"color","type":"function"},{"name":"rgb","type":"function"},{"name":"hsl","type":"function"},{"name":"lab","type":"function"},{"name":"hcl","type":"function"},{"name":"lch","type":"function"},{"name":"gray","type":"function"},{"name":"cubehelix","type":"function"}]}
