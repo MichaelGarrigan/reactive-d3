@@ -1,37 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, Route } from 'react-router-dom';
+
+import Design from './resource/Design.js';
+import D3 from './resource/D3.js';
+
+import BooksSvg from './BooksSvg.js';
+import BookSvg from './BookSvg.js';
+import './Resources.css';
+
+const categories = [
+  { name: "Design", color: "", route: ["design", Design] },
+  { name: "d3", color: "", route: ["d3", D3] },
+  // { name: "React", color: "" },
+  // { name: "People", color: "" },
+  // { name: "Conferences", color: "" },
+  // { name: "Data Sources", color: "" },
+  // { name: "React", color: "" },
+  // { name: "People", color: "" },
+];
+
 
 export default props => {
+ 
+  const [route, setRoute] = useState([]);
+  const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
+
+  const width80 = Math.round(props.dimensions.width * 0.8);
+  
   return (
-    <div className="resources-wrapper">
-      <h2>Web Pages</h2>
+    route.length === 0
+      ? (
+      <div className="resources-wrapper">
 
-      <h2>Data Sources</h2>
-      <p>naturalearthdata.com</p>
+        <div className="resources-title-wrapper"> 
+          <BooksSvg dimensions={props.dimensions} />
+          <p className="resources-title">Resources</p>
+        </div>
 
-      <h2>Color / Graphic</h2>
+        <div className="resources-summary-wrapper">
 
-      <h2>Web Pages</h2>
+          <p className="resources-summary">
+            A curated collection of informational links, articles, documentation and blogs.
+          </p>
+          <p className="resources-summary">
+            Click a category below to explore.
+          </p>
+        
+        </div>
 
-      <h2>Visualization Companies</h2>
-      <p>Two-n.com</p>
-
-      <h2>People</h2>
-
-      <h2>Other</h2>
-      <h4>Companies that sponsored OpenVis 2017 Conf</h4>
-      <p>bocoup</p>
-      <p>qlik playground</p>
-      <p>datadog</p>
-      <p>actblue</p>
-      <p>edward tufte graphics press</p>
-      <p>maps 4 news</p>
-      <p>fjord</p>
-      <p>info viz</p>
-      <p>mlab</p>
-      <p>policyviz</p>
-
-      <h2>SVG & Canvas</h2>
-      <p>https://stackoverflow.com/questions/50141324/difference-between-svg-and-canvas-in-d3-js</p>
+        <div className="resources-categories-wrapper">
+          {
+            categories.map( category => (
+              <Link 
+                to={`/Resources/${category.route[0]}`}
+                key={category.name}
+              >
+              <div 
+                className="resources-category-wrapper"
+                onClick={() => setRoute(category.route)}
+              >
+                <p className="resources-subtitle">
+                  {category.name}
+                </p>
+                <BookSvg
+                  className="resources-book-svg"
+                  color={category.color}
+                  dimensions={props.dimensions}
+                />
+              </div>
+              </Link>
+            ))
+          }
+        </div>
     </div>
+    ) : (
+      <Route 
+        exact
+        path={`/Resources/${route[0]}`}
+        component={ (props) => HOC(route[1], {...props}) }
+      />
+    )
   )
-}
+};
