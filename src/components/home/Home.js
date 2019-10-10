@@ -9,7 +9,7 @@ export default ({dimensions}) => {
     <div className="home-wrapper">
       <div className="home-summary-wrapper">
         <b>
-          <div class="home-summary-verbs">
+          <div className="home-summary-verbs">
             Exploring<br /> 
             Understanding<br />
             Hacking<br />
@@ -22,18 +22,3 @@ export default ({dimensions}) => {
     </div>
   );
 };
-
-{/* <div class="Iam">
-
-<p>This is</p>
-<b>
-  <div class="innerIam">
-    leggera<br /> 
-    a theme in progress<br />
-    built on bootstrap<br />
-    how I learn stuff<br />
-    how we do it
-    </div>
-</b>
-
-</div> */}

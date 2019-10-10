@@ -36,11 +36,11 @@
 
 
 /*animation*/
--webkit-animation:move 8s;
+/* -webkit-animation:move 8s;
    -moz-animation:move 8s;
     -ms-animation:move 8s;
-     -o-animation:move 8s;
-        animation:move 8s;
+     -o-animation:move 8s; */
+        animation:move 16s;
 /*animation-iteration-count*/
 -webkit-animation-iteration-count:infinite;
    -moz-animation-iteration-count:infinite;
@@ -48,11 +48,11 @@
      -o-animation-iteration-count:infinite;
         animation-iteration-count:infinite;
 /*animation-delay*/
--webkit-animation-delay:2s;
-   -moz-animation-delay:2s;
-    -ms-animation-delay:2s;
-     -o-animation-delay:2s;
-        animation-delay:2s;
+-webkit-animation-delay:4s;
+   -moz-animation-delay:4s;
+    -ms-animation-delay:4s;
+     -o-animation-delay:4s;
+        animation-delay:4s;
 }
 @keyframes move{
 0%  { top: 0px; }
