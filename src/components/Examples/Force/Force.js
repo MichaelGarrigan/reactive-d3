@@ -60,7 +60,7 @@ export default class Force extends Component {
     };
 
     const simulation = forceSimulation(fnodes)
-      .force('charge', forceManyBody().strength(10))
+      .force('charge', forceManyBody().strength(-10))
       .force('center', forceCenter(innerWidth/2, innerHeight/2))
       .force('collision', forceCollide().radius(20))
       .on('tick', ticked);

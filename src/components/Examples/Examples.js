@@ -5,6 +5,8 @@ import './Examples.css';
 import Area from './Area/Area.js';
 import Axis from './Axis/Axis.js';
 import BarCharts from './BarCharts/BarCharts.js';
+import ClosestCircle from './ClosestCircle/ClosestCircle.js';
+import Contour from './Contour/Contour';
 import DayNight from './DayNightMap/DayNight.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
@@ -15,8 +17,9 @@ import Treemap from './Treemap/Treemap.js';
 import Tux from './Tux/Tux.js';
 import WorldClocks from './Clocks/WorldClocks.js';
 
-const Examples = props => {
 
+export default props => {
+  
   const [route, setRoute] = useState([]);
   const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
   
@@ -248,6 +251,20 @@ const Examples = props => {
         </div>
       </Link>
 
+      <Link to={`${props.match.url}/closestCircle`}>
+        <div className="example-wrapper" onClick={() => setRoute(['closestCircle', ClosestCircle])}>
+          <p className="example-text">Closest</p>
+          <p className="example-text">Circle</p>
+        </div>
+      </Link>
+
+      <Link to={`${props.match.url}/contour`}>
+        <div className="example-wrapper" onClick={() => setRoute(['contour', Contour])}>
+          <p className="example-text"></p>
+          <p className="example-text">Contour</p>
+        </div>
+      </Link>
+
       <Link to={`${props.match.url}/dayNight`}>
         <div className="example-wrapper" onClick={() => setRoute(['dayNight', DayNight])}>
           <p className="example-text">Day/Night</p>
@@ -256,37 +273,37 @@ const Examples = props => {
       </Link>
 
       <Link to={`${props.match.url}/treemap`}>
-        <div className="d3-example" onClick={() => setRoute(['treemap', Treemap])}>
-          <span className="d3-example-text">Treemap</span>
-          <span className="d3-example-text">Basic</span>
+        <div className="example-wrapper" onClick={() => setRoute(['treemap', Treemap])}>
+          <p className="example-text">Treemap</p>
+          <p className="example-text">Basic</p>
         </div>
       </Link>
 
       <Link to={`${props.match.url}/tux`}>
-        <div className="d3-example tux_svg" onClick={() => setRoute(['tux', Tux])}>
-          <span className="d3-example-text">SVG Tux</span>
+        <div className="example-wrapper" onClick={() => setRoute(['tux', Tux])}>
+          <p className="example-text">SVG Tux</p>
         </div>
       </Link>
 
       <Link to={`${props.match.url}/pie3Versions`}>
-        <div className="d3-example" onClick={() => setRoute(['pie3Versions', Pie3Versions])}>
-          <span className="d3-example-text">d3 & React</span>
-          <span className="d3-example-text">3 versions</span>
+        <div className="example-wrapper" onClick={() => setRoute(['pie3Versions', Pie3Versions])}>
+          <p className="example-text">d3 & React</p>
+          <p className="example-text">3 versions</p>
         </div>
       </Link>
 
       <Link to={`${props.match.url}/force`}>
-        <div className="d3-example force" onClick={() => setRoute(['force', Force])}>
-          <span className="d3-example-text">Force</span>
+        <div className="example-wrapper" onClick={() => setRoute(['force', Force])}>
+          <p className="example-text">Force</p>
         </div>
       </Link>
 
       <Link to={`${props.match.url}/axis`}>
-        <div className="d3-example" onClick={() => setRoute(['axis', Axis])}>
-          <span className="d3-example-text">Axis</span>
+        <div className="example-wrapper" onClick={() => setRoute(['axis', Axis])}>
+          <p className="example-text">Axis</p>
         </div>
       </Link>
-      
+
       </div>
       )
       : (
@@ -298,5 +315,3 @@ const Examples = props => {
       )
   )
 };
-
-export default Examples;

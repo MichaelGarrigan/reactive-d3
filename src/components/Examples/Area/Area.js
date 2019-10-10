@@ -10,8 +10,6 @@ import { scaleLinear, scalePoint } from 'd3-scale';
 import { select } from 'd3-selection';
 import * as shape from 'd3-shape';
 
-console.log('d3-shape: ', Object.keys(shape));
-
 import useElementSize from '../../../useElementSize.js';
 import curveTypes from '../LineChart/curveTypes.js';
 import rainData from './AreaData.js';

@@ -1,5 +1,11 @@
 import React, { useLayoutEffect, useRef, useEffect } from 'react';
-import * as d3 from 'd3';
+
+import { format } from 'd3-format';
+import { hierarchy, treemap, treemapResquarify } from 'd3-hierarchy';
+import { scaleOrdinal } from 'd3-scale';
+import { schemeCategory10 } from 'd3-scale-chromatic';
+import { select } from 'd3-selection';
+
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import data from './TreemapData.js';
 import './Treemap.css';
@@ -15,15 +21,15 @@ const Treemap = props => {
 
   const ref = useRef(null);
 
-  const color = d3.scaleOrdinal(d3.schemeCategory10);
-  const format = d3.format(",d");
+  const color = scaleOrdinal(schemeCategory10);
+  const formatText = format(",d");
 
-  const root = d3.hierarchy(data)
+  const root = hierarchy(data)
     .sum(d => d.size)
     .sort( (a, b) => b.size - a.size);
   
-  const treemap = d3.treemap()
-    .tile(d3.treemapResquarify)
+  const treemap = treemap()
+    .tile(treemapResquarify)
     .size([width, height])
     .round(true)
     .padding(1);
@@ -31,7 +37,7 @@ const Treemap = props => {
   treemap(root);
   
     useEffect( () => {
-        const svg = d3.select(ref.current);
+        const svg = select(ref.current);
         
         const leaf = svg.selectAll("g")
           .data(root.leaves())
@@ -53,7 +59,7 @@ const Treemap = props => {
         leaf.append("text")
           .attr("clip-path", d => `url(#clip-${d.data.name})`)
         .selectAll("tspan")
-        .data(d => d.data.name.split(/(?=[A-Z][^A-Z])/g).concat(format(d.value)))
+        .data(d => d.data.name.split(/(?=[A-Z][^A-Z])/g).concat(formatText(d.value)))
         .join("tspan")
           .attr("x", 3)
           .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
