@@ -16,12 +16,11 @@ export default props => {
 
       <div className="resources-title-wrapper"> 
         <BooksSvg dimensions={props.dimensions} />
-        <p className="resources-title">D3</p>
+        <p className="resources-title">Data Sources</p>
       </div>
 
-      <h2>SVG & Canvas</h2>
-      <p>https://stackoverflow.com/questions/50141324/difference-between-svg-and-canvas-in-d3-js</p>
-
+      <p>naturalearthdata.com</p>
+      
     </div>
   );
 };

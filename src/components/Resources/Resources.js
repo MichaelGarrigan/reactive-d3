@@ -3,6 +3,10 @@ import { Link, Route } from 'react-router-dom';
 
 import Design from './resource/Design.js';
 import D3 from './resource/D3.js';
+import ReactJS from './resource/React.js';
+import DataSources from './resource/DataSources.js';
+import People from './resource/People.js';
+import Groups from './resource/Groups.js';
 
 import BooksSvg from './BooksSvg.js';
 import BookSvg from './BookSvg.js';
@@ -11,19 +15,24 @@ import './Resources.css';
 const categories = [
   { name: "Design", color: "", route: ["design", Design] },
   { name: "d3", color: "", route: ["d3", D3] },
-  // { name: "React", color: "" },
-  // { name: "People", color: "" },
-  // { name: "Conferences", color: "" },
-  // { name: "Data Sources", color: "" },
-  // { name: "React", color: "" },
-  // { name: "People", color: "" },
+  { name: "React", color: "", route: ["react", ReactJS] },
+  { name: "Data Sources", color: "", route: ["datasources", DataSources] },
+  { name: "People", color: "", route: ["people", People] },
+  { name: "Groups", color: "", route: ["groups", Groups] }
 ];
 
 
 export default props => {
- 
+  const size = props.dimensions;
+  
   const [route, setRoute] = useState([]);
-  const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
+  const HOC = (Comp, props, dimensions) => {
+
+    props.setRoute = setRoute;
+    props.dimensions = dimensions;
+    
+    return <Comp {...props} />;
+  }
 
   const width80 = Math.round(props.dimensions.width * 0.8);
   
@@ -77,7 +86,7 @@ export default props => {
       <Route 
         exact
         path={`/Resources/${route[0]}`}
-        component={ (props) => HOC(route[1], {...props}) }
+        component={ (props) => HOC(route[1], {...props}, size) }
       />
     )
   )

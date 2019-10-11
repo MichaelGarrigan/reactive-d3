@@ -1,6 +1,10 @@
 
-.resources-wrapper {
+/* =================
+     Resources
+================== */
 
+.resources-wrapper {
+  min-height: 90vh;
 }
 
 .resources-title-wrapper {
@@ -22,8 +26,9 @@
   width: 80vw;
 }
 .resources-summary {
-  color: #b8b8b8;
-  font-size: 3vw;
+  color: #333;
+  /* color: #b8b8b8; */
+  font-size: 2vw;
   margin: .5vw auto;
 }
 
@@ -40,6 +45,7 @@
 .resources-category-wrapper {
   align-items: center;
   background: rgb(184, 183, 183);
+  border-radius: .5vw;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -47,4 +53,7 @@
 .resources-subtitle {
   font-size: 6vw;
 }
-.resources-book-svg {}
+.resources-book-svg {
+  display: block;
+  margin-bottom: 1vw;
+}

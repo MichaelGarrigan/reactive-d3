@@ -1,5 +1,4 @@
 
-
 import React, { useEffect } from 'react';
 
 import BooksSvg from '../BooksSvg.js';
@@ -16,12 +15,21 @@ export default props => {
 
       <div className="resources-title-wrapper"> 
         <BooksSvg dimensions={props.dimensions} />
-        <p className="resources-title">D3</p>
+        <p className="resources-title">Groups</p>
       </div>
 
-      <h2>SVG & Canvas</h2>
-      <p>https://stackoverflow.com/questions/50141324/difference-between-svg-and-canvas-in-d3-js</p>
-
+      <p>Two-n.com</p>
+      <h4>Companies that sponsored OpenVis 2017 Conf</h4>
+      <p>bocoup</p>
+      <p>qlik playground</p>
+      <p>datadog</p>
+      <p>actblue</p>
+      <p>edward tufte graphics press</p>
+      <p>maps 4 news</p>
+      <p>fjord</p>
+      <p>info viz</p>
+      <p>mlab</p>
+      <p>policyviz</p>
     </div>
   );
 };
