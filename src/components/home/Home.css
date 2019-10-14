@@ -7,79 +7,31 @@
   min-height: 85vh;
 }
   
-.home-summary-wrapper {
-  color: #999;
-  display: flex;
-  font-size: 5vw;
-  grid-column: 2 / span 8;
+.home-summary-verbs{
+  border-right: .5vw solid transparent;
+  color: #e74c3c;
+  font-size: 4vw;
+  font-weight: 600;
+  grid-column: 1 / span 4;
   grid-row: 3 / span 1;
-  height: 6vw;
+  height: 4vw;
   text-align: end;
 }
-.home-summary-wrapper p {
-  float: left;
-  margin-left: 1vw;
-}
-.home-summary-wrapper b {
-  float: left;
-  overflow: hidden;
-  position: relative;
-  /* height: 4vw; */
-}
-.home-summary-verbs {
-  display: inline-block;
+.home-summary-verbs-blink {
+  border-right: .5vw solid #D0D0D0;
   color: #e74c3c;
-  position: relative;
-  white-space: nowrap;
-  top: 0;
-  left: 0;
-
-
-/*animation*/
-/* -webkit-animation:move 8s;
-   -moz-animation:move 8s;
-    -ms-animation:move 8s;
-     -o-animation:move 8s; */
-        animation:move 16s;
-/*animation-iteration-count*/
--webkit-animation-iteration-count:infinite;
-   -moz-animation-iteration-count:infinite;
-    -ms-animation-iteration-count:infinite;
-     -o-animation-iteration-count:infinite;
-        animation-iteration-count:infinite;
-/*animation-delay*/
--webkit-animation-delay:4s;
-   -moz-animation-delay:4s;
-    -ms-animation-delay:4s;
-     -o-animation-delay:4s;
-        animation-delay:4s;
+  font-size: 4vw;
+  font-weight: 600;
+  grid-column: 1 / span 4;
+  grid-row: 3 / span 1;
+  height: 4vw;
+  text-align: end;
 }
-@keyframes move{
-0%  { top: 0px; }
-25% { top: -6vw; }
-50% { top: -12vw; }
-75% { top: -18vw; }
-/* 80% { top: -200px; } */
-}
-
-@-webkit-keyframes move {
-    0%  { top: 0px; }
-    20% { top: -50px; }
-    40% { top: -100px; }
-    60% { top: -150px; }
-    80% { top: -200px; }
-}
-@-moz-keyframes move {
-    0%  { top: 0px; }
-    20% { top: -50px; }
-    40% { top: -100px; }
-    60% { top: -150px; }
-    80% { top: -200px; }
-}
-@-o-keyframes move {
-    0%  { top: 0px; }
-    20% { top: -50px; }
-    40% { top: -100px; }
-    60% { top: -150px; }
-    80% { top: -200px; }
+.home-summary-p {
+  color: #999;
+  font-size: 4vw;
+  grid-column: 5 / span 6;
+  grid-row: 3 / span 1;
+  height: 4vw;
+  margin-left: 1vw;
 }
