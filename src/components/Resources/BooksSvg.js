@@ -12,8 +12,8 @@ export default props => {
           x1="9.7339" x2="483.5" y1="228.25" y2="225.22" 
           gradientUnits="userSpaceOnUse"
         >
-        <stop stopColor="#fdef11" offset="0"/>
-        <stop stopColor="#e66f00" offset="1"/>
+        <stop stopColor="#ffe375" offset="0"/>
+        <stop stopColor="#ff876e" offset="1"/>
         </linearGradient>
       </defs>
  

@@ -2,10 +2,11 @@
 import React from 'react';
 
 export default props => {
-  const size = Math.round(props.dimensions.width * 0.25);
+  const size = Math.round(props.dimensions.width * 0.2);
 
   return (
     <svg 
+      className={props.className}
       width={size} height={size} 
       viewBox="0 0 500 500" 
       xmlns="http://www.w3.org/2000/svg" 
@@ -20,10 +21,6 @@ export default props => {
           strokeWidth="1.146"
         />
       <g fill="#f95">
-        <rect x="129.77" y="69.991" width="231.56" height="51.486" rx="19.804" ry="19.686" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.292" 
-        />
-        <rect x="154.56" y="151.99" width="181.6" height="40.045" rx="15.531" ry="15.311" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.292" 
-        />
         <path 
           d="m95.694 372c-53 0-96 40.96-96 91.446v6.0726c0 50.486 43 91.446 96 91.446h328c13.3 0 24-10.192 24-22.861v-15.241c0-7.1442-3.5004-13.621-8.9004-17.812-2.2486-7.8537-3.2802-23.483-3.1211-38.567-0.1591-15.084 0.87249-30.714 3.1211-38.567 5.4-4.1913 8.9004-10.668 8.9004-17.812v-15.241c0-12.669-10.7-22.861-24-22.861zm0 60.964h285.4c-1.0366 8.8866-1.4866 21.359-1.3926 33.518-0.094 12.159 0.35598 24.632 1.3926 33.518h-285.4c-17.7 0-32-13.622-32-30.482 0-1.0245 0.0551-2.037 0.1602-3.0363-0.1051-0.99925-0.1602-2.0118-0.1602-3.0363 0-16.86 14.3-30.482 32-30.482z" 
           strokeWidth="1.146"
