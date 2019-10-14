@@ -17,7 +17,6 @@
 }
 .nav-bar-1 {
   background: #d0d0d0;
-  /* background: rgba(255, 255, 0, 0.8); */
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
 }
