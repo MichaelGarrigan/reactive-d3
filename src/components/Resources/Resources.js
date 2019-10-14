@@ -16,7 +16,7 @@ const categories = [
   { name: "Design", color: "", route: ["design", Design] },
   { name: "d3", color: "", route: ["d3", D3] },
   { name: "React", color: "", route: ["react", ReactJS] },
-  { name: "Data Sources", color: "", route: ["datasources", DataSources] },
+  { name: "Data", color: "", route: ["datasources", DataSources] },
   { name: "People", color: "", route: ["people", People] },
   { name: "Groups", color: "", route: ["groups", Groups] }
 ];
@@ -35,6 +35,7 @@ export default props => {
   }
 
   const width80 = Math.round(props.dimensions.width * 0.8);
+  const size20 = Math.round(props.dimensions.width * 0.2);
   
   return (
     route.length === 0
@@ -68,14 +69,14 @@ export default props => {
                 className="resources-category-wrapper"
                 onClick={() => setRoute(category.route)}
               >
-                <p className="resources-subtitle">
-                  {category.name}
-                </p>
                 <BookSvg
                   className="resources-book-svg"
                   color={category.color}
                   dimensions={props.dimensions}
                 />
+                <p className="resources-subtitle">
+                  {category.name}
+                </p>
               </div>
               </Link>
             ))
