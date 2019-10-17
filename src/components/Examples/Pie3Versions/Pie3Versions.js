@@ -1,69 +1,73 @@
 
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import { range } from 'd3-array';
 
+import TitleBanner from '../titleBanner/TitleBanner.js';
 import PieClass from "./PieClass";
 import PieHooks from "./PieHooks";
 import PieSVG from "./PieSVG";
 
+
+
+import useElementSize from '../../../useElementSize.js';
+// import version from './versionsPie.js';
 import "./Pie3Versions.css";
 
-const Pie3Versions = props => {
+const generateData = () =>
+    range(5).map((item, index) => ({
+      date: index,
+      value: Math.random() * 100
+    }));
 
-  useLayoutEffect( () => {
+
+export default props => {
+  const [build, setBuild] = useState("svg");
+
+  useEffect( () => {
     return () => props.setRoute([]);
   });
 
-  const generateData = (value, length = 5) =>
-    range(length).map((item, index) => ({
-      date: index,
-      value: value === null || value === undefined ? Math.random() * 100 : value
-    }));
-
-  const [data, setData] = useState(generateData());
-  const changeData = () => {
-    setData(generateData());
-  };
 
   return (
-    <div className="pie-wrapper">                                                                   
-      <div>
-        <button onClick={changeData}>Transform</button>
+    <div className="pie-wrapper">  
+      <TitleBanner title="3 Ways to Build in React" />                                                                  
+      <div className="pie-summary-wrapper">
+        <div className="pie-summary-title">Summary</div>
+        <p className="pie-summary-p">
+          React allows us several patterns to construct our components, so when we are displaying a d3 graphic in a React component we have choices.
+        </p>
+        <p className="pie-summary-p">
+          Below we are providing a Class based component, a Functional Hook based component and a SVG based component.
+        </p>
       </div>
-      <div>
-        <span className="label">React Class</span>
-        <PieClass
-          data={data}
-          width={200}
-          height={200}
-          innerRadius={60}
-          outerRadius={100}
-        />
+
+      <div className="pie-button-group">
+        <button 
+          className={build === "class" ? "pie-button-active" : "pie-button"}
+          onClick={() => setBuild("class")}
+        >Class Based</button>
+        <button 
+          className={build === "hooks" ? "pie-button-active" : "pie-button"}
+          onClick={() => setBuild("hooks")}
+        >Hooks Based</button>
+        <button 
+          className={build === "svg" ? "pie-button-active" : "pie-button"}
+          onClick={() => setBuild("svg")}
+        >SVG Based</button>
       </div>
-      <div>
-        <span className="label">Hooks</span>
-        <PieHooks
-          data={data}
-          width={200}
-          height={200}
-          innerRadius={60}
-          outerRadius={100}
-        />
-      </div>
-      <div>
-        <span className="label">SVG Elements</span>
-        <PieSVG
-          data={data}
-          width={200}
-          height={200}
-          innerRadius={60}
-          outerRadius={100}
-        />
-      </div>
+
+      {
+        build === "class" 
+          ? <PieClass data={generateData()} />
+          : build === "hooks" 
+            ? <PieHooks data={generateData()} />
+            : build === "svg" 
+              ? <PieSVG data={generateData()} />
+              : "" 
+      }
+        
     </div>
   );
-}
-
-export default Pie3Versions;
+};

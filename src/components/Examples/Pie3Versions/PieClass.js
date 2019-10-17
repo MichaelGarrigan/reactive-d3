@@ -11,18 +11,26 @@ import { arc, pie } from 'd3-shape';
 class PieClass extends Component {
   constructor(props) {
     super(props);
-    this.ref = createRef();
+    this.svgRef = createRef();
+    this.sizeRef = createRef();
+
     this.createPie = pie()
       .value(d => d.value)
       .sort(null);
+
     this.createArc = arc()
       .innerRadius(props.innerRadius)
       .outerRadius(props.outerRadius);
-    this.colors = scaleOrdinal(d3.schemeCategory10);
+
+    this.colors = scaleOrdinal(schemeCategory10);
     this.formatText = format(".2f");
+
+    this.state = {
+      width: 960
+    }
   }
   componentDidMount() {
-    const svg = select(this.ref.current);
+    const svg = select(this.svgRef.current);
     const data = this.createPie(this.props.data);
     const { width, height, innerRadius, outerRadius } = this.props;
 
@@ -33,7 +41,7 @@ class PieClass extends Component {
 
     const group = svg
       .append("g")
-      .attr("transform", `translate(${outerRadius} ${outerRadius})`);
+      .attr("transform", `translate(${outerRadius}, ${outerRadius})`);
 
     const groupWithEnter = group
       .selectAll("g.arc")
@@ -59,7 +67,7 @@ class PieClass extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const svg = d3.select(this.ref.current);
+    const svg = select(this.svgRef.current);
     const data = this.createPie(nextProps.data);
 
     const group = svg
@@ -91,8 +99,17 @@ class PieClass extends Component {
   }
 
   render() {
-    return <svg ref={this.ref} />;
+    return (
+      <div className="pie-chart-wrapper" ref={this.sizeRef}>
+        <svg ref={this.svgRef} />
+        <div className="pie-chart-info">
+          <p>
+            Class based components may be your only option if you are dealing with a legacy project or if your project needs state but does not support hooks.
+          </p>
+        </div>
+      </div>
+    )
   }
-}
+};
 
 export default PieClass;
