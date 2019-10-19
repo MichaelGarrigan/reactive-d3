@@ -91,7 +91,7 @@
     "prismjs": "^1.17.1",
     "react": "~16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1",
+    "react-router-dom": "^5.1.2",
     "topojson": "^3.0.2",
     "topojson-client": "^3.0.0",
     "us-atlas": "^2.1.0"
