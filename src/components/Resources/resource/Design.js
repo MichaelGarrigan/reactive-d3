@@ -1,14 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import BooksSvg from '../BooksSvg.js';
 import '../Resources.css';
 
 export default props => {
-  
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
 
   return (
     <div className="resources-wrapper">
@@ -32,7 +28,7 @@ export default props => {
             <li>Links to Material Design, Google Fonts and Design Sprints.</li>
           </ul>
         </div>
-
+            
         <div className="resource-item-wrapper"> 
           <a href="https://www.fontsquirrel.com" className="resource-link">
             <p>Font Squirrel</p>
@@ -117,8 +113,7 @@ export default props => {
         </div>
 
       </div>
-
-      {/* <p>https://www.websitehostingrating.com/top-100-web-design-resources/</p> */}
     </div>
+     
   );
 };

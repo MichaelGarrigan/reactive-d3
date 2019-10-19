@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch, useRouteMatch, useParams } from 'react-router-dom';
 
 import Design from './resource/Design.js';
 import D3 from './resource/D3.js';
@@ -12,83 +12,123 @@ import BooksSvg from './BooksSvg.js';
 import BookSvg from './BookSvg.js';
 import './Resources.css';
 
-const categories = [
-  { name: "Design", color: "", route: ["design", Design] },
-  { name: "d3", color: "", route: ["d3", D3] },
-  { name: "React", color: "", route: ["react", ReactJS] },
-  { name: "Data", color: "", route: ["datasources", DataSources] },
-  { name: "People", color: "", route: ["people", People] },
-  { name: "Groups", color: "", route: ["groups", Groups] }
-];
+const categories = {
+  design: Design,
+  d3: D3,
+  react: ReactJS,
+  datasources: DataSources,
+  people: People,
+  groups: Groups
+};
+
 
 
 export default props => {
+  let { path } = useRouteMatch();
+  
   const size = props.dimensions;
   
-  const [route, setRoute] = useState([]);
-  const HOC = (Comp, props, dimensions) => {
-
-    props.setRoute = setRoute;
-    props.dimensions = dimensions;
-    
-    return <Comp {...props} />;
-  }
-
   const width80 = Math.round(props.dimensions.width * 0.8);
   const size20 = Math.round(props.dimensions.width * 0.2);
   
   return (
-    route.length === 0
-      ? (
-      <div className="resources-wrapper">
+    <Switch>
+      <Route path={`${path}/design`} component={() => <Design dimensions={props.dimensions} />} />
+      <Route path={`${path}/d3`} component={() => <D3 dimensions={props.dimensions} />} />
+      <Route path={`${path}/datasources`} component={() => <DataSources dimensions={props.dimensions} />} />
+      <Route path={`${path}/react`} component={() => <ReactJS dimensions={props.dimensions} />} />
+      <Route path={`${path}/groups`} component={() => <Groups dimensions={props.dimensions} />} />
+      <Route path={`${path}/people`} component={() => <People dimensions={props.dimensions} />} />
 
-        <div className="resources-title-wrapper"> 
-          <BooksSvg dimensions={props.dimensions} />
-          <p className="resources-title">Resources</p>
-        </div>
+      <Route path={path}>
+        <div className="resources-wrapper">
+          <div className="resources-title-wrapper"> 
+            <BooksSvg dimensions={props.dimensions} />
+            <p className="resources-title">Resources</p>
+          </div>
 
-        <div className="resources-summary-wrapper">
+          <div className="resources-summary-wrapper">
 
-          <p className="resources-summary">
-            A curated collection of informational links, articles, documentation and blogs.
-          </p>
-          <p className="resources-summary">
-            Click a category below to explore.
-          </p>
-        
-        </div>
+            <p className="resources-summary">
+              A curated collection of informational links, articles, documentation and blogs.
+            </p>
+            <p className="resources-summary">
+              Click a category below to explore.
+            </p>
+          
+          </div>
 
-        <div className="resources-categories-wrapper">
-          {
-            categories.map( category => (
-              <Link 
-                to={`/Resources/${category.route[0]}`}
-                key={category.name}
-              >
-              <div 
-                className="resources-category-wrapper"
-                onClick={() => setRoute(category.route)}
-              >
+          <div className="resources-categories-wrapper">
+          
+            <Link to={`${path}/design`}>
+              <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
-                  color={category.color}
+                  color=""
                   dimensions={props.dimensions}
                 />
-                <p className="resources-subtitle">
-                  {category.name}
-                </p>
+                <p className="resources-subtitle">Design</p>
               </div>
-              </Link>
-            ))
-          }
+            </Link>
+
+            <Link to={`${path}/d3`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">D3</p>
+              </div>
+            </Link>
+
+            <Link to={`${path}/datasources`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">Data</p>
+              </div>
+            </Link>
+
+            <Link to={`${path}/react`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">React</p>
+              </div>
+            </Link>
+
+            <Link to={`${path}/groups`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">Groups</p>
+              </div>
+            </Link>
+
+            <Link to={`${path}/people`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">People</p>
+              </div>
+            </Link>
+              
+          </div>
         </div>
-    </div>
-    ) : (
-      <Route 
-        exact
-        path={`/Resources/${route[0]}`}
-        component={ (props) => HOC(route[1], {...props}, size) }
-      />
-    )
+      </Route>
+    </Switch>
   )
 };

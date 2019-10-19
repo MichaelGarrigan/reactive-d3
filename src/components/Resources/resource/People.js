@@ -1,14 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import BooksSvg from '../BooksSvg.js';
 import '../Resources.css';
 
 export default props => {
-  
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
 
   return (
     <div className="resources-wrapper">
