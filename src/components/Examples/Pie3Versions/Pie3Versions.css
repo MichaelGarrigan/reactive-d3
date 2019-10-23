@@ -61,8 +61,15 @@
   width: 100vw;
 }
 .pie-chart-info {
-  background: lemonchiffon;
-  width: 50vw;
+  background: cornsilk;
+  border-radius: 0.5vw;
+  color: #333;
+  font-size: 2vw;
+  padding: 1vw;
+  width: 60vw;
+}
+.pie-chart-info p {
+  margin: 1vw 0;
 }
 
 /* Pie Code Example */

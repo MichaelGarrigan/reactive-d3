@@ -9,10 +9,6 @@ import PieClass from "./PieClass";
 import PieHooks from "./PieHooks";
 import PieSVG from "./PieSVG";
 
-
-
-import useElementSize from '../../../useElementSize.js';
-// import version from './versionsPie.js';
 import "./Pie3Versions.css";
 
 const generateData = () =>
@@ -23,13 +19,9 @@ const generateData = () =>
 
 
 export default props => {
-  const [build, setBuild] = useState("svg");
+  const [build, setBuild] = useState("class");
 
-  useEffect( () => {
-    return () => props.setRoute([]);
-  });
-
-
+  
   return (
     <div className="pie-wrapper">  
       <TitleBanner title="3 Ways to Build in React" />                                                                  
@@ -60,11 +52,11 @@ export default props => {
 
       {
         build === "class" 
-          ? <PieClass data={generateData()} />
+          ? <PieClass data={generateData()} dimensions={props.dimensions} />
           : build === "hooks" 
-            ? <PieHooks data={generateData()} />
+            ? <PieHooks data={generateData()} dimensions={props.dimensions} />
             : build === "svg" 
-              ? <PieSVG data={generateData()} />
+              ? <PieSVG data={generateData()} dimensions={props.dimensions} />
               : "" 
       }
         

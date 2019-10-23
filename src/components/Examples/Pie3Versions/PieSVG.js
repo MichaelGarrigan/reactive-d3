@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import Prism from 'prismjs';
 
 import { format } from 'd3-format';
@@ -8,7 +8,6 @@ import { schemeCategory10 } from 'd3-scale-chromatic';
 import { select } from 'd3-selection';
 import { arc, pie } from 'd3-shape';
 
-import useElementSize from '../../../useElementSize.js';
 import '../../../../node_modules/prismjs/themes/prism-okaidia.css';
 import "./Pie3Versions.css";
 
@@ -28,9 +27,10 @@ const Arc = ({ data, index, createArc, colors, format }) => (
 );
 
 const PieSVG = props => {
-  const [sizeRef, dimensions] = useElementSize();
+  // Initialize syntax highting
+  useEffect( () => Prism.highlightAll(), []);
 
-  const width = Math.round(dimensions.width * 0.3);
+  const width = Math.round(props.dimensions.width * 0.3);
   const innerRadius = Math.round(width * 0.25);
   const outerRadius = Math.round(width * 0.5);
 
@@ -47,7 +47,7 @@ const PieSVG = props => {
   const data = createPie(props.data);
 
   return (
-    <div className="pie-build-wrapper" ref={sizeRef}>
+    <div className="pie-build-wrapper">
       <div className="pie-chart-wrapper">
 
         <svg width={width} height={width}>
@@ -89,7 +89,6 @@ import { schemeCategory10 } from 'd3-scale-chromatic';
 import { select } from 'd3-selection';
 import { arc, pie } from 'd3-shape';
 
-import useElementSize from '../../../useElementSize.js';
 import "./Pie3Versions.css";
 
 const Arc = ({ data, index, createArc, colors, format }) => (
@@ -108,9 +107,8 @@ const Arc = ({ data, index, createArc, colors, format }) => (
 );
 
 const PieSVG = props => {
-  const [sizeRef, dimensions] = useElementSize();
 
-  const width = Math.round(dimensions.width * 0.3);
+  const width = Math.round(props.dimensions.width * 0.3);
   const innerRadius = Math.round(width * 0.25);
   const outerRadius = Math.round(width * 0.5);
 
