@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 
 import BooksSvg from '../BooksSvg.js';

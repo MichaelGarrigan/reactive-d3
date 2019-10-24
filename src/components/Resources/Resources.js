@@ -1,35 +1,22 @@
-import React, { useState } from 'react';
-import { Link, Route, Switch, useRouteMatch, useParams } from 'react-router-dom';
+import React from 'react';
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 
-import Design from './resource/Design.js';
+import Books from './resource/Books.js';
+import Companies from './resource/Companies.js';
 import D3 from './resource/D3.js';
-import ReactJS from './resource/React.js';
 import DataSources from './resource/DataSources.js';
-import People from './resource/People.js';
+import Design from './resource/Design.js';
 import Groups from './resource/Groups.js';
+import People from './resource/People.js';
+import ReactJS from './resource/React.js';
 
 import BooksSvg from './BooksSvg.js';
 import BookSvg from './BookSvg.js';
 import './Resources.css';
 
-const categories = {
-  design: Design,
-  d3: D3,
-  react: ReactJS,
-  datasources: DataSources,
-  people: People,
-  groups: Groups
-};
-
-
 
 export default props => {
   let { path } = useRouteMatch();
-  
-  const size = props.dimensions;
-  
-  const width80 = Math.round(props.dimensions.width * 0.8);
-  const size20 = Math.round(props.dimensions.width * 0.2);
   
   return (
     <Switch>
@@ -38,6 +25,8 @@ export default props => {
       <Route path={`${path}/datasources`} component={() => <DataSources dimensions={props.dimensions} />} />
       <Route path={`${path}/react`} component={() => <ReactJS dimensions={props.dimensions} />} />
       <Route path={`${path}/groups`} component={() => <Groups dimensions={props.dimensions} />} />
+      <Route path={`${path}/books`} component={() => <Books dimensions={props.dimensions} />} />
+      <Route path={`${path}/companies`} component={() => <Companies dimensions={props.dimensions} />} />
       <Route path={`${path}/people`} component={() => <People dimensions={props.dimensions} />} />
 
       <Route path={path}>
@@ -112,6 +101,28 @@ export default props => {
                   dimensions={props.dimensions}
                 />
                 <p className="resources-subtitle">Groups</p>
+              </div>
+            </Link>
+
+            <Link to={`${path}/books`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">Books</p>
+              </div>
+            </Link>
+
+            <Link to={`${path}/companies`}>
+              <div className="resources-category-wrapper">
+                <BookSvg
+                  className="resources-book-svg"
+                  color=""
+                  dimensions={props.dimensions}
+                />
+                <p className="resources-subtitle">Companies</p>
               </div>
             </Link>
 

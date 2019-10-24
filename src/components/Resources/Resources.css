@@ -3,8 +3,10 @@
      Resources
 ================== */
 
+/* General */
 .resources-wrapper {
   min-height: 90vh;
+  padding-bottom: 5vw;
 }
 
 .resources-title-wrapper {
@@ -19,7 +21,13 @@
   font-size: 10vw;
   text-shadow: 0 0 0.5vw rgb(255, 244, 221);
 }
+.resources-title-lg {
+  color: #333;
+  font-size: 8vw;
+  text-shadow: 0 0 0.5vw rgb(255, 244, 221);
+}
 
+/* Resources.js */
 /* Summary */
 .resources-summary-wrapper {
   background: cornsilk;
@@ -30,13 +38,10 @@
 }
 .resources-summary {
   color: #333;
-  /* color: #b8b8b8; */
   font-size: 2vw;
   margin: .5vw auto;
 }
-
-/* All categories */
-
+/* Categories */
 .resources-categories-wrapper {
   align-items: center;
   display: flex;
@@ -59,13 +64,15 @@
   grid-row: 2 / span 2;
   margin: auto;
 }
-
 .resources-book-svg {
   grid-column: 1 / span 6;
   grid-row: 1 / span 6;
 }
+/* End Resources.js */
 
-/* Resources Content General */
+
+
+/* Resources/subCategory */
 .resources-content-wrapper {
   background: #d0d0d0;
   border-radius: 0.5vw;
@@ -74,6 +81,7 @@
   width: 90vw;
 }
 .resources-content-summary {
+  color: #333;
   font-size: 2vw;
   margin: 2vw auto;
   width: 90%;
