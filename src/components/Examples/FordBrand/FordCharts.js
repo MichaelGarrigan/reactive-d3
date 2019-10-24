@@ -5,17 +5,13 @@ import FordSalesTotal from './FordSalesTotal.js';
 import FordGauges from './FordGauges.js';
 import FordLine from './FordLine.js';
 
-import useElementSize from '../../../useElementSize.js';
-
 import './Ford.css';
 
 
 export default props => {
-
-  let [ sizeRef, dimensions ] = useElementSize();
   
   return (
-    <div className="ford-charts-wrapper" ref={sizeRef}>
+    <div className="ford-charts-wrapper">
 
       <FordSalesTotal
         category={props.category}
@@ -26,7 +22,7 @@ export default props => {
       <FordGauges 
         category={props.category}
         DATA={props.DATA}
-        dimensions={dimensions}
+        dimensions={props.dimensions}
         selectedItemName={props.selectedItemName}
         year={props.year}
       />
@@ -34,7 +30,7 @@ export default props => {
       <FordLine 
         category={props.category}
         DATA={props.DATA}
-        dimensions={dimensions}
+        dimensions={props.dimensions}
         selectedItemName={props.selectedItemName}
         selectedItemData={props.selectedItemData}
         year={props.year}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import './Examples.css';
 
 import Area from './Area/Area.js';
@@ -19,43 +19,57 @@ import WorldClocks from './Clocks/WorldClocks.js';
 
 
 export default props => {
-  
-  const [route, setRoute] = useState([]);
-  const HOC = (Comp, props) => <Comp {...props} setRoute={setRoute} />;
+  let { path } = useRouteMatch();
   
   return (
-    route.length === 0 
-    ? (
-    <div className="examples-wrapper">
-
-      <Link to={`${props.match.url}/worldClocks`}>
-        <div className="example-wrapper" onClick={() => setRoute(['worldClocks', WorldClocks])}>
-          <p className="example-text">World</p>
-          <p className="example-text">Clocks</p>
-          <svg 
-            className="example-thumbnail"
-            viewBox="0 0 51.329165 31.220834" 
-          >
-            <g transform="translate(0 -265.78)">
-              <g transform="translate(.20045 .60136)">
-                <path 
-                  className="example-svg-component-fill"
-                  transform="matrix(.26458 0 0 .26458 0 265.78)" 
-                  d="m29.162 10.922c8.5798 11.273 12.462 22.611 13.734 26.936a8.0812 7.7024 50.307 0 0 0.42188 1.4746c0.05065 0.19805 0.11133 0.44336 0.11133 0.44336l0.05078-0.04102a8.0812 7.7024 50.307 0 0 1.209 1.9512 8.0812 7.7024 50.307 0 0 8.4648 2.6895l46.516 56.041 4.4687-3.7109-46.514-56.039a8.0812 7.7024 50.307 0 0 -1.084 -8.8203 8.0812 7.7024 50.307 0 0 -4.1426 -2.6973c-4.4426-2.3447-14.325-8.228-23.236-18.227zm68.318 79.551a2.5254 2.5254 0 0 1 2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 -2.5254 2.5254 2.5254 0 0 1 2.5254 -2.5254z" 
-                />
-                <path 
-                  className="example-svg-component-fill"
-                  transform="matrix(.26458 0 0 .26458 0 265.78)" 
-                  d="m161.8 31.949c-10.713 9.2696-21.785 13.853-26.021 15.395a7.7024 8.0812 46.713 0 0 -1.4473 0.51367c-0.19457 0.06312-0.4336 0.13867-0.4336 0.13867l0.043 0.04687a7.7024 8.0812 46.713 0 0 -1.8711 1.3301 7.7024 8.0812 46.713 0 0 -2.5234 7.2324l-39.906 37.588 5.7148 6.0664 39.914-37.596a7.7024 8.0812 46.713 0 0 7.3633 -2.0781 7.7024 8.0812 46.713 0 0 2.4336 -4.3047c2.0616-4.5809 7.3141-14.811 16.734-24.332zm-64.578 58.271a2.5254 2.5254 0 0 1 2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 -2.5254 2.5254 2.5254 0 0 1 2.5254 -2.5254z" 
-                />
+    <Switch>
+      <Route path={`${path}/worldClocks`} component={() => <WorldClocks dimensions={props.dimensions} />} />
+      <Route path={`${path}/ford`} component={() => <Ford dimensions={props.dimensions} />} />
+      <Route path={`${path}/barcharts`} component={() => <BarCharts dimensions={props.dimensions} />} />
+      <Route path={`${path}/linechart`} component={() => <LineChart dimensions={props.dimensions} />} />
+      <Route path={`${path}/lower48`} component={() => <Lower48 dimensions={props.dimensions} />} />
+      <Route path={`${path}/area`} component={() => <Area dimensions={props.dimensions} />} />
+      <Route path={`${path}/closestcircle`} component={() => <ClosestCircle dimensions={props.dimensions} />} />
+      <Route path={`${path}/contour`} component={() => <Contour dimensions={props.dimensions} />} />
+      <Route path={`${path}/daynight`} component={() => <DayNight dimensions={props.dimensions} />} />
+      <Route path={`${path}/treemap`} component={() => <Treemap dimensions={props.dimensions} />} />
+      <Route path={`${path}/tux`} component={() => <Tux dimensions={props.dimensions} />} />
+      <Route path={`${path}/pie3versions`} component={() => <Pie3Versions dimensions={props.dimensions} />} />
+      <Route path={`${path}/force`} component={() => <Force dimensions={props.dimensions} />} />
+      <Route path={`${path}/axis`} component={() => <Axis dimensions={props.dimensions} />} />
+      
+      <Route path={path}>
+  
+        <div className="examples-wrapper">
+        
+        <Link to={`${path}/worldClocks`}>
+          <div className="example-wrapper" >
+            <p className="example-text">World</p>
+            <p className="example-text">Clocks</p>
+            <svg 
+              className="example-thumbnail"
+              viewBox="0 0 51.329165 31.220834" 
+            >
+              <g transform="translate(0 -265.78)">
+                <g transform="translate(.20045 .60136)">
+                  <path 
+                    className="example-svg-component-fill"
+                    transform="matrix(.26458 0 0 .26458 0 265.78)" 
+                    d="m29.162 10.922c8.5798 11.273 12.462 22.611 13.734 26.936a8.0812 7.7024 50.307 0 0 0.42188 1.4746c0.05065 0.19805 0.11133 0.44336 0.11133 0.44336l0.05078-0.04102a8.0812 7.7024 50.307 0 0 1.209 1.9512 8.0812 7.7024 50.307 0 0 8.4648 2.6895l46.516 56.041 4.4687-3.7109-46.514-56.039a8.0812 7.7024 50.307 0 0 -1.084 -8.8203 8.0812 7.7024 50.307 0 0 -4.1426 -2.6973c-4.4426-2.3447-14.325-8.228-23.236-18.227zm68.318 79.551a2.5254 2.5254 0 0 1 2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 -2.5254 2.5254 2.5254 0 0 1 2.5254 -2.5254z" 
+                  />
+                  <path 
+                    className="example-svg-component-fill"
+                    transform="matrix(.26458 0 0 .26458 0 265.78)" 
+                    d="m161.8 31.949c-10.713 9.2696-21.785 13.853-26.021 15.395a7.7024 8.0812 46.713 0 0 -1.4473 0.51367c-0.19457 0.06312-0.4336 0.13867-0.4336 0.13867l0.043 0.04687a7.7024 8.0812 46.713 0 0 -1.8711 1.3301 7.7024 8.0812 46.713 0 0 -2.5234 7.2324l-39.906 37.588 5.7148 6.0664 39.914-37.596a7.7024 8.0812 46.713 0 0 7.3633 -2.0781 7.7024 8.0812 46.713 0 0 2.4336 -4.3047c2.0616-4.5809 7.3141-14.811 16.734-24.332zm-64.578 58.271a2.5254 2.5254 0 0 1 2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 2.5254 2.5254 2.5254 0 0 1 -2.5254 -2.5254 2.5254 2.5254 0 0 1 2.5254 -2.5254z" 
+                  />
+                </g>
               </g>
-            </g>
-          </svg>
-        </div>
-      </Link>
+            </svg>
+          </div>
+        </Link>
 
-      <Link to={`${props.match.url}/ford`}>
-        <div className="example-wrapper" onClick={() => setRoute(['ford', Ford])}>
+      <Link to={`${path}/ford`}>
+        <div className="example-wrapper">
           <p className="example-text">Ford Sales</p>
           <p className="example-text">2017 & 2018</p>
           <svg 
@@ -85,8 +99,8 @@ export default props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/barCharts`}>
-        <div className="example-wrapper" onClick={() => setRoute(['barCharts', BarCharts])}>
+      <Link to={`${path}/barcharts`}>
+        <div className="example-wrapper">
           <p className="example-text">Bar</p>
           <p className="example-text">Charts</p>
           <svg 
@@ -105,8 +119,8 @@ export default props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/lineChart`}>
-        <div className="example-wrapper" onClick={() => setRoute(['lineChart', LineChart])}>
+      <Link to={`${path}/linechart`}>
+        <div className="example-wrapper">
           <p className="example-text">Line</p>
           <p className="example-text">Chart</p>
           <svg 
@@ -125,8 +139,8 @@ export default props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/lower48`}>
-        <div className="example-wrapper" onClick={() => setRoute(['lower48', Lower48])}>
+      <Link to={`${path}/lower48`}>
+        <div className="example-wrapper">
           <p className="example-text">US Lower</p>
           <p className="example-text">48 States</p>
           <svg 
@@ -217,8 +231,8 @@ export default props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/area`}>
-        <div className="example-wrapper" onClick={() => setRoute(['area', Area])}>
+      <Link to={`${path}/area`}>
+        <div className="example-wrapper">
           <p className="example-text">Rainfall</p>
           <p className="example-text">Area Chart</p>
           <svg
@@ -251,67 +265,120 @@ export default props => {
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/closestCircle`}>
-        <div className="example-wrapper" onClick={() => setRoute(['closestCircle', ClosestCircle])}>
+      <Link to={`${path}/closestcircle`}>
+        <div className="example-wrapper">
           <p className="example-text">Closest</p>
           <p className="example-text">Circle</p>
+          <svg 
+            className="example-thumbnail"
+            viewBox="0 0 51.329165 31.220834"
+          >
+            <g transform="translate(0 -265.78)">
+              <path 
+                className="example-svg-component-fill"
+                transform="matrix(.26458 0 0 .26458 0 265.78)" 
+                d="m54.547 36.934a49.75 47.982 0 0 0 -49.748 47.984 49.75 47.982 0 0 0 14.141 33.439h9.4551a43.484 41.938 0 0 1 -17.328 -33.439 43.484 41.938 0 0 1 43.48 -41.939 43.484 41.938 0 0 1 43.484 41.939 43.484 41.938 0 0 1 -17.305 33.439h9.502a49.75 47.982 0 0 0 14.07 -33.439 49.75 47.982 0 0 0 -49.752 -47.984z" 
+              />
+              <path 
+                className="example-svg-component-fill"
+                transform="matrix(.26458 0 0 .26458 0 265.78)" 
+                d="m122.78-0.14258a49.75 47.982 0 0 0 -16.715 35.816 49.75 47.982 0 0 0 49.748 47.98 49.75 47.982 0 0 0 38.559 -17.701l0.10547-11.178a43.484 41.938 0 0 1 -38.664 22.838 43.484 41.938 0 0 1 -43.48 -41.939 43.484 41.938 0 0 1 20.863 -35.775l-10.416-0.041016zm55.928 0.2207a43.484 41.938 0 0 1 16.129 17.15l0.10547-11.104a49.75 47.982 0 0 0 -5.8008 -6.0059l-10.434-0.041016z"  
+              />
+            </g>
+          </svg>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/contour`}>
-        <div className="example-wrapper" onClick={() => setRoute(['contour', Contour])}>
-          <p className="example-text"></p>
+      <Link to={`${path}/contour`}>
+        <div className="example-wrapper">
           <p className="example-text">Contour</p>
+          <p className="example-text">Design</p>
+          <svg 
+            className="example-thumbnail"
+            viewBox="0 0 51.329165 31.220834" 
+          >
+            <g transform="translate(0 -265.78)" className="example-svg-component-stroke" fill="none">
+              <path 
+                d="m3.3073 271.2c-2.2133 17.431 24.63 20.284 24.001 7.1815-9.1281-17.821 21.962-10.648 19.844-3.0238-8.6935 10.583 0.28348 18.143 0.28348 18.143"
+              />
+              <path 
+                d="m7.8621 291.37c-1.4418-14.732 16.045-17.145 15.635-6.0699-5.9463 15.063 14.307 8.9998 12.927 2.5558-5.6631-8.9452 0.18467-15.335 0.18467-15.335"
+              />
+            </g>
+          </svg>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/dayNight`}>
-        <div className="example-wrapper" onClick={() => setRoute(['dayNight', DayNight])}>
+      <Link to={`${path}/daynight`}>
+        <div className="example-wrapper">
           <p className="example-text">Day/Night</p>
           <p className="example-text">Tracker</p>
+          <svg 
+            className="example-thumbnail"
+            viewBox="0 0 51.329165 31.220834"
+          >
+            <g transform="translate(0 -265.78)" className="example-svg-component-fill">
+            <path 
+              d="m12.568 269.88a8.599 8.599 0 0 0 -8.599 8.599 8.599 8.599 0 0 0 8.599 8.599 8.599 8.599 0 0 0 4.161 -1.0847 7.0871 7.0871 0 0 1 -2.6489 0.5178 7.0871 7.0871 0 0 1 -7.0869 -7.0869 7.0871 7.0871 0 0 1 7.0869 -7.0869 7.0871 7.0871 0 0 1 7.0662 6.5588 8.599 8.599 0 0 0 0.02067 -0.41703 8.599 8.599 0 0 0 -8.599 -8.599z"
+            />
+            <path 
+              d="m46.64 291.86-4.0162-3.2598 2.3535 4.6062-3.2507-4.0236 1.3444 4.9949-2.3431-4.6115 0.27657 5.1652-1.3331-4.9979-0.80339 5.1099-0.26486-5.1658-1.8482 4.8312 0.81497-5.108-2.8123 4.3413 1.8592-4.827-3.6535 3.6618 2.8221-4.335-4.3349 2.8221 3.6617-3.6535-4.827 1.8592 4.3413-2.8123-5.108 0.81497 4.8312-1.8482-5.1658-0.26486 5.1099-0.80339-4.9979-1.3331 5.1652 0.27657-4.6115-2.3431 4.9949 1.3444-4.0236-3.2507 4.6062 2.3536-3.2598-4.0162 4.0162 3.2598-2.3535-4.6062 3.2507 4.0236-1.3444-4.9949 2.3431 4.6115-0.27657-5.1652 1.3331 4.9979 0.80339-5.1099 0.26486 5.1658 1.8482-4.8312-0.81497 5.108 2.8123-4.3413-1.8592 4.827 3.6535-3.6617-2.8221 4.3349 4.3349-2.8221-3.6617 3.6535 4.827-1.8592-4.3413 2.8123 5.108-0.81496-4.8312 1.8482 5.1658 0.26486-5.1099 0.80339 4.9979 1.3331-5.1652-0.27657 4.6115 2.3431-4.9949-1.3444 4.0236 3.2507-4.6062-2.3536z" 
+            />
+            </g>
+          </svg>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/treemap`}>
-        <div className="example-wrapper" onClick={() => setRoute(['treemap', Treemap])}>
+      <Link to={`${path}/treemap`}>
+        <div className="example-wrapper">
           <p className="example-text">Treemap</p>
           <p className="example-text">Basic</p>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/tux`}>
-        <div className="example-wrapper" onClick={() => setRoute(['tux', Tux])}>
+      <Link to={`${path}/tux`}>
+        <div className="example-wrapper">
           <p className="example-text">SVG Tux</p>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/pie3Versions`}>
-        <div className="example-wrapper" onClick={() => setRoute(['pie3Versions', Pie3Versions])}>
+      <Link to={`${path}/pie3versions`}>
+        <div className="example-wrapper">
           <p className="example-text">d3 & React</p>
           <p className="example-text">3 versions</p>
+          <svg
+            className="example-thumbnail"
+            viewBox="0 0 51.329165 31.220834"
+          >
+            <g transform="translate(0 -265.78)" className="example-svg-component-fill">
+              <path 
+                d="m8.1532 286.56v-10.427q-0.73112 0.58316-1.4187 0.99224t-1.8887 0.83556v-1.4622q1.9061-0.80945 3.3074-2.0976h1.6189v12.159h3.2465v1.3491h-8.1729v-1.3491z" 
+              />
+              <path 
+                d="m30.927 288.11h-8.1729v-1.4884q0-0.57445 0.235-1.2272 0.235-0.66149 0.89649-1.4796 0.66149-0.81816 1.4013-1.5754l0.9226-0.94001q0.27852-0.28723 1.2185-1.3317 0.94001-1.0445 1.2359-1.6015 0.30463-0.55705 0.30463-1.0967 0-0.87038-0.6963-1.3404-0.6963-0.47871-1.5667-0.47871-0.49612 0-1.1141 0.11315-0.60927 0.11315-1.0706 0.26982-0.4613 0.14796-1.4971 0.61797v-1.4361q1.0967-0.52223 2.1934-0.71371 1.1054-0.20019 1.8191-0.20019 1.0532 0 1.9322 0.34815 0.88779 0.33945 1.3143 1.0619 0.43519 0.72241 0.43519 1.5406 0 0.9139-0.55704 1.8713-0.54834 0.95742-2.0802 2.4632l-0.99223 0.98353-0.83556 0.81816q-0.79205 0.80075-1.2795 1.5493t-0.53964 1.7843h6.493z" 
+              />
+              <path 
+                d="m39.928 287.67v-1.7059q1.9932 1.0096 3.4554 1.0096 1.3404 0 2.2108-0.80946 0.87908-0.81815 0.87908-2.0976 0-1.2882-0.96612-2.0976-0.95742-0.80945-3.2639-0.80945h-0.89649v-1.3491h1.2446q1.6972 0 2.4545-0.75723 0.75723-0.76594 0.75723-1.6972 0-0.84427-0.61797-1.4187-0.61797-0.58316-1.8974-0.58316-1.4361 0-3.0898 0.80946v-1.5406q1.6537-0.61797 3.0289-0.61797 2.4632 0 3.3945 0.97483 0.94001 0.96612 0.94001 2.2108 0 0.92261-0.49612 1.7321-0.49612 0.80945-1.8278 1.4448 1.175 0.34815 1.7756 0.85297 0.60056 0.50483 0.9052 1.1924 0.31334 0.6876 0.31334 1.5406 0 1.8974-1.41 3.1334-1.4013 1.2359-3.6295 1.2359-0.64408 0-1.41-0.0958-0.75723-0.0957-1.8539-0.55704z" 
+              />
+            </g>
+          </svg>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/force`}>
-        <div className="example-wrapper" onClick={() => setRoute(['force', Force])}>
+      <Link to={`${path}/force`}>
+        <div className="example-wrapper">
           <p className="example-text">Force</p>
         </div>
       </Link>
 
-      <Link to={`${props.match.url}/axis`}>
-        <div className="example-wrapper" onClick={() => setRoute(['axis', Axis])}>
+      <Link to={`${path}/axis`}>
+        <div className="example-wrapper">
           <p className="example-text">Axis</p>
         </div>
       </Link>
 
       </div>
-      )
-      : (
-        <Route 
-          exact
-          path={`${props.match.path}/${route[0]}`}
-          component={ (props) => HOC(route[1], {...props}) }
-        />
-      )
+    </Route>
+    </Switch>
   )
 };

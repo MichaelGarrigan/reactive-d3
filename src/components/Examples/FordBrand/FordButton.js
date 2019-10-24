@@ -3,7 +3,7 @@ import React from 'react';
 import './Ford.css';
 
 
-const FordButton = props => (
+export default props => (
   <div className="ford-button-wrapper">
 
     <div className="ford-button-group">
@@ -83,5 +83,3 @@ const FordButton = props => (
     </div>
   </div>
 );
-
-export default FordButton;

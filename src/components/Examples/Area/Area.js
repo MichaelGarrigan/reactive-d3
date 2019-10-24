@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import Raindrop from './Raindrop.js';
 
@@ -10,7 +10,6 @@ import { scaleLinear, scalePoint } from 'd3-scale';
 import { select } from 'd3-selection';
 import * as shape from 'd3-shape';
 
-import useElementSize from '../../../useElementSize.js';
 import curveTypes from '../LineChart/curveTypes.js';
 import rainData from './AreaData.js';
  
@@ -24,12 +23,9 @@ export default props => {
   const [tooltipData, setTooltipData] = useState([56.23, 44.98]);
 
   const tooltipRef = useRef(null);
-  let [ sizeRef, dimensions ] = useElementSize();
-
-  useEffect( () => { return () => props.setRoute([]); }, [] );
-
-  const displayWidth = Math.round(dimensions.width * 0.95);
-  const displayHeight = Math.round(dimensions.width * 0.7);
+  
+  const displayWidth = Math.round(props.dimensions.width * 0.95);
+  const displayHeight = Math.round(props.dimensions.width * 0.7);
   
   const svgWidth = Math.round(displayWidth * 0.8) - 6;
   const svgHeight = Math.round(displayHeight * 0.85);
@@ -65,7 +61,7 @@ export default props => {
   
 
   return (
-    <div className="area-wrapper" ref={sizeRef}>
+    <div className="area-wrapper">
 
       <TitleBanner title="Area Chart for Rainfall" />
 

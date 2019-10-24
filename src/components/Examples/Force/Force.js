@@ -32,7 +32,6 @@ export default class Force extends Component {
   }
   componentWillUnmount(){
     window.removeEventListener('resize', this.updateDimensions);
-    this.props.setRoute([]);
   }
   render() {
     let { height, width } = this.state;

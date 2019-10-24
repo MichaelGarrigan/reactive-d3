@@ -1,4 +1,4 @@
-import React, { Component, useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as topojson from 'topojson-client';
 
 import states from '../../../../node_modules/us-atlas/us/states-10m.json';
@@ -18,12 +18,6 @@ export default props => {
   let bbox = topojson.bbox(states);
   let width = bbox[2] + 30;
   let height = bbox[3] - bbox[1] + 30;
-
-
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
-
   
   const path = geoPath();
 
@@ -78,5 +72,5 @@ export default props => {
         
       </svg>
     </div>
-  )
-}
+  );
+};

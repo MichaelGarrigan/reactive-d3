@@ -9,7 +9,6 @@ import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 import  * as shape from 'd3-shape';
 
-import useElementSize from '../../../useElementSize.js';
 import curveTypes from './curveTypes.js';
  
 import './LineChart.css';
@@ -22,14 +21,8 @@ export default props => {
   const [dataRandom, setDataRandom] = useState(randomizeData());
   const [darkMode, setDarkMode] = useState(false);
   const [lineFill, setLineFill] = useState(false);
-
-  let [ sizeRef, dimensions ] = useElementSize();
-
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
   
-  const svgWidth = Math.round(dimensions.width * 0.9);
+  const svgWidth = Math.round(props.dimensions.width * 0.9);
   const svgHeight = Math.round(svgWidth * 0.5);
   const marginWidth = Math.round(svgWidth * 0.06);
   const marginHeight = Math.round(svgHeight * 0.06);
@@ -49,7 +42,7 @@ export default props => {
 
 
   return (
-    <div className="line-wrapper" ref={sizeRef}>
+    <div className="line-wrapper">
 
       <TitleBanner title='Line Chart with Curves' />
 

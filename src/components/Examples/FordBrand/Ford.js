@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import FordButton from './FordButton.js';
@@ -16,9 +16,6 @@ const Ford = props => {
   const [selectedItemName, setSelectedItemName] = useState('Trucks');
   const [year, setYear] = useState('2018');
 
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
   
   return (
     <div className="ford-wrapper">
@@ -39,6 +36,7 @@ const Ford = props => {
         <FordCharts 
           category={category}
           DATA={DATA}
+          dimensions={props.dimensions}
           selectedItemData={selectedItemData}
           selectedItemName={selectedItemName}
           year={year}

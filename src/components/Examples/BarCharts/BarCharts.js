@@ -1,33 +1,25 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import FrequencyOfLetters from './FrequencyOfLetters.js';
 import StatesPopulation from './StatesPopulation.js';
 
-import useElementSize from '../../../useElementSize.js';
-
 import './BarCharts.css';
 
 
 export default props => {
-
-  const [sizeRef, dimensions] = useElementSize();
-
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
   
   return (
-    <div className="barCharts-wrapper" ref={sizeRef}> 
+    <div className="barCharts-wrapper"> 
 
       <TitleBanner title='Frequency of Letters' />
 
-      <FrequencyOfLetters dimensions={dimensions} />
+      <FrequencyOfLetters dimensions={props.dimensions} />
 
       <TitleBanner title='US State Populations' />
 
-      <StatesPopulation dimensions={dimensions} />
+      <StatesPopulation dimensions={props.dimensions} />
         
     </div>
   );

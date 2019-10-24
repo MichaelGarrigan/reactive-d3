@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useCallback, useLayoutEffect } from 'react';
 
 import { range } from 'd3-array';
 import { drag } from 'd3-drag';
@@ -7,24 +7,19 @@ import { schemeCategory10 } from 'd3-scale-chromatic';
 import { event, mouse, select } from 'd3-selection';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
-import useElementSize from '../../../useElementSize.js';
+
 import './ClosestCircle.css';
 
 
 export default props => {
 
-  useEffect( () => {
-    return () => props.setRoute([]);
-  }, []);
-
   const [canvas, setCanvas] = useState(null);
-  const [sizeRef, dimensions] = useElementSize();
-
+  
   const canvasRef = useCallback(node => {
     setCanvas(node);
 }, []);
 
-  const width = Math.round(dimensions.width * 0.9);
+  const width = Math.round(props.dimensions.width * 0.9);
   const height = Math.round(width * 0.6);
   const radius = Math.round(width * 0.05);;
   const maxDistance = Infinity;
@@ -111,7 +106,7 @@ export default props => {
   }
 
   return (
-    <div className="closest-wrapper" ref={sizeRef}>
+    <div className="closest-wrapper">
       
       <TitleBanner title="Closest Circle" />
 

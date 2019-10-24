@@ -11,10 +11,7 @@ import data from './TreemapData.js';
 import './Treemap.css';
 
 
-const Treemap = props => {
-  useLayoutEffect( () => {
-    return () => props.setRoute([]);
-  });
+export default props => {
 
   const height = 1060, 
         width = 975;
@@ -28,13 +25,13 @@ const Treemap = props => {
     .sum(d => d.size)
     .sort( (a, b) => b.size - a.size);
   
-  const treemap = treemap()
+  const tree = treemap()
     .tile(treemapResquarify)
     .size([width, height])
     .round(true)
     .padding(1);
 
-  treemap(root);
+  tree(root);
   
     useEffect( () => {
         const svg = select(ref.current);
@@ -80,5 +77,3 @@ const Treemap = props => {
     </div>
   )
 };
-
-export default Treemap;

@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useCallback, useLayoutEffect } from 'react';
 
 import { extent, range } from 'd3-array';
 import { contours } from 'd3-contour';
@@ -9,7 +9,7 @@ import { interpolateMagma } from 'd3-scale-chromatic';
 import { select } from 'd3-selection';
 
 import TitleBanner from '../titleBanner/TitleBanner.js';
-import useElementSize from '../../../useElementSize.js';
+
 import './Contour.css';
 
 const value = (x, y) =>
@@ -39,17 +39,12 @@ const genGrid = (width, height, x, y) => {
 
 export default props => {
   const [svg, setSvg] = useState(null);
-  const [sizeRef, dimensions] = useElementSize();
 
-  const width = Math.round(dimensions.width * 0.9);
+  const width = Math.round(props.dimensions.width * 0.9);
   const height = Math.round(width * 0.6);
 
   const svgRef = useCallback(node => {
     setSvg(node);
-  }, []);
-
-  useEffect( () => {
-    return () => props.setRoute([]);
   }, []);
 
   const x = scaleLinear([-2, 2], [0, width]);
@@ -83,7 +78,7 @@ export default props => {
    
 
   return (
-    <div className="closest-wrapper" ref={sizeRef}>
+    <div className="closest-wrapper">
       
       <TitleBanner title="Contour" />
 

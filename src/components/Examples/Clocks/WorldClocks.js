@@ -4,13 +4,9 @@ import React, { useState, useLayoutEffect } from 'react';
 import TitleBanner from '../titleBanner/TitleBanner.js';
 import Clocks from './Clocks.js';
 
-import useElementSize from '../../../useElementSize.js';
-
 import './Clocks.css';
 
 export default props => {
-
-  const [sizeRef, dimensions] = useElementSize();
 
   const [time, setTime] = useState({
     seconds: 0,
@@ -19,15 +15,12 @@ export default props => {
     amPm: 'am'
   });
 
-  let timer;
-
   // Initialize and remove the timer
   useLayoutEffect( () => {
-    timer = setInterval(() => tick(), 1000);
+    let timer = setInterval(() => tick(), 1000);
 
-    return () => { 
-      clearInterval(timer); 
-      props.setRoute([]); }
+    return () => clearInterval(timer); 
+     
   }, [] );
 
   // Update state every 1 second
@@ -44,12 +37,12 @@ export default props => {
   } 
   
   return (
-    <div className="clocks-wrapper" ref={sizeRef}>
+    <div className="clocks-wrapper">
 
       <TitleBanner title='Classic World Clocks' />
 
       <Clocks
-        dimensions={dimensions}
+        dimensions={props.dimensions}
         time={time}
       />
         

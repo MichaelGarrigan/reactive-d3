@@ -1,0 +1,9 @@
+
+.tux-svg-wrapper {
+  width: 100%;
+}
+
+.tux-svg {
+  display: block;
+  margin: 0 auto;
+}

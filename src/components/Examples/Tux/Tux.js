@@ -4,23 +4,24 @@ import TitleBanner from '../titleBanner/TitleBanner.js';
 import './Tux.css';
 
 const Tux = props => {
-  useLayoutEffect( () => {
-    return () => props.setRoute([]);
-  });
+  const width = Math.floor(props.dimensions.width * 0.4);
+  const height = Math.floor(width * 1.42);
 
   return(
   <div>
     <TitleBanner title='Tux Original SVG' />
     <div className="tux-svg-wrapper">
     <svg
+      className="tux-svg"
+      viewBox={`0 0 ${width} ${height}`}
       style={{
         fill: '#000000',
         fillOpacity: '1',
         margin: '0 auto',
         stroke: 'none'
       }}
-      width="595.275591"
-      height="841.889764"
+      width={width}
+      height={height}
     >
       <g transform="translate(-0.826814,-8.526513e-14)">
         <path
