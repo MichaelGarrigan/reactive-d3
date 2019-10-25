@@ -52,7 +52,7 @@ export default ({dimensions}) => {
       }
     };
     
-    let interval = setInterval(build, 600);
+    let interval = setInterval(build, 300);
     
     
     return () => clearInterval(interval); 
