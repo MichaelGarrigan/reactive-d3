@@ -18,7 +18,7 @@ export default () => {
       <NavBar dimensions={dimensions} />
 
       <Route exact path='/' component={() => <Home dimensions={dimensions} />} />
-      <Route path='/Examples' component={Examples} />
+      <Route path='/Examples' component={() => <Examples dimensions={dimensions} />} />
       <Route exact path='/Modules' component={() => <Modules dimensions={dimensions} />} />
       <Route path='/Resources' component={() => <Resources dimensions={dimensions} />} />
 
