@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server/index.js",
     "start_watch": "nodemon server/index.js",
-    "webpack": "webpack --mode production",
+    "webpack": "webpack --mode 'production'",
     "webpack_dev": "webpack --mode development --watch"
   },
   "babel": {
