@@ -7,10 +7,10 @@
     "**/event-stream": "^4.0.1"
   },
   "scripts": {
-    "webpack": "webpack --watch -d",
-    "webpack_dev": "webpack --mode development --watch",
-    "start": "nodemon server/index.js",
-    "lint": "eslint src/**/*.js src/**/*.jsx"
+    "start": "node server/index.js",
+    "start_watch": "nodemon server/index.js",
+    "webpack": "webpack --mode production",
+    "webpack_dev": "webpack --mode development --watch"
   },
   "babel": {
     "presets": [
@@ -25,7 +25,7 @@
       "@babel/plugin-proposal-class-properties"
     ]
   },
-  "repository": "https://github.com/M-garrigan/threact.com.git",
+  "repository": "https://github.com/M-garrigan/reactive-d3.git",
   "author": "Michael Garrigan",
   "license": "MIT",
   "private": false,
