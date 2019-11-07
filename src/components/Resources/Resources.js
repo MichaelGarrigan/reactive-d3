@@ -42,7 +42,7 @@ export default props => {
               A curated collection of informational links, articles, documentation and blogs.
             </p>
             <p className="resources-summary">
-              Click a category below to explore.
+              Click a category below to explore!
             </p>
           
           </div>
