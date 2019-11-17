@@ -1,0 +1,12 @@
+.title-banner {
+  background: rgb(248, 212, 10);
+  color: rgb(76, 142, 196);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4vw;
+  font-weight: 100;
+  margin: 20px auto;
+  padding: 5px 0;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgb(48, 47, 47);
+  width: 80%;
+}
