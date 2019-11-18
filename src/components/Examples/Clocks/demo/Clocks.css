@@ -1,0 +1,35 @@
+
+.clocks-wrapper {
+  width: 95vw;
+}
+
+.clocks-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 4vw 0;
+}
+
+.city-wrapper {
+  border-radius: 1vw;
+  padding: 2vw 3vw;
+}
+
+.city-wrapper-nyc {
+  background: #5D88C5;
+}
+.city-wrapper-london {
+  background: #ADD78A;
+}
+.city-wrapper-moscow {
+  background: #F4A872;
+}
+.city-wrapper-tokyo {
+  background: #BA7CB6;
+}
+
+.cityName-p {
+  color: var(--grayDark);
+  font-size: 4vw;
+  padding: 0 0 2vw 0;
+  text-align: center;
+}
