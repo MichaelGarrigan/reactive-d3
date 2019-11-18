@@ -1,0 +1,41 @@
+
+.template-example {
+  margin: 3vw auto 0;
+  padding-bottom: 20vw;
+  min-height: 100vh;
+}
+
+.template-tab-group {
+  display: flex;
+  justify-content: center;
+}
+
+.template-tab {
+  background: var(--gray1);
+  border: .3vw solid var(--grayDark);
+  border-top-left-radius: .5vw;
+  border-top-right-radius: .5vw;
+  cursor: pointer;
+  font-size: 3vw;
+  margin: 0 1vw;
+  padding: 0 1vw;
+}
+
+.template-tab-active {
+  background: var(--gray1);
+  border: .3vw solid var(--grayDark);
+  border-bottom: .3vw solid var(--gray1);
+  border-top-left-radius: .5vw;
+  border-top-right-radius: .5vw;
+  cursor: pointer;
+  font-size: 3vw;
+  margin: 0 1vw;
+  padding: 0 1vw;
+}
+
+.template-body-wrapper {
+  background: var(--gray1);
+  border: .3vw solid var(--grayDark);
+  margin: -.32vw auto 0;
+  width: 95vw;
+}

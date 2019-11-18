@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 
 import Banner from './Banner/Banner.js';
+import Code from './Code/Code.js';
 
 import './ExampleTemplate.css';
 
 export default props => {
+  const Demo = props.demo;
+  const Summary = props.summary;
 
   const [tab, setTab] = useState("Demo");
 
@@ -30,7 +33,13 @@ export default props => {
         </div>
 
         <div className="template-body-wrapper">
-          {props[tab]}
+          {
+            tab === "Demo"
+              ? <Demo dimensions={props.dimensions} />
+              : tab === "Code"
+                ? <Code dimensions={props.dimensions} code={props.code} />
+                : <Summary />
+          }
         </div>
       </section>
     </div>
