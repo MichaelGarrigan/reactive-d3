@@ -1,71 +1,47 @@
+
 .examples-wrapper {
-  align-items: center;
-  background: #444;
+  background: var(--gray6);
   display: flex;
   flex-wrap: wrap;
   min-height: 85vh;
-  justify-content: center;
-}
-
-.d3-example {
-  border: 3px solid #777;
-  border-radius: 3px;
-  height: 200px;
-  margin: 1rem 0;
-  text-align: center;
-  width: 200px;
-}
-.d3-example:hover {
-  border: 3px solid teal;
-}
-
-.d3-example-text {
-  background: #333;
-  display: block;
-}
-
-
-
-.d3-example:hover .example-thumbnail {
-  background: #333;
-  stroke: teal;
+  padding-top: 2vw;
+  justify-content: space-evenly;
 }
 
 .example-wrapper {
-  background: #777;
-  border: 3px solid #333;
-  border-radius: 3px;
-  height: 200px;
-  margin: 1rem;
+  background: var(--gray4);
+  border: thin solid var(--grayDark);
+  border-radius: .5vw;
+  height: 22vw;
+  margin: 1vw 0;
   text-align: center;
-  width: 200px;
+  width: 22vw;
 }
 .example-wrapper:hover {
-  background: #333;
-  border: 3px solid teal;
-  box-shadow: 0px 0px 15px 2px rgba(240,210,14,1);
+  background: var(--grayDark);
+  border: thin solid teal;
+  box-shadow: 0px 0px 3vw .1vw gold;
 }
 
 .example-text {
-  color: #333;
+  color: var(--grayDark);
   display: block;
-  font-size: 1.75rem;
-  font-weight: 600;
-  padding-top: 4px;
+  font-size: 3vw;
+  padding-top: .2vw;
 }
 .example-wrapper:hover .example-text {
   color: teal;
 }
 
 .example-svg-component-stroke {
-  stroke: #333;
+  stroke: var(--grayDark);
 }
 .example-wrapper:hover .example-svg-component-stroke {
   stroke: teal;
 }
 
 .example-svg-component-fill {
-  fill: #333;
+  fill: var(--grayDark);
 }
 .example-wrapper:hover .example-svg-component-fill {
   fill: teal;
