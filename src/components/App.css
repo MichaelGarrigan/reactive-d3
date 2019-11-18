@@ -4,9 +4,29 @@
   margin: 0;
   padding: 0;
 }
+a {
+  text-decoration: none;
+}
+
+/* VARIABLES */
+:root {
+  --blue: #61DAFB;
+  --orange: #F37553;
+  --yellow: #F8D30A;
+
+  --gray1: #d0d0d0;
+  --gray2: #b8b8b8;
+  --gray3: #a0a0a0;
+  --gray4: gray;
+  --gray5: #686868;
+  --gray6: #484848;
+
+  --grayDark: #333;
+  --grayLight: #ebebeb;
+}
 
 .global-container {
-  background: #555;
+  background: var(--gray6);
   height: 100%;
   width: 100vw;
 }
