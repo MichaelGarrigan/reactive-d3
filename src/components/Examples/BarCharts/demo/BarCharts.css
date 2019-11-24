@@ -1,0 +1,108 @@
+
+.barCharts-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+/* =================
+Frequency of Letters
+================= */
+.frequency-wrapper {
+  align-items: center;
+  background: var(--grayDark);
+  display: flex; 
+  flex-direction: column; 
+  margin: 2.5vw;
+  width: 95%;
+}
+.freq-title {
+  color: var(--orange);
+  font-size: 4vw;
+  font-weight: inherit;
+  margin: 2vw auto;
+}
+.freq-summary-p {
+  color: var(--grayLight);
+  font-size: 2vw;
+  margin: 0 auto 2vw;
+  width: 80%;
+}
+.freq-svg-text {	
+  fill: var(--orange);
+  font-size: 6vw;				
+  opacity: 0;		
+  transition: opacity 500ms ease-in-out;	
+}
+.freq-svg {
+  background: var(--gray6);
+  display: block;
+  margin: 1vw auto 3vw;
+}
+.freq-bar {
+  fill: var(--blue);
+}
+.freq-bar:hover {
+  fill: var(--orange);
+}
+
+.freq-axis text {
+  fill: var(--grayLight);
+  font-size: 1.5vw;
+}
+
+.freq-axis path,
+.freq-axis line {
+  stroke: var(--grayLight);
+  stroke-width: 0.05vw;
+}
+
+
+/* =================
+  States Population
+================= */
+.states-wrapper {
+  align-items: center;
+  background: var(--grayDark);
+  display: flex; 
+  flex-direction: column; 
+  margin: 2.5vw;
+  width: 95%;
+}
+.states-title {
+  color: var(--orange);
+  font-size: 4vw;
+  font-weight: inherit;
+  margin: 2vw auto;
+}
+
+.states-svg {
+  background: var(--gray6);
+  display: block;
+  margin: 1vw auto 3vw;
+}
+
+.states-bar {
+  fill: var(--blue);
+}
+
+.states-axis text {
+  fill: var(--grayLight);
+  font-size: 1.5vw;
+}
+
+.states-axis path,
+.states-axis line {
+  stroke: var(--grayLight);
+  stroke-width: 0.05vw;
+}
+.states-displayValue {
+  fill: var(--grayDark);
+  font-size: 3.5vw;
+  font-weight: 600;
+  text-anchor: end;
+}
+.states-text-name {
+  fill: var(--grayDark);
+  font-size: 2vw;
+  text-anchor: start;
+}
