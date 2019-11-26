@@ -37,14 +37,14 @@ export default props => {
       
         {
           topojson.feature(states, states.objects.states).features.map( (item, idx) => {
-            // console.log('area: ', path.area(item))
-            // console.log('bounds: ', path.bounds(item))
-            // console.log('centroid: ', path.centroid(item))
-            // console.log('measure: ', path.measure(item))
+            
             return (
               <path
                 key={idx}
-                className='lower48-path-states'
+                className={
+                  stateName === item.properties.name 
+                    ? 'lower48-path-states-active' : 'lower48-path-states'
+                  }
                 onClick={ () => setStateName(item.properties.name) }
                 ref={ node => select(node).attr('d', () => path(item)) }
               />
