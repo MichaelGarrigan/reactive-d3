@@ -5,72 +5,54 @@ import './Home.css';
 
 
 export default ({dimensions}) => {
-
-  const [cursor, setCursor] = useState(true);
-
-  useEffect( () => {
-    const blink = setInterval( () => {
-      setCursor( cursor => !cursor)
-    }, 500);
-    
-    return () => clearInterval(blink);
-  }, []);
-
   
   const [verbs, setVerbs] = useState(
-    ["Exploring", "Understanding", "Hacking", "Building"]
+    ["Exploring", "Hacking", "Building"]
   );
   const [content, setContent] = useState('');
   const [index, setIndex] = useState(0);
-  const [position, setPosition] = useState(0);
-  const [reset, setReset] = useState(false);
+  const [word, setWord] = useState(0);
+  const [fadeWordNow, setFadeWordNow] = useState(false);
+  const [pause, setPause] = useState(0);
   
   useEffect( () => {
 
     let build = () => {
-     
-      // word has been build and erased
-      if (position === 0 && reset) {
-        setContent('');
-        setReset(false);
+      
+      if (index === verbs[word % 3].length && pause < 6) {
+        setPause(pause + 1);
       }
-      // word has finished building
-      else if (position === verbs[index % 4].length-1 && !reset) {
-        setContent(`${content}${verbs[index % 4][position]}`);
-        setReset(true);
+      else if (index < verbs[word % 3].length) {
+        setContent(content + verbs[word % 3][index]);
         setIndex(index + 1);
-      }
-      // word is being built
-      else if (position < verbs[index % 4].length-1  && !reset) {
-        setContent(`${content}${verbs[index % 4][position]}`);
-        setPosition(position + 1); 
       } 
-      // word is being erased
       else {
-        setContent(content.substring(0, position));
-        setPosition(position - 1);
+        setPause(0)
+        setContent('');
+        setIndex(0);
+        setWord(word + 1);
       }
     };
     
-    let interval = setInterval(build, 300);
+    let interval = setInterval(build, 400);
     
     
     return () => clearInterval(interval); 
-  }, [position, content, index, reset]);
+  }, [content, index, word, pause]);
 
 
 
   return (
     <div className="home-wrapper">
       
-      <div className={
-        cursor ? "home-summary-verbs-blink" 
-                : "home-summary-verbs"
-      }
-      >{content}</div>
-       
-      <p className="home-summary-p">d3 and React</p>
-  
+      <div className="home-box-dynamic">
+        <span className="home-text-dynamic">{content}</span>
+      </div>
+
+      <div className="home-box-static">
+        <p className="home-text-static">d3 and React</p>
+      </div>
+    
     </div>
   );
 };
