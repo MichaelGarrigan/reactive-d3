@@ -1,0 +1,93 @@
+
+.linechart-wrapper {
+  background: var(--offWhite);
+  border-radius: 0.5vw;
+  margin: 4vw auto;
+  width: 95%;
+}
+.linechart-wrapper-dark {
+  background: var(--offBlack);
+  border-radius: 0.5vw;
+  margin: 4vw auto;
+  width: 95%;
+}
+
+.linechart {
+  width: 100%;
+}
+
+.linechart-btn-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2vw 0;
+}
+
+.linechart-btn {
+  border-radius: 1vw;
+  color: var(--offBlack);
+  font-size: 2vw;
+  padding: 1vw;
+}
+
+.linechart-select {
+  border-radius: 1vw;
+  color: var(--offBlack);
+  font-size: 2vw;
+  padding: 1vw;
+}
+
+.linechart-option {
+  font-size: 1.6vw;
+  color: var(--offBlack);
+  padding: 1vw;
+}
+
+/* Line Chart SVG */
+.linechart-svg {
+  background: transparent;
+  display: block;
+}
+
+.linechart-path-curve {
+  fill: none;
+  stroke: #ffab00;
+  stroke-width: 0.3vw;
+}
+.linechart-path-curve-dark {
+  fill: none;
+  stroke: greenyellow;
+  stroke-width: 0.3vw;
+}
+
+.linechart-path-fill {
+  fill: var(--gray4);
+}
+
+.linechart-axis text {
+  fill: var(--offBlack);
+  font-size: 1.5vw;
+}
+.linechart-axis-dark text {
+  fill: var(--offWhite);
+  font-size: 1.5vw;
+}
+
+.linechart-axis path,
+.linechart-axis line {
+  stroke: var(--offBlack);
+  stroke-width: 0.1vw;
+}
+.linechart-axis-dark path,
+.linechart-axis-dark line {
+  stroke: var(--offWhite);
+  stroke-width: 0.1vw;
+}
+
+.linechart-data-points {
+  fill: maroon;
+}
+.linechart-data-points-dark {
+  fill: orangered;
+  stroke: var(--offBlack);
+}
