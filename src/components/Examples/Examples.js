@@ -4,20 +4,24 @@ import './Examples.css';
 
 import Area from './Area/Area.js';
 import Axis from './Axis/Axis.js';
-import BarCharts from './BarCharts/BarCharts.js';
 import ClosestCircle from './ClosestCircle/ClosestCircle.js';
 import Contour from './Contour/Contour';
 import DayNight from './DayNightMap/DayNight.js';
 import Force from './Force/Force.js';
 import Ford from './FordBrand/Ford.js';
-import LineChart from './LineChart/LineChart.js';
 import Lower48 from './Lower48/Lower48.js';
 import Pie3Versions from './Pie3Versions/Pie3Versions.js';
 import Treemap from './Treemap/Treemap.js';
 import Tux from './Tux/Tux.js';
 
+import { BarCharts, BarChartsCode, BarChartsSummary } from './BarCharts/index.js';
+import BarChartsSVG from '../ExampleHelpers/ThumbnailSvgs/BarChartsSVG.js';
+
 import { Clocks, ClocksCode, ClocksSummary } from './Clocks/index.js';
 import ClocksSVG from '../ExampleHelpers/ThumbnailSvgs/ClocksSVG.js';
+
+import { LineChart, LineChartCode, LineChartSummary } from './LineChart/index.js';
+import LineChartSVG from '../ExampleHelpers/ThumbnailSvgs/LineChartSVG.js';
 
 import ExampleTemplate from '../ExampleHelpers/ExampleTemplate.js';
 
@@ -39,8 +43,33 @@ export default props => {
         } 
       />
       <Route path={`${path}/ford`} component={() => <Ford dimensions={props.dimensions} />} />
-      <Route path={`${path}/barcharts`} component={() => <BarCharts dimensions={props.dimensions} />} />
-      <Route path={`${path}/linechart`} component={() => <LineChart dimensions={props.dimensions} />} />
+
+      <Route 
+        path={`${path}/barcharts`} 
+        component={() => 
+          <ExampleTemplate 
+            dimensions={props.dimensions} 
+            title='Bar Charts'
+            demo={BarCharts}
+            code={BarChartsCode}
+            summary={BarChartsSummary}
+          />
+        } 
+      />
+
+      <Route 
+        path={`${path}/linechart`} 
+        component={() => 
+          <ExampleTemplate 
+            dimensions={props.dimensions} 
+            title='Line Chart with Curves'
+            demo={LineChart}
+            code={LineChartCode}
+            summary={LineChartSummary}
+          />
+        } 
+      />
+      
       <Route path={`${path}/lower48`} component={() => <Lower48 dimensions={props.dimensions} />} />
       <Route path={`${path}/area`} component={() => <Area dimensions={props.dimensions} />} />
       <Route path={`${path}/closestcircle`} component={() => <ClosestCircle dimensions={props.dimensions} />} />
@@ -99,19 +128,7 @@ export default props => {
         <div className="example-wrapper">
           <p className="example-text">Bar</p>
           <p className="example-text">Charts</p>
-          <svg 
-            className="example-thumbnail"
-            viewBox="0 0 51.329165 31.220834" 
-          >
-            <g transform="translate(0 -265.78)">
-              <path 
-                className="example-svg-component-stroke"
-                d="m6.6632 289.14 7.843-0.0472-0.0945-15.119 7.9375 1e-5 1e-6 15.119 8.1737-1e-5 -0.04725-11.103 7.7485-0.0473v11.198l6.2839 1e-5"
-                fill="none" 
-                strokeWidth="1.9844"
-              />
-            </g>
-          </svg>
+          { <BarChartsSVG /> }
         </div>
       </Link>
 
@@ -119,19 +136,7 @@ export default props => {
         <div className="example-wrapper">
           <p className="example-text">Line</p>
           <p className="example-text">Chart</p>
-          <svg 
-            className="example-thumbnail"
-            viewBox="0 0 51.329165 31.220834" 
-          >
-            <g transform="translate(0 -265.78)">
-              <path 
-                className="example-svg-component-stroke"
-                d="m9.3544 288.58 9.0872-12.027 6.949 14.433 12.963-19.11 3.4745 8.2854" 
-                fill="none" 
-                strokeWidth="1.9844"
-              />
-            </g>
-          </svg>
+          { <LineChartSVG /> }
         </div>
       </Link>
 
