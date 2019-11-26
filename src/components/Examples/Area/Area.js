@@ -10,7 +10,7 @@ import { scaleLinear, scalePoint } from 'd3-scale';
 import { select } from 'd3-selection';
 import * as shape from 'd3-shape';
 
-import curveTypes from '../LineChart/curveTypes.js';
+import curveTypes from '../LineChart/demo/curveTypes.js';
 import rainData from './AreaData.js';
  
 import './Area.css';
