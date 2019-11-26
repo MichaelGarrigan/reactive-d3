@@ -1,7 +1,6 @@
 
 import React, { useState, useLayoutEffect } from 'react';
 
-import TitleBanner from '../../titleBanner/TitleBanner.js';
 import Clock from './Clock.js';
 
 import './Clocks.css';

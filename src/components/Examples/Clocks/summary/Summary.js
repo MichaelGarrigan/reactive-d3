@@ -14,11 +14,11 @@ export default () => (
     </p>
 
     <p className="clocks-summary-p">
-      In the Clocks.js component we are using a useLayoutEffect hook to handle an interval function that handles each 'tick' or second. This interval handles calling a function that figures out the current time and sets the state to be shared by each clock.
+      In the Clocks.js component we are using a useLayoutEffect hook to handle an interval function that sets each 'tick' or second. This interval handles calling a function that figures out the current time and sets the state to be shared by each clock.
     </p>
 
     <p className="clocks-summary-p">
-      Since each clock is in a different time zone, we base the current time off of EST (eastern standard time). Each clock will adjust the time based off of EST, so London is +5 hours past NYC, Moscow is +7 ahead of NYC and Tokyo is +13 hours ahead of NYC.
+      Since each clock is in a different time zone, we base the current time off of EST (eastern standard time). Each clock will adjust the time based off of EST, so London is +5 hours ahead of NYC, Moscow is +7 ahead of NYC and Tokyo is +13 hours ahead of NYC.
     </p>
   </div>
 );
