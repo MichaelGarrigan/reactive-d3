@@ -280,7 +280,7 @@ export default props => {
 `;
 
 const tab3 = {
-  name: 'StatesPopulation.css',
+  name: 'StatesPopulation.js',
   code: code3
 };
 
