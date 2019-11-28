@@ -49,7 +49,7 @@ export default props => {
 
           <div className="resources-categories-wrapper">
           
-            <Link to={`${path}/design`}>
+            <Link to={`${path}/design`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -60,7 +60,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/d3`}>
+            <Link to={`${path}/d3`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -71,7 +71,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/datasources`}>
+            <Link to={`${path}/datasources`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -82,7 +82,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/react`}>
+            <Link to={`${path}/react`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -93,7 +93,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/groups`}>
+            <Link to={`${path}/groups`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -104,7 +104,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/books`}>
+            <Link to={`${path}/books`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -115,7 +115,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/companies`}>
+            <Link to={`${path}/companies`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"
@@ -126,7 +126,7 @@ export default props => {
               </div>
             </Link>
 
-            <Link to={`${path}/people`}>
+            <Link to={`${path}/people`} className="resources-anchor">
               <div className="resources-category-wrapper">
                 <BookSvg
                   className="resources-book-svg"

@@ -3,6 +3,7 @@
      Resources
 ================== */
 
+
 /* General */
 .resources-wrapper {
   min-height: 90vh;
@@ -49,6 +50,10 @@
   justify-content: space-evenly;
   margin: 0 auto;
   width: 90%;
+}
+.resources-anchor {
+  color: var(--gray1);
+  text-decoration: none;
 }
 .resources-category-wrapper {
   border-radius: .5vw;
