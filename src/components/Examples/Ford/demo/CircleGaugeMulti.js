@@ -8,13 +8,17 @@ import { lookupMainCategory } from './helperFunctions.js';
 
 const CircleGaugeMulti = props => {
   const { category, DATA, year } = props;
-  const { width } = props.dimensions;
-  const svgWidth = Math.round(width * 0.4);
-  const svgHeight = Math.round(width * 0.4);
+  
+  const width = props.dimensions.width;
+  const sectionWidth = Math.round( (width * 0.95) * 0.8);
+  const svgWidth = Math.round(sectionWidth * 0.4);
+  const svgHeight = Math.round(sectionWidth * 0.4);
   
   let segs = [];
   const twoPI = 2 * Math.PI;
+
   const categoryData = lookupMainCategory(DATA.children, category);
+  categoryData.children = categoryData.children.sort( (a,b) => b[year] - a[year]);
   
   let total = categoryData[`${year}_total`];
 

@@ -1,3 +1,4 @@
+
 // data from:
 // https://www.best-selling-cars.com/usa/2018-full-year-usa-ford-sales-americas-favorite-car-brand/
 
@@ -201,36 +202,3 @@ export default {
     }
   ]
 }
-
-// BRAND|'2018'|'2017'|Change
-
-// Fiesta|51730|46249|11.9
-// Focus|113345|158385|-28.4
-// C-MAX|6683|18390|-63.7
-// Fusion|173600|209623|-17.2
-// Taurus|28706|33242|-13.6
-// Police Sedan|7382|7994|-7.7
-// GT|126|89|41.6
-// Mustang|75842|81,866|-7.4
-// Cars|457414|555838|-17.7
-
-// EcoSport|54348|0|null
-// Escape|272228|308296|-11.7
-// Edge|134122|142603|-5.9
-// Flex|	20308|22389|-9.3
-// Explorer|227732|238056|-4.3
-// Police Utility|33839|33075|2.3
-// Expedition|54661|51883|5.4
-// SUVs|797238|796302|0.1
-
-// F-Series|909330|896764|1.4
-// E-Series|47936|53304|-10.1
-// Transit|137794|127360|8.2
-// Transit Connect|31923|34473|-7.4
-// Heavy|12096|11515|5
-// Trucks|1139079|1123416|1.4
-
-// Ford|2393731|2475556|-3.3
-
-// data from:
-// https://www.best-selling-cars.com/usa/2018-full-year-usa-ford-sales-americas-favorite-car-brand/

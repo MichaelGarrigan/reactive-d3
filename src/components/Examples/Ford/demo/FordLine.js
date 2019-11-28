@@ -16,13 +16,13 @@ export default props => {
   const data = props.selectedItemData;
   
   const [dataSorted, setDataSorted] = useState(formatData(props));
-  const { width } = props.dimensions;
-  const svgWidth = Math.floor(width * 0.9);
-  const svgHeight = Math.floor(svgWidth * 0.5);
+  
+  const width = props.dimensions.width;
+  const sectionWidth = Math.round( (width * 0.95) * 0.8);
+  const svgWidth = Math.floor(sectionWidth * 0.9);
+  const svgHeight = Math.floor(svgWidth * 0.7);
 
-  const margin5 = Math.floor(svgWidth * 0.05);
-  const margin10 = Math.floor(svgWidth * 0.1);
-  const margin20 = Math.floor(svgWidth * 0.2);
+  const margin = Math.floor(svgWidth * 0.1);
 
   useLayoutEffect( () => {
     setDataSorted(formatData(props));
@@ -51,16 +51,16 @@ export default props => {
   
   const bottomScale = scaleBand()
     .domain(['2017', '', '2018'])
-    .rangeRound([0, svgWidth - margin20])
+    .rangeRound([0, svgWidth - (margin * 2)])
     .padding(0.9);
   
   const leftScale = scaleLinear()
     .domain(calcExtentForAxis(data))
-    .range([svgHeight - margin10, 0]);
+    .range([svgHeight - (margin * 2), 0]);
 
   const rightScale = scaleLinear()
     .domain(calcExtentForAxis(data)) 
-    .range([svgHeight - margin10, 0]);
+    .range([svgHeight - (margin * 2), 0]);
 
 
   return (
@@ -91,9 +91,9 @@ export default props => {
         width={svgWidth} 
         height={svgHeight}
       >
-        <g transform={`translate(${margin10}, ${margin5})`}>
+        <g transform={`translate(${margin}, ${margin})`}>
           <g 
-            transform={`translate(0, ${svgHeight - margin10})`}
+            transform={`translate(0, ${svgHeight - (margin * 2)})`}
             className="svg-ford-axis"
             ref={node => select(node).call(axisBottom(bottomScale) )} 
           />
@@ -101,7 +101,7 @@ export default props => {
             className="svg-ford-axis-side"
             ref={node => select(node).call(axisLeft(leftScale).ticks(6, "s"))} 
           />
-          <g transform={`translate(${svgWidth - margin20}, 0)`}
+          <g transform={`translate(${svgWidth - (margin * 2)}, 0)`}
             className="svg-ford-axis-side"
             ref={node => select(node).call(axisRight(rightScale).ticks(6, "s"))} 
           />

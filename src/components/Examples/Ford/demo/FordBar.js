@@ -13,14 +13,18 @@ import './Ford.css';
 
 const FordBar = props => {
   const { category, DATA, year } = props;
-  const { width } = props.dimensions;
-  const svgWidth = Math.round(width * 0.6);
-  const svgHeight = Math.round(width * 0.4);
+  
+  const width = props.dimensions.width;
+  const sectionWidth = Math.round( (width * 0.95) * 0.8);
+  const svgWidth = Math.round(sectionWidth * 0.6);
+  const svgHeight = Math.round(sectionWidth * 0.4);
 
   const width75 = Math.round(svgWidth * 0.75);
 
   const categoryData = lookupMainCategory(DATA.children, category);
-  
+  categoryData.children = categoryData.children.sort( (a,b) => b[year] - a[year]);
+
+
   let total = categoryData[`${year}_total`];
   
   const margin5 = Math.floor(svgWidth * 0.05);

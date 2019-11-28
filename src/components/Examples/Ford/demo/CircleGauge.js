@@ -5,8 +5,8 @@ import { interpolate } from 'd3-interpolate';
 import { select } from 'd3-selection';
 import { transition } from 'd3-transition';
 
-const CircleGauge = props => {
-  const { actual, name } = props;
+export default props => {
+  const { actual, name, width, color } = props;
 
   const twoPI = 2 * Math.PI;
   let circleProgress = 0;
@@ -16,9 +16,7 @@ const CircleGauge = props => {
   const [circleNode, setCircleNode] = useState(null);
   const [textNode, setTextNode] = useState(null);
 
-  const { width } = props.dimensions;
-  const [innerWidth, setInnerWidth] = useState(Math.round(width * 0.9));
-  const svgWidth = Math.round(innerWidth * 0.3);
+  const svgWidth = props.width;
   
   const circleRef = useCallback(node => {
     setCircleNode(node);
@@ -43,17 +41,8 @@ const CircleGauge = props => {
           }
         });
     }
-  }, [circleNode, innerWidth]); 
+  }, [circleNode, width]); 
  
-  useLayoutEffect(() => {
-    let diff = innerWidth - (Math.round(width * 0.9));
-    
-    if (diff < -20 || diff > 20) {
-      setInnerWidth(Math.round(width * 0.9))
-    }
-    
-  }, [width]);
-  
 
   let circleBackground = arc()
     .innerRadius(Math.round(svgWidth * 0.3))
@@ -86,7 +75,7 @@ const CircleGauge = props => {
         />
         <path
           ref={circleRef}
-          fill="orangered"
+          fill={props.color}
           stroke="#333"
           strokeWidth="1"
           d={circleForeground()}
@@ -111,5 +100,3 @@ const CircleGauge = props => {
     </svg>
   );
 };
-
-export default CircleGauge;

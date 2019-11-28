@@ -3,53 +3,48 @@
        Ford
 ==================== */
 .ford-wrapper {
-  min-height: 85vh;
-  width: 100vw;
+  
 }
 
 .ford-flex {
-  border: 1px solid #333;
-  border-radius: 0.5rem;
   display: flex;
-  margin: 0 auto;
-  width: 95vw;
+  
 }
 
 /* ===================
      FordButton
 ==================== */
 .ford-button-wrapper {
-  background: #333;
-  border-radius: 0.5rem 0 0 0.5rem;
+  background: var(--gray5);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   text-align: center;
-  width: 15vw;
+  width: 20%;
 }
 .ford-button-group {
-  margin: 2rem 0;
+  margin: 2vw 0;
 }
 .ford-button {
-  background: #777;
-  border: 1px solid #aaa;
-  border-radius: 0.5rem;
-  color: #333;
+  background: var(--gray2);
+  border: thin solid var(--grayDark);
+  border-radius: 1vw;
+  color: var(--grayDark);
   cursor: pointer;
   font-size: 3vw;
-  margin: .2rem 0;
-  padding: 0.5rem 0;
+  margin: 0.5vw 0;
+  padding: 0.5vw 0;
   width: 80%;
 }
 .ford-button-active {
-  background: rgb(248, 212, 10);
-  border: 1px solid #333;
-  border-radius: 0.5rem;
-  color: #333;
+  background: var(--yellow);
+  border: thin solid var(--grayDark);
+  border-radius: 1vw;
+  color: var(--grayDark);
   cursor: pointer;
   font-size: 3vw;
-  margin: .2rem 0;
-  padding: 0.5rem 0;
+  margin: 0.5vw 0;
+  padding: 0.5vw 0;
   width: 80%;
 }
 
@@ -58,9 +53,6 @@
 ==================== */
 .ford-charts-wrapper {
   align-items: center;
-  background: #aaa;
-  border: 1px solid #333;
-  border-radius: 0 0.5rem 0.5rem 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -72,44 +64,31 @@
    FordSalesTotal 
 ==================== */
 .ford-sales-wrapper {
-  background: #333;
-  border: 1px solid #aaa;
-  border-radius: 0.5rem;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
-  margin: 1rem 0;
+  background: var(--grayLight);
+  border: thin solid var(--grayDark);
+  margin: 2vw 0;
+  padding: 1vw 0;
   width: 90%;
 }
 .ford-sales-total {
-  padding: 1rem 0;
-  text-align: center;
-  width: 100%;
-}
-.ford-sales-total h3 {
-  color: #d1d1d1;
   font-size: 5vw;
+  text-align: center;
 }
 
 /* ===================
       FordGagues 
 ==================== */
 .ford-gague-wrapper {
-  margin: 1rem 0;
   width: 100%;
 }
 .ford-3circles-wrapper {
-  background-image: linear-gradient(rgb(247, 248, 194), rgb(237, 243, 212));
-  border: 1px solid #333;
-  border-radius: 0.5rem;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  width: 90%;
 }
 .ford-circles-icon-wrapper {
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .ford-circle-wrapper {
   align-items: center;
@@ -125,17 +104,18 @@
   display: flex;
   width: 100%;
 }
-.ford-Trucks-icon {
+
+.ford-truck-icon {
   background-image: url('/icons/truck.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }
-.ford-SUVs-icon {
+.ford-suv-icon {
   background-image: url('/icons/suv.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }
-.ford-Cars-icon {
+.ford-car-icon {
   background-image: url('/icons/car.svg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -166,85 +146,58 @@
 }
 
 /* ===================
-      FordPack 
-==================== */
-.ford-pack-wrapper {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 2rem 0;
-  width: 100%;
-}
-
-.svg-ford-pack {
-  
-}
-
-/* ===================
       FordLine 
 ==================== */
 .ford-line-wrapper {
   align-items: center;
-  background-image: linear-gradient(rgb(247, 248, 194), rgb(237, 243, 212));
-  border: 1px solid #333;
-  border-radius: 0.5rem;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  background: var(--grayLight);
+  border: thin solid var(--grayDark);
   display: flex;
   flex-direction: column;
-  height: 100%;
-  
-  margin: 2rem 0;
+  margin: 3vw 0;
   width: 90%
 }
-.svg-ford-line {
-  
-}
-
 .ford-line-button-wrapper {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 90vw;
+  justify-content: space-evenly;
+  margin-top: 2vw;
 }
 .ford-line-button {
-  background: #777;
-  border: 1px solid #aaa;
-  border-radius: 0.5rem;
-  color: #333;
+  background: var(--gray2);
+  border: thin solid var(--grayDark);
+  border-radius: 1vw;
+  color: var(--grayDark);
   cursor: pointer;
   font-size: 2vw;
-  margin: .2rem;
-  padding: 0.5rem;
+  padding: 0.5vw;
 }
 
 .ford-line-button-active {
-  background: rgb(248, 212, 10);
-  border: 1px solid #333;
-  border-radius: 0.5rem;
-  color: #333;
+  background: var(--yellow);
+  border: thin solid var(--grayDark);
+  border-radius: 1vw;
+  color: var(--grayDark);
   cursor: pointer;
   font-size: 2vw;
-  margin: .2rem;
-  padding: 0.5rem;
+  padding: 0.5vw;
 }
 .svg-ford-axis text {
-  fill: #333;
+  fill: var(--grayDark);
   font-size: 2vw;
 }
 .svg-ford-axis path {
-  stroke: #333;
-  stroke-width: 2px;
+  stroke: var(--grayDark);
+  stroke-width: 0.06vw;
 }
 .svg-ford-axis-side text {
-  fill: #333;
+  fill: var(--grayDark);
   font-size: 1.5vw;
 }
 .svg-ford-axis-side path {
-  stroke: #333;
-  stroke-width: 2px;
+  stroke: var(--grayDark);
+  stroke-width: 0.06vw;
 }
 .svg-text-percent {
-  fill: #333;
+  fill: var(--grayDark);
   font-size: 4vw;
 }

@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 
-import TitleBanner from '../titleBanner/TitleBanner.js';
 import FordButton from './FordButton.js';
 import FordCharts from './FordCharts.js';
 
@@ -9,7 +8,7 @@ import DATA from './FordData.js';
 import './Ford.css';
 
 
-const Ford = props => {
+export default props => {
 
   const [category, setCategory] = useState('All');
   const [selectedItemData, setSelectedItemData] = useState(DATA.children[2]);
@@ -19,7 +18,7 @@ const Ford = props => {
   
   return (
     <div className="ford-wrapper">
-      <TitleBanner title='Ford Sales - 2017 & 2018' />
+  
       <div className="ford-flex">
 
         <FordButton 
@@ -50,5 +49,3 @@ const Ford = props => {
     </div>
   );
 };
-
-export default Ford;
