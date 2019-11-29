@@ -6,7 +6,7 @@ import { select } from 'd3-selection';
 
 import { lookupMainCategory } from './helperFunctions.js';
 
-const CircleGaugeMulti = props => {
+export default props => {
   const { category, DATA, year } = props;
   
   const width = props.dimensions.width;
@@ -88,5 +88,3 @@ const CircleGaugeMulti = props => {
     </svg>
   );
 };
-
-export default CircleGaugeMulti;

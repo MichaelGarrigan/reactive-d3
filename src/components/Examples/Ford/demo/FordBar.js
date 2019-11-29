@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React from 'react';
 
 import { lookupMainCategory } from './helperFunctions.js';
 
@@ -11,7 +11,7 @@ import { schemeTableau10 } from 'd3-scale-chromatic';
 import './Ford.css';
 
 
-const FordBar = props => {
+export default props => {
   const { category, DATA, year } = props;
   
   const width = props.dimensions.width;
@@ -86,5 +86,3 @@ const FordBar = props => {
     </svg>
   );
 };
-
-export default FordBar;

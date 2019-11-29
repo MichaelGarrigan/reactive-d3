@@ -20,7 +20,7 @@ import BarChartsSVG from '../ExampleHelpers/ThumbnailSvgs/BarChartsSVG.js';
 import { Clocks, ClocksCode, ClocksSummary } from './Clocks/index.js';
 import ClocksSVG from '../ExampleHelpers/ThumbnailSvgs/ClocksSVG.js';
 
-import { Ford } from './Ford/index.js'; // , FordCode, FordSummary 
+import { Ford, FordCode, FordSummary } from './Ford/index.js';  
 import FordSVG from '../ExampleHelpers/ThumbnailSvgs/FordSVG.js';
 
 import { LineChart, LineChartCode, LineChartSummary } from './LineChart/index.js';
@@ -53,8 +53,8 @@ export default props => {
             dimensions={props.dimensions} 
             title='Ford Sales - 2017 & 2018'
             demo={Ford}
-            // code={FordCode}
-            // summary={FordSummary}
+            code={FordCode}
+            summary={FordSummary}
           />
         } 
       />

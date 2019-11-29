@@ -2,10 +2,6 @@
 /* ===================
        Ford
 ==================== */
-.ford-wrapper {
-  
-}
-
 .ford-flex {
   display: flex;
   
@@ -124,25 +120,22 @@
 /* ===================
       FordBar 
 ==================== */
-.svg-ford-bar {
-  
-}
 .svg-ford-bar-yaxis text {
-  color: white;
+  color: var(--grayDark);
   font-size: 1.6vw;
 }
 .ford-bar-rect {
-  stroke: #333;
-  stroke-width: 1;
+  stroke: var(--grayDark);
+  stroke-width: 0.06vw;
 }
 
 .svg-ford-bar-yaxis line {
-  stroke: #333;
-  stroke-width: 2;
+  stroke: var(--grayDark);
+  stroke-width: 0.06vw;
 }
 .ford-bar-text {
-  fill: #fff;
-  font-size: 2rem;
+  fill: var(--grayDark);
+  font-size: 1.2vw;
 }
 
 /* ===================
@@ -200,4 +193,10 @@
 .svg-text-percent {
   fill: var(--grayDark);
   font-size: 4vw;
+}
+.ford-line-path {
+  stroke: #1F78B4;
+}
+.ford-line-circle {
+  fill: var(--orange);
 }

@@ -132,6 +132,7 @@ export default props => {
             
           <g>
             <path
+              className="ford-line-path"
               d={ renderPath(
                     bottomScale('2017'),
                     (
@@ -148,27 +149,26 @@ export default props => {
                   )
                 }
               strokeWidth={10}
-              stroke="blue"
             />
             <circle
+              className="ford-line-circle"
               cx={bottomScale('2017')}
               cy={
                 data['2017_total']
                   ? rightScale(data['2017_total'])
                   : rightScale(data['2017'])
               }                                                 
-              r={10}
-              fill="teal"
+              r={8}
             />
             <circle
+              className="ford-line-circle"
               cx={bottomScale('2018')}
               cy={
                 data['2018_total']
                   ? rightScale(data['2018_total'])
                   : rightScale(data['2018'])
               }
-              r={10}
-              fill="teal"
+              r={8}
             />
           </g>   
         </g>
