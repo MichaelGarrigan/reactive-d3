@@ -12,7 +12,6 @@ import './Home.css';
 const randomizeData = () => range(60).map(d => ({ "y": randomUniform(1)() }));
 const randomizeData1 = () => range(30).map(d => ({ "y": randomUniform(1)() }));
 
-
 export default ({dimensions}) => {
 
   const svgWidth = dimensions.width;
@@ -20,6 +19,7 @@ export default ({dimensions}) => {
   
   const [dataRandom, setDataRandom] = useState(randomizeData());
   const [dataRandom1, setDataRandom1] = useState(randomizeData1());
+  const [dataWindow, setDataWindow] = useState('');
   
   const [verbs, setVerbs] = useState(
     ["Exploring", "Hacking", "Building"]
@@ -55,6 +55,20 @@ export default ({dimensions}) => {
     return () => clearInterval(interval); 
   }, [content, index, word, pause]);
 
+  useEffect( () => {
+    setDataWindow(
+      range(25).map(d => (
+        { 
+          x: randomUniform()(), 
+          y: randomUniform()(),
+          height: randomUniform(svgHeight * 0.04, svgHeight * 0.15)(),
+          width: randomUniform(svgWidth * 0.01, svgWidth * 0.04)()
+        }
+      ))
+    )
+    
+  }, []);
+
   const xScale = scaleLinear()
     .domain([0, 59])
     .range([-25, svgWidth]); 
@@ -81,6 +95,14 @@ export default ({dimensions}) => {
     .y( d => yScale1(d.y) ) 
     .curve(curveStep);
 
+  const windowScaleX = scaleLinear()
+    .domain([0, 1])
+    .range([0, svgWidth]); 
+
+  const windowScaleY = scaleLinear()
+    .domain([0, 1]) 
+    .range([svgHeight, 0]);
+
   
   return (
     <div className="home-wrapper">
@@ -90,6 +112,21 @@ export default ({dimensions}) => {
         height={svgHeight} 
         width={svgWidth}
       >
+        {
+          dataWindow
+          ? 
+            dataWindow.map( (window, idx) => (
+              <rect 
+                key={idx}
+                fill="#FEFF3488"
+                x={windowScaleX(window.x)}
+                y={windowScaleY(window.y)}
+                height={window.height}
+                width={window.width}
+              />
+            ))
+          : ''
+        }
         <path 
           className="home-curve"
           ref={node => select(node).datum(dataRandom).attr("d", lineShape)}
