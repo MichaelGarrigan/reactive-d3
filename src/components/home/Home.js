@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { range } from 'd3-array';
@@ -9,17 +9,16 @@ import { select } from 'd3-selection';
 import  { curveMonotoneX, curveMonotoneY, curveStep, line } from 'd3-shape';
 import './Home.css';
 
-const randomizeData = () => range(60).map(d => ({ "y": randomUniform(1)() }));
-const randomizeData1 = () => range(30).map(d => ({ "y": randomUniform(1)() }));
 
 export default ({dimensions}) => {
-
-  const svgWidth = dimensions.width;
-  const svgHeight = Math.round(svgWidth * 0.7);
   
-  const [dataRandom, setDataRandom] = useState(randomizeData());
-  const [dataRandom1, setDataRandom1] = useState(randomizeData1());
-  const [dataWindow, setDataWindow] = useState('');
+  const [width, setWidth] = useState(dimensions.width);
+  const [height, setHeight] = useState(dimensions.height);
+  
+  const [lineDarkData, setLineDarkData] = useState(range(8).map(d => ({ "y": randomUniform(1)() })));
+  const [lineMedData, setLineMedData] = useState(range(15).map(d => ({ "y": randomUniform(1)() })));
+  const [lineLightData, setLineLightData] = useState(range(30).map(d => ({ "y": randomUniform(1)() })));
+  const [yellowRect, setYellowRect] = useState('');
   
   const [verbs, setVerbs] = useState(
     ["Exploring", "Hacking", "Building"]
@@ -55,53 +54,70 @@ export default ({dimensions}) => {
     return () => clearInterval(interval); 
   }, [content, index, word, pause]);
 
+
   useEffect( () => {
-    setDataWindow(
+    setYellowRect(
       range(25).map(d => (
         { 
           x: randomUniform()(), 
           y: randomUniform()(),
-          height: randomUniform(svgHeight * 0.04, svgHeight * 0.15)(),
-          width: randomUniform(svgWidth * 0.01, svgWidth * 0.04)()
+          height: randomUniform(height * 0.03, height * 0.1)(),
+          width: randomUniform(width * 0.01, width * 0.03)()
         }
       ))
     )
     
   }, []);
 
-  const xScale = scaleLinear()
-    .domain([0, 59])
-    .range([-25, svgWidth]); 
+  // dark line shape
+  const darkX = scaleLinear()
+    .domain([0, 7])
+    .range([0, width]); 
 
-  const yScale = scaleLinear()
+  const darkY = scaleLinear()
     .domain([0, 1]) 
-    .range([svgHeight, 0]);
+    .range([height, 0]);
 
-  const lineShape = line()
-    .x( (d, i) => xScale(i+1) ) 
-    .y( d => yScale(d.y) ) 
+  const darkLine = line()
+    .x( (d, i) => darkX(i) ) 
+    .y( d => darkY(d.y) ) 
     .curve(curveStep);
 
-  const xScale1 = scaleLinear()
-    .domain([0, 29])
-    .range([-25, svgWidth]); 
+  // med line shape
+  const medX = scaleLinear()
+    .domain([0, 14])
+    .range([0, width]); 
 
-  const yScale1 = scaleLinear()
+  const medY = scaleLinear()
     .domain([1, 0]) 
-    .range([svgHeight - 25, 0]);
+    .range([height, 0]);
 
-  const lineShape1 = line()
-    .x( (d, i) => xScale1(i+1) ) 
-    .y( d => yScale1(d.y) ) 
+  const medLine = line()
+    .x( (d, i) => medX(i) ) 
+    .y( d => medY(d.y) ) 
+    .curve(curveStep);
+
+  // light line shape
+  const lightX = scaleLinear()
+    .domain([0, 29])
+    .range([0, width]); 
+
+  const lightY = scaleLinear()
+    .domain([1, 0]) 
+    .range([height , 0]);
+
+  const lightLine = line()
+    .x( (d, i) => lightX(i) ) 
+    .y( d => lightY(d.y) ) 
     .curve(curveStep);
 
   const windowScaleX = scaleLinear()
     .domain([0, 1])
-    .range([0, svgWidth]); 
+    .range([0, width]); 
 
   const windowScaleY = scaleLinear()
     .domain([0, 1]) 
-    .range([svgHeight, 0]);
+    .range([height, 0]);
 
   
   return (
@@ -109,16 +125,24 @@ export default ({dimensions}) => {
       
       <svg 
         className="home-svg"
-        height={svgHeight} 
-        width={svgWidth}
+        height={height} 
+        width={width}
       >
+        <path 
+          className="home-darkLine"
+          ref={node => select(node).datum(lineDarkData).attr("d", darkLine)}
+        />
+         <path 
+          className="home-medLine"
+          ref={node => select(node).datum(lineMedData).attr("d", medLine)}
+        />
         {
-          dataWindow
+          yellowRect
           ? 
-            dataWindow.map( (window, idx) => (
+            yellowRect.map( (window, idx) => (
               <rect 
                 key={idx}
-                fill="#FEFF3488"
+                fill="#FEFF3477"
                 x={windowScaleX(window.x)}
                 y={windowScaleY(window.y)}
                 height={window.height}
@@ -127,23 +151,22 @@ export default ({dimensions}) => {
             ))
           : ''
         }
+
         <path 
-          className="home-curve"
-          ref={node => select(node).datum(dataRandom).attr("d", lineShape)}
+          className="home-lightLine"
+          ref={node => select(node).datum(lineLightData).attr("d", lightLine)}
         />
-         <path 
-          className="home-curve1"
-          ref={node => select(node).datum(dataRandom1).attr("d", lineShape1)}
-        />
-  
+      
       </svg>
 
-      <div className="home-box-dynamic">
-        <span className="home-text-dynamic">{content}</span>
-      </div>
+      <div className="home-box-text-wrapper">
+        <div className="home-box-dynamic">
+          <span className="home-text-dynamic">{content}</span>
+        </div>
 
-      <div className="home-box-static">
-        <p className="home-text-static">d3 and React</p>
+        <div className="home-box-static">
+          <p className="home-text-static">d3 and React</p>
+        </div>
       </div>
     
     </div>

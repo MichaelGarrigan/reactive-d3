@@ -3,7 +3,7 @@
   align-items: center;
   background: var(--grayDark);
   display: flex;
-  height: 12vw;
+  height: 12vw; 
   justify-content: space-between;
   width: 100vw;
 }

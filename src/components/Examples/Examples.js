@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import './Examples.css';
 
@@ -61,7 +61,7 @@ export default props => {
       
       <Route 
         path={`${path}/barcharts`} 
-        component={() => 
+        component={() => (
           <ExampleTemplate 
             dimensions={props.dimensions} 
             title='Bar Charts'
@@ -69,7 +69,7 @@ export default props => {
             code={BarChartsCode}
             summary={BarChartsSummary}
           />
-        } 
+        )} 
       />
 
       <Route 

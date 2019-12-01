@@ -1,35 +1,36 @@
 
-.home-wrapper {
-  background: transparent;
-  /* background: var(--gray6); */
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  height: 70vw;
-}
-
 .home-svg {
+  background: linear-gradient(var(--grayDark), var(--gray4));
   position: absolute;
 }
 
-.home-curve {
+.home-darkLine {
   fill: none;
-  stroke: var(--gray5);
-  stroke-width: 0.4vw;
+  stroke: var(--gray4);
+  stroke-width: 0.6vw;
 }
-.home-curve1 {
+.home-medLine {
   fill: none;
   stroke: var(--gray3);
   stroke-width: 0.5vw;
 }
-
+.home-lightLine {
+  fill: none;
+  stroke: var(--gray2);
+  stroke-width: 0.3vw;
+}
+.home-box-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 15vw;
+  width: 65%;
+}
 .home-box-dynamic {
   align-items: center;
   background: var(--gray6);
   border: thick solid var(--blue);
   display: flex;
-  grid-column: 3 / span 6;
-  grid-row: 2 / span 2;
   justify-content: center;
   z-index: 5;
 }
@@ -44,13 +45,11 @@
   align-items: center;
   background: var(--blue);
   display: flex;
-  grid-column: 3 / span 6;
-  grid-row: 4 / span 2;
   justify-content: center;
   z-index: 5;
 }
 .home-text-static {
-  color: var(--offBlack);
+  color: var(--grayDark);
   font-size: 8vw;
   font-weight: 600;
 }
