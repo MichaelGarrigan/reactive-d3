@@ -1,12 +1,32 @@
 const webpack = require('webpack');
 const path = require('path');
 
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   //entry: './src/index.js',
   output: {
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
   },
+  plugins: [
+    new CopyPlugin([
+      {
+        from: path.resolve(process.cwd(), 'public/icons'), 
+        to: path.resolve(process.cwd(), 'dist/icons')
+      },
+      {
+        from: path.resolve(process.cwd(), 'public/images'), 
+        to: path.resolve(process.cwd(), 'dist/images')
+      },
+      {
+        from: path.resolve(process.cwd(), 'public/index.html'), 
+        to: path.resolve(process.cwd(), 'dist')
+      }
+    ])
+  ],
+  
   module: {
     rules: [
       {
