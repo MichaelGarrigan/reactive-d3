@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import Prism from 'prismjs';
+import '../../../../node_modules/prismjs/themes/prism-okaidia.css';
 
 import './Code.css';
 
