@@ -19,7 +19,7 @@ const Ford = lazy( () => import(/* webpackChunkName: 'ford' */'../routes/ford.js
 const BarCharts = lazy( () => import(/* webpackChunkName: 'barcharts' */'../routes/barcharts.js'));
 const LineChart = lazy( () => import(/* webpackChunkName: 'linechart' */'../routes/linechart.js'));
 
-const Lower48 = lazy( () => import(/* webpackChunkName: 'lower48' */'./Examples/Lower48/Lower48.js'));
+const Lower48 = lazy( () => import(/* webpackChunkName: 'lower48' */'../routes/lower48.js'));
 const Rainfall = lazy( () => import(/* webpackChunkName: 'rainfall' */'./Examples/Rainfall/Rainfall.js'));
 const ClosestCircle = lazy( () => import(/* webpackChunkName: 'closestcircle' */'./Examples/ClosestCircle/ClosestCircle.js'));
 const Contour = lazy( () => import(/* webpackChunkName: 'contour' */'./Examples/Contour/Contour.js'));
