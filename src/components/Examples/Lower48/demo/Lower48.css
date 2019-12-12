@@ -1,0 +1,25 @@
+
+.lower48-wrapper {
+  min-height: 85vh;
+  text-align: center;
+}
+.lower48-svg {
+  
+  display: block;
+  margin: 0 auto;
+}
+.lower48-p {
+  color: var(--grayDark);
+  font-size: 5vw;
+  margin: 4vw 0 0;
+}
+
+.lower48-path-states {
+  fill: teal;
+  stroke: #333;
+}
+
+.lower48-path-states-active {
+  fill: orange;
+  stroke: #333;
+}
