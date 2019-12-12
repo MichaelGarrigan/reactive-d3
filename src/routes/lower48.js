@@ -7,7 +7,7 @@ import ExampleTemplate from '../components/ExampleHelpers/ExampleTemplate.js';
   const Example = props => (
     <ExampleTemplate 
       {...props}
-      title='Bar Charts'
+      title='US Lower 48 States'
       demo={Lower48}
       code={Lower48Code}
       summary={Lower48Summary}
