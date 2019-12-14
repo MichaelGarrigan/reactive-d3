@@ -1,5 +1,5 @@
 # reactive d3
-A resource for visualizing data in React applications with d3.js
+A home for visualizing data in React applications with d3.js
 
 ## Table of contents
 * [General info](#general-info)
@@ -7,47 +7,40 @@ A resource for visualizing data in React applications with d3.js
 * [Setup](#setup)
 
 ## General info
-This project is simple Lorem ipsum dolor generator.
+This application is a React app that shows working examples of what D3 can do. Each example contains the application code used to generate the example along with styling. Also there is a Modules tab which contains specific api details contained in the body of D3. And lastly a tab named 'Resources' is a list of links to 3rd party sources to data, design, etc.
 	
 ## Technologies
 Project is created with:
 * React: 16.8.6 or greater
+* -code-splitting: with React Suspense and lazy()
 * Node & Express:
 * d3: (using modules ie. d3-scale)
-* Webpack: 4.20.2
-* Babel: 7.1.2
+* Webpack v.4
+* Babel v.7
+* React Router v.4
 	
 ## Setup
-To run this project, install it locally using npm:
+Pull from github: [reactive-d3](https://github.com/M-garrigan/reactive-d3)
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ git clone https://github.com/M-garrigan/reactive-d3.git
+$ cd reactive-d3
 ```
 
-## Features
-Lots of examples written in functional React with hooks.
-A review of d3 modules 
-A collection of resources: links, people, articles around data visualization.
+Developer Build
+```
+// webpack build with watch flag
+$ yarn build:dev
 
-![Algorithm schema](.dist/images/brickwall.png)
+// nodemon watched express/node server
+$ yarn start:dev
+```
 
+Production Build
+```
+// webpack prod build
+$ yarn build
 
-Make sure the file always includes the following elements:
-
-Titles and internal titles
-Introduction - the project's aim
-Technologies
-Launch
-
-Consider also using additional elements such as: 
-
-Table of contents
-Illustrations
-Scope of functionalities 
-Examples of use
-Project status 
-Sources
-Other information
-ToDo
+// start node server
+$ yarn start
+```
