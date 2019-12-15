@@ -11,7 +11,9 @@
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js",
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development --watch"
+    "build:dev": "webpack --mode development --watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "babel": {
     "presets": [
@@ -23,6 +25,12 @@
       "@babel/plugin-syntax-dynamic-import"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  },
   "repository": "https://github.com/M-garrigan/reactive-d3.git",
   "author": "Michael Garrigan",
   "license": "MIT",
@@ -33,12 +41,15 @@
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.4",
     "copy-webpack-plugin": "^5.0.5",
     "css-loader": "^3.0.0",
     "csv-loader": "^3.0.2",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
     "nodemon": "^1.18.4",
     "style-loader": "^0.23.0",
     "webpack": "^4.20.2",
