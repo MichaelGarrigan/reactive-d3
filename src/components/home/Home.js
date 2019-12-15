@@ -1,12 +1,11 @@
 
-import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 import { range } from 'd3-array';
 import { randomUniform } from 'd3-random';
 import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
-import  { curveMonotoneX, curveMonotoneY, curveStep, line } from 'd3-shape';
+import  { curveStep, line } from 'd3-shape';
 import './Home.css';
 
 
