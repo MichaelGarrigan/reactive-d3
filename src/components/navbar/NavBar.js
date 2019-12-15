@@ -7,7 +7,7 @@ export default ({dimensions}) => {
   const [category, setCategory] = useState('');
 
   return (
-    <div className="navbar-wrapper">
+    <nav className="navbar-wrapper">
       <Link to='/' 
         className="nav-link-title"
         onClick={() => setCategory('')}
@@ -56,6 +56,6 @@ export default ({dimensions}) => {
           <div className="nav-link">Resources</div>
         </Link>
       </div>
-    </div>
+    </nav>
   );
 };
