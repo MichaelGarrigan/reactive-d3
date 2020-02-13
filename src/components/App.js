@@ -21,7 +21,7 @@ const LineChart = lazy( () => import(/* webpackChunkName: 'linechart' */'../rout
 
 const Lower48 = lazy( () => import(/* webpackChunkName: 'lower48' */'../routes/lower48.js'));
 const Rainfall = lazy( () => import(/* webpackChunkName: 'rainfall' */'./Examples/Rainfall/Rainfall.js'));
-const ClosestCircle = lazy( () => import(/* webpackChunkName: 'closestcircle' */'./Examples/ClosestCircle/ClosestCircle.js'));
+const ClosestCircle = lazy( () => import(/* webpackChunkName: 'closestcircle' */'../routes/closestcircle.js'));
 const Contour = lazy( () => import(/* webpackChunkName: 'contour' */'./Examples/Contour/Contour.js'));
 const Axis = lazy( () => import(/* webpackChunkName: 'axis' */'./Examples/Axis/Axis.js'));
 const DayNight = lazy( () => import(/* webpackChunkName: 'daynight' */'./Examples/DayNightMap/DayNight.js'));
@@ -34,7 +34,7 @@ import useElementSize from '../useElementSize.js';
 
 export default props => {
   const [sizeRef, dimensions] = useElementSize();
-
+ 
   const routes = {
     clocks: Clocks,
     ford: Ford,
@@ -65,7 +65,7 @@ export default props => {
       />
 
       <Route 
-        path='/Examples/:id' 
+        path='/examples/:id' 
         component={ props => {
           let id = props.match.params.id;
           
@@ -83,14 +83,14 @@ export default props => {
       
       <Route 
         exact
-        path='/Examples' 
+        path='/examples' 
         component={ props => (
           <Examples {...props} dimensions={dimensions} />
         )} 
       />
   
       <Route 
-        path='/Modules' 
+        path='/modules' 
         component={ props => (
           <Suspense fallback={<div>Loading...</div>} >
             <Modules {...props} dimensions={dimensions} />
@@ -98,7 +98,7 @@ export default props => {
         )} 
       />
       <Route 
-        path='/Resources' 
+        path='/resources' 
         component={ props => (
           <Suspense fallback={<div>Loading...</div>} >
             <Resources {...props} dimensions={dimensions} />

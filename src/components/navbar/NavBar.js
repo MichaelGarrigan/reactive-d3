@@ -10,6 +10,7 @@ export default ({dimensions}) => {
     <nav className="navbar-wrapper">
       <Link to='/' 
         className="nav-link-title"
+        data-testid="link"
         onClick={() => setCategory('')}
       >
         <div 
@@ -37,20 +38,23 @@ export default ({dimensions}) => {
       </Link>
 
       <div className="nav-link-group">
-        <Link to="/Examples" 
+        <Link to="/examples" 
           className={category === "examples" ? "nav-link-active" : "nav-examples-link"}
+          data-testid="link"
           onClick={() => setCategory('examples')}
         >
           <div className="nav-link">Examples</div>
         </Link>
-        <Link to="/Modules" 
+        <Link to="/modules" 
           className={category === "modules" ? "nav-link-active" : "nav-modules-link"}
+          data-testid="link"
           onClick={() => setCategory('modules')}
         >
           <div className="nav-link">Modules</div>
         </Link>
-        <Link to="/Resources" 
+        <Link to="/resources" 
           className={category === "resources" ? "nav-link-active" : "nav-resources-link"}
+          data-testid="link"
           onClick={() => setCategory('resources')}
         >
           <div className="nav-link">Resources</div>
