@@ -35,10 +35,23 @@
   z-index: 5;
 }
 .home-text-dynamic {
-  color: var(--orange);
+  animation-name: fade;
+  animation-duration: 4s;
+  /* animation-timing-function: linear; */
+  /* animation-delay: 2s; */
+  animation-iteration-count: infinite;
+  
   font-size: 8vw;
   font-weight: 600;
   height: 10vw;
+}
+
+@keyframes fade {
+  0%   {color: rgb(253, 166, 0, .00);}
+  25%  {color: rgb(253, 166, 0, .40);}
+  50%  {color: rgb(253, 166, 0, .70);}
+  75%  {color: rgb(253, 166, 0, .90);}
+  100% {color: rgb(253, 166, 0, 1);}
 }
 
 .home-box-static {
